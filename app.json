@@ -1,13 +1,48 @@
 {
   "pages": [
+    "pages/user/user",
     "pages/frontPage/frontPage",
+    "pages/comment/comment",
+    "pages/courses/courses",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/university/university"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000080",
     "navigationBarTitleText": "桥选校园",
     "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "borderStyle": "#333333",
+    "backgroundColor": "#CCCCCC",
+    "color": "#white",
+    "selectedColor": "#3F53AF",
+    "list": [
+      {
+        "pagePath": "pages/comment/comment",
+        "text": "我要点评",
+        "iconPath": "pages/index/img/comment.png",
+        "selectedIconPath": "pages/index/img/comment.png"
+      },
+      {
+        "pagePath": "pages/courses/courses",
+        "text": "查找课程",
+        "iconPath": "pages/index/img/courses.png",
+        "selectedIconPath": "pages/index/img/courses.png"
+      },{
+        "pagePath": "pages/university/university",
+        "text": "查找高校",
+        "iconPath": "pages/index/img/university.png",
+        "selectedIconPath": "pages/index/img/university.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的账号",
+        "iconPath": "pages/index/img/user.png",
+        "selectedIconPath": "pages/index/img/user.png"
+      }
+    ]
   }
 }
