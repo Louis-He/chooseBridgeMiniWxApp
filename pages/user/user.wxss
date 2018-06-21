@@ -1,1 +1,15 @@
 /* pages/user/user.wxss */
+.back{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;/*垂直居中*/
+  justify-content:flex-start;/*水平居中*/
+  text-align: center;
+  background: #3F53AF;
+}
+.welcome{
+  padding-top: 20rpx;
+}
