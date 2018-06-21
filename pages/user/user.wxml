@@ -3,7 +3,7 @@
   <view class="back" wx:if="1">
     <image mode="widthFix" style="width:100%" src='frontlogo.png'></image>
     <view class="welcome">
-      <text style="color:white">{{userInfo.nickName}}\n欢迎使用巧选校园</text>
+      <text style="color:white">{{userInfo.nickName}}\n欢迎使用桥选校园</text>
     </view>
   </view>
 </block>
