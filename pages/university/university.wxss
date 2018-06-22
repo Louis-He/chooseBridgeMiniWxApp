@@ -1,1 +1,69 @@
 /* pages/university/university.wxss */
+@import 'weui.wxss'; 
+page{
+  background-color: #3F53AF;  
+}
+.searchbar-result{
+    margin-top: 0;
+    font-size: 30rpx;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+.cancel{
+  color: #3F53AF;  
+  font-size: 28rpx;
+}
+.cards{
+  width: 92%;
+  height: 100%;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.universityCard{
+  margin-bottom: 20rpx;
+  width: 100%;
+  height: 170rpx;
+  border-radius: 15rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.item {
+  height: 100%;
+}
+
+.item1 {
+  padding: 20rpx;
+  width: 9%;
+  height: 30%;
+}
+
+.item2 {
+  width: 85%;
+}
+
+.item3 {
+  padding: 5rpx;
+  width: 5%;
+  display: flex;
+  align-items: center;
+}
+
+.name{
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.subname{
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 28rpx;
+  line-height: 30rpx;
+}
