@@ -1,5 +1,6 @@
+/* pages/university/university/result.wxss */
 /* pages/university/university.wxss */
-/* @import 'weui.wxss'; 
+@import 'weui.wxss';
 page{
   background-color: #3F53AF;  
 }
@@ -66,39 +67,4 @@ page{
   font-family:Arial, Helvetica, sans-serif;
   font-size: 28rpx;
   line-height: 30rpx;
-} */
-@import 'weui.wxss';
-page{
-  background-color: #3F53AF;  
-}
-.top-image {
-  background-color: #3F53AF;
-  width: 100%;
-  height: 100%;
-}
- .searchbar {
-  display: flex;
-  flex-direction: row;
-}
-.name-base {
-  width: 40%;
-  color: white;
-  background-color: #FF8C00;
-  margin-bottom: 15rpx;
-  margin-left: 100rpx; 
-}
-.area-title {
-  width: 40%;
-  color: white;
-  background-color: #000000;
-  margin-bottom: 15rpx;
-  margin-right: 100rpx;
-}
-.weui-cells {
-  width: 73%;
-  margin-left: 100rpx;
-}
-.searchBtn {
-  width: 74%;
-  margin-top: 30rpx;
 }
