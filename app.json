@@ -6,7 +6,8 @@
     "pages/courses/courses",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/university/university"
+    "pages/university/university",
+    "pages/university/university/result"
   ],
   "window": {
     "backgroundTextStyle": "light",

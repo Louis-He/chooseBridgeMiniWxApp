@@ -1,4 +1,4 @@
-<!-- <view class="page">
+<view class="page">
     <view class="page__bd">
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">
@@ -77,19 +77,4 @@
           </view>
         </view>
     </view>
-</view> -->
-<view class = "top-image">
-  <image mode = "widthFix" style = "width:100%" 
-  src ='/images/default-user-bg.png'></image>
-</view> 
-  <view class="searchbar">
-    <button class = "name-base" bindtap='nameBase'>按名称</button>
-    <button class = "area-title" bindtap='areaBase'>按地区</button>
-  </view>
-  <view class="weui-cells weui-cells_after-title"> 
-        <input class="weui-input"  placeholder = "{{blankVal}}" />
-  </view> 
-  <!-- <view class = "searchBtn">
-    <navigator url = "/university"></navigator>
-  </view> -->
-   <button class = "searchBtn" bindtap='toUniversity'>搜索</button> 
+</view>
