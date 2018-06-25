@@ -82,34 +82,14 @@
   <image mode = "widthFix" style = "width:100%" 
   src ='/images/default-user-bg.png'></image>
 </view> 
-<!-- <view class = "searchbar-list">
-  <view class = "search-option">
-    <image></image>
-      <button bindtap="name-base">按名称</button>
-      <button bindtap="area-base">按地区</button>
-      <input placeholder='学校名称'/>
-  </view>
-</view> -->
   <view class="searchbar">
     <button class = "name-base" bindtap='nameBase'>按名称</button>
     <button class = "area-title" bindtap='areaBase'>按地区</button>
   </view>
   <view class="weui-cells weui-cells_after-title"> 
-      <!-- <view class="weui-cell weui-cell_input"> -->
         <input class="weui-input"  placeholder = "{{blankVal}}" />
-      <!-- </view> -->
   </view> 
   <!-- <view class = "searchBtn">
     <navigator url = "/university"></navigator>
   </view> -->
    <button class = "searchBtn" bindtap='toUniversity'>搜索</button> 
-  
-
-<!-- <view class = "area-section">
-  <view class = "weui-cells__title">按地区</view>
-  <view class = "weui-cells weui-cells_after-title">
-    <view class = "weui-cell weui-cell_input">
-      <input class = "weui-input" auto-focus placeholder='请输入地区'/>
-    </view>
-  </view>
-</view> -->
