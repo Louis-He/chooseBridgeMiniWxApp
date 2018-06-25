@@ -1,23 +1,22 @@
-// pages/university/university.js
-var app = getApp();
+// pages/university/university/result.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    blankVal: "请输入学校名称",
+    inputShowed: false,
     inputVal: "",
     professor: "Dietrich Burbulla\n",
     school: "University of Toronto",
     college: "Department of mathematics"
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-      //初始化的时候渲染wxSearchdata
+  
   },
 
   /**
@@ -68,7 +67,6 @@ Page({
   onShareAppMessage: function () {
   
   },
-
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -88,21 +86,6 @@ Page({
   inputTyping: function (e) {
     this.setData({
       inputVal: e.detail.value
-    });
-  },
-  nameBase: function () {
-    this.setData({
-      blankVal: "请输入学校名称"
-    });
-  },
-  areaBase: function () {
-    this.setData({
-      blankVal: "请输入地区"
-    });
-  },
-  toUniversity: function () {
-    wx.redirectTo({
-      url: '/university',
     });
   }
 })
