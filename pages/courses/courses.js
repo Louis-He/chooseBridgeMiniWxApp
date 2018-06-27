@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    blankUni: "学校名称",
+    blankPro: "教授名称",
+    inputVal: "",
   },
 
   /**
