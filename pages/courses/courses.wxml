@@ -1,2 +1,19 @@
 <!--pages/courses/courses.wxml-->
-<text>pages/courses/courses.wxml</text>
+<view class = "top-image">
+  <image mode = "widthFix" style = "width:100%" 
+  src ='/images/default-user-bg.png'></image>
+</view> 
+   <view class = "input-bar">
+    <text class = "guide">我在寻找</text>
+      <view class="weui-cells weui-cells_after-title"> 
+        <input class="weui-input"  placeholder = "{{blankUni}}" 
+        confirm-type='search'/>
+      </view> 
+    </view>
+    <view class='input-bar'>
+      <text class='guide'>的</text>
+      <view class="weui-cells weui-cells_after-title"> 
+        <input class="weui-input"  placeholder = "{{blankPro}}"                          confirm-type='search'/>
+      </view> 
+    </view>
+   <button class='search-btn' bindtap='toProfessor'>搜索</button>
