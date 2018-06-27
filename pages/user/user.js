@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    firstView: true
+    firstView: true,
+    username: "叮咚的雨",
+    rp: 20,
+    university: "University of Toronto",
+    discipline: "Computer Engineering",
+    highSchoolAddress: "上海",
+    graduateYear: "在读",
+    emailFlag: true
   },
 
   /**
