@@ -7,7 +7,7 @@
     <button class = "name-base" bindtap='nameBase'>按名称</button>
     <button class = "area-title" bindtap='areaBase'>按地区</button>
   </view>
-  <view class="weui-cells weui-cells_after-title"> 
+  <view class="input-view"> 
         <input class="weui-input"  placeholder = "{{blankVal}}" 
         confirm-type='search'/>
 </view> 
