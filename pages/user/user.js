@@ -12,7 +12,7 @@ Page({
     discipline: "Computer Engineering",
     highSchoolAddress: "上海",
     graduateYear: "在读",
-    emailFlag: true
+    emailFlag: true,
   },
 
   /**
