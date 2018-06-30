@@ -3,17 +3,22 @@
   <image mode = "widthFix" style = "width:100%" 
   src ='/images/default-user-bg.png'></image>
 </view> 
-   <view class = "input-bar">
-    <text class = "guide">我在寻找</text>
-      <view class="weui-cells weui-cells_after-title"> 
-        <input class="weui-input"  placeholder = "{{blankUni}}" 
+  <view class='border'>
+  <view class = "input-bar">
+    <text class = "guide">我想查找</text>
+      <view class="input-up"> 
+        <input class="input-view"  placeholder = "{{blankUni}}" 
         confirm-type='search'/>
-      </view> 
+      </view>
+      <text class='guide-right'>的</text> 
     </view>
     <view class='input-bar'>
-      <text class='guide'>的</text>
-      <view class="weui-cells weui-cells_after-title"> 
-        <input class="weui-input"  placeholder = "{{blankPro}}"                          confirm-type='search'/>
-      </view> 
+      <view class="input-down"> 
+        <input class="input-view"  placeholder = "{{blankPro}}"                          confirm-type='search'/>
+      </view>
+      <text class='guide-right'>教授所授课程</text>
     </view>
-   <button class='search-btn' bindtap='toProfessor'>搜索</button>
+    <view class='input-bar'>
+      <button class='search-btn' bindtap='toProfessor'>搜索</button>
+    </view>
+  </view>

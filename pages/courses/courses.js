@@ -5,8 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    blankUni: "学校名称",
-    blankPro: "教授名称",
+    blankUni: "学校",
+    blankPro: "教授",
     inputVal: "",
   },
 
@@ -64,5 +64,10 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  toProfessor: function() {
+    wx.navigateTo({
+      url: '../courses/result/result',
+    })
   }
 })

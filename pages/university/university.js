@@ -101,8 +101,8 @@ Page({
     });
   },
   toUniversity: function () {
-    wx.redirectTo({
-      url: '/university',
+    wx.navigateTo({
+      url: '../university/result/result'
     });
   }
 })

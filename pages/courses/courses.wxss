@@ -8,23 +8,52 @@ page{
   width: 100%;
   height: 100%;
   }
-  /* .input-bar {
-    display: flex;
-    flex-direction: row;
-  } */
-  .guide {
-    color: white;
-    /* font-size: 12px; */
+  .border {
+    width: 95%;
+    border-radius: 5px;
+    margin-left: 10px;
+    background-color: #63B8FF;
+  }
+   .input-bar {
     display: flex;
     flex-direction: row;
     justify-content: center; 
+  } 
+  .guide {
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    color: white; 
+    padding-right: 5px; 
+    padding-top: 20px;
   }
-  .weui-cells {
-    width: 73%;
-    margin-left: 100rpx;
+  .guide-right {
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    color: white;
+    padding-top: 20px;
+    padding-left: 5px;
   }
   .search-btn {
     width: 74%;
-    margin-top: 20rpx;
+    margin-top: 10px;
     background-color: #FF8C00;
+    margin-bottom: 10px;
+  }
+  .input-view {
+    border: 2px solid white;
+    border-radius: 5px;
+    padding-left: 10px; 
+    background-color: white;
+    font-size: 17px;
+  }
+  .input-up{
+    width: 45%;
+    padding-top: 10px;
+  }
+  .input-down {
+    width: 45%;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
