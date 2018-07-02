@@ -69,5 +69,10 @@ Page({
     wx.navigateTo({
       url: '../courses/result/result',
     })
+  },
+  inputTyping: function (e) {
+    this.setData({
+      inputVal: e.detail.value
+    });
   }
 })

@@ -43,6 +43,12 @@
 					"name": "searchCourses",
 					"pathName": "pages/courses/courses",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "course results",
+					"pathName": "pages/courses/result/result",
+					"query": ""
 				}
 			]
 		}
