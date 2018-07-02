@@ -1,5 +1,5 @@
 /* pages/user/user.wxss */
-@import '../weui.wxss';
+@import 'weui.wxss';
 .back{
   position: fixed;
   height: 100%;
