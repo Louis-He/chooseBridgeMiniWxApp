@@ -1,0 +1,68 @@
+/* pages/user/user.wxss */
+@import '../weui.wxss';
+.back{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;/*垂直居中*/
+  justify-content:flex-start;/*水平居中*/
+  text-align: center;
+  background: #3F53AF;
+}
+.cards{
+  width: 92%;
+  height: 100%;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.userCard{
+  margin-bottom: 20rpx;
+  width: 100%;
+  height: 410rpx;
+  border-radius: 15rpx;
+  background-color: #3F53AF;
+  background-image: url("http://i.choosebridge.com/images/default-user-bg.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 4rpx 4rpx 3rpx 3rpx grey;
+}
+.cardContent{
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+.userCardTitle{
+  color: white;
+  font-size: 48rpx;
+}
+.userCardRP{
+  color: #E0E0E0;
+  font-size: 32rpx;
+}
+.detailContent{
+  color: white;
+  margin-top: 20rpx;
+}
+.subDetailContent{
+  font-size: 28rpx;
+  font-family:sans-serif;
+}
+.emailConfirmationTrue{
+  margin-top: 15rpx;
+  color: greenyellow;
+  font-size: 22rpx;
+}
+.emailConfirmationFalse{
+  margin-top: 15rpx;
+  color: red;
+  font-size: 22rpx;
+}
+.bottomContent{
+  padding: 20rpx;
+  color: black;
+  font-size: 32rpx;
+}
