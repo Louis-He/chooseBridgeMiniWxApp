@@ -1,2 +1,19 @@
 /* pages/user/AcedemicForm/acedemicForm.wxss */
 @import '../weui.wxss';
+page{
+    background: linear-gradient(#1C5388, #0F3881);
+}
+/* override weui.wxss*/
+.weui-cells{
+  background-color:#1C5388;
+  color: white;
+}
+
+.weui-cells__title{
+  color: #67CCCE;
+}
+
+.weui-btn{
+  background-color: #67CCCE;
+  color: white;
+}

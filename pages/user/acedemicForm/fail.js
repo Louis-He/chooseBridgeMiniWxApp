@@ -62,5 +62,17 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  retry: function(){
+    wx.navigateBack({
+      delta: 1,
+    })
+  },
+
+  cancel: function () {
+    wx.navigateBack({
+      delta: 2,
+    })
   }
 })

@@ -1,2 +1,7 @@
 /* pages/user/acedemicForm/fail.wxss */
 @import '../weui.wxss';
+/*
+.weui-msg__title{
+  color: white;
+}
+*/
