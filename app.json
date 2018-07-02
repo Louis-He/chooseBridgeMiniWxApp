@@ -7,7 +7,8 @@
     "pages/courses/courses",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/university/university"
+    "pages/university/university",
+    "pages/user/infoForm/infoForm"
   ],
   "window": {
     "backgroundTextStyle": "light",
