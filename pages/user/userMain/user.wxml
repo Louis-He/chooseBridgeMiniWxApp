@@ -1,0 +1,85 @@
+<!--pages/user/user.wxml-->
+<block wx:if="{{firstView}}">
+  <view class="back">
+    <image mode="widthFix" style="width:100%" src='frontlogo.png'></image>
+    <view class="welcome">
+      <text style="color:white">{{userInfo.nickName}}\n欢迎使用桥选校园</text>
+    </view>
+  </view>
+</block>
+<block wx:if="{{!firstView}}">
+    <view class="cards">
+      <view class='userCard'>
+        <view class='cardContent'>
+          <view class='userCardTitle'>
+            {{username}}
+          </view>
+          <view class='userCardRP'>
+            RP值：{{rp}}
+          </view>
+          <view class="detailContent">
+            <view class="subDetailContent">
+              我的大学： {{university}}
+            </view>
+            <view class="subDetailContent">
+              我的专业： {{discipline}}
+            </view>
+            <view class="subDetailContent">
+              高中所在： {{highSchoolAddress}}
+            </view>
+            <view class="subDetailContent">
+              毕业年份： {{graduateYear}}
+            </view>
+            <view class="emailConfirmationTrue" wx:if="{{emailFlag}}">
+              您的邮箱已激活
+            </view>
+            <view class="emailConfirmationFalse" wx:if="{{!emailFlag}}">
+              您的邮箱暂未激活
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="page__bd">
+      <view class="weui-grids">
+        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+            <view class="weui-grid__label">我的RP值：{{rp}}</view>
+        </navigator>
+        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+            <view class="weui-grid__label">{{rp}}</view>
+        </navigator>
+        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+            <view class="weui-grid__label">{{rp}}</view>
+        </navigator>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">个人设置</view>
+        <view class="weui-cells weui-cells_after-title">
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">修改个人基本信息</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd" bindtap='updateAcemedicPage'>修改个人学术信息</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">更改绑定邮箱</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">更改账户密码</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">兑换更多特权</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">如何获得RP值</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+        </view>
+</block>
