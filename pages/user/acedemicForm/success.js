@@ -1,14 +1,11 @@
-// pages/user/AcedemicForm/acedemicForm.js
+// pages/user/acedemicForm/success.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    "university": "University of Toronto",
-    "discipline": "Computer Engineering",
-    "graduateYear": "2018-09-01",
-    "highSchoolCity": "上海"
+
   },
 
   /**
@@ -67,15 +64,9 @@ Page({
   
   },
 
-  bindDateChange: function (e) {
-    this.setData({
-      graduateYear: e.detail.value
-    })
-  },
-
   confirm: function(){
-    wx.navigateTo({
-      url: 'success',
+    wx.navigateBack({
+      delta: 2,
     })
   }
 })

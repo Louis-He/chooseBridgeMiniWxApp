@@ -8,7 +8,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/university/university",
-    "pages/user/infoForm/infoForm"
+    "pages/user/infoForm/infoForm",
+    "pages/user/acedemicForm/success"
   ],
   "window": {
     "backgroundTextStyle": "light",
