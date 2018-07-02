@@ -1,25 +1,18 @@
-// pages/user/user.js
+// pages/user/acedemicForm/fail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    firstView: false,
-    username: "叮咚的雨",
-    rp: 20,
-    university: "University of Toronto",
-    discipline: "Computer Engineering",
-    highSchoolAddress: "上海",
-    graduateYear: "在读",
-    emailFlag: true,
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+  
   },
 
   /**
@@ -69,14 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-
-  /**
-   * 用户更改学术信息
-   */
-  updateAcemedicPage: function (){
-    wx.navigateTo({
-      url: 'acedemicForm/acedemicForm',
-    })
   }
 })
