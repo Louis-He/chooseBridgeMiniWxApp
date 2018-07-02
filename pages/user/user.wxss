@@ -1,5 +1,8 @@
 /* pages/user/user.wxss */
 @import 'weui.wxss';
+page{
+    background: linear-gradient(#1C5388, #0F3881);
+}
 .back{
   position: fixed;
   height: 100%;
@@ -29,7 +32,7 @@
   background-size: cover;
   display: flex;
   flex-direction: row;
-  box-shadow: 4rpx 4rpx 3rpx 3rpx grey;
+  box-shadow: 4rpx 4rpx 3rpx 3rpx black;
 }
 .cardContent{
   margin-left: 20rpx;

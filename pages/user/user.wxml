@@ -66,7 +66,7 @@
                 <view class="weui-cell__bd">修改个人学术信息</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <navigator url="emailForm/emailForm" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__bd">更改绑定邮箱</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
