@@ -1,1 +1,69 @@
 /* pages/courses/courses.wxss */
+@import '../university/weui.wxss';
+page{
+  background-color: #3F53AF;  
+}
+.top-image {
+  background-color: #3F53AF;
+  }
+  .border {
+    width: 95%;
+    border-radius: 5px;
+    margin-left: 10px;
+    /* background-color: #63B8FF; */
+  }
+   .input-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+  } 
+  .guide {
+    font-size: 17px;
+    font-weight: lighter;
+    overflow: hidden;
+    white-space: nowrap;
+    color: white; 
+    padding-right: 5px; 
+    padding-top: 20px;
+  }
+  .guide-right {
+    font-size: 17px;
+    font-weight: lighter;
+    overflow: hidden;
+    white-space: nowrap;
+    color: white;
+    padding-top: 20px;
+    padding-left: 5px;
+  }
+  .search-btn {
+    width: 74%;
+    margin-top: 10px;
+    background-color: #FF8C00;
+    color: white;
+    margin-bottom: 10px;
+  }
+  .input-view {
+    font-weight: lighter;
+    text-align: center;
+    border-bottom: 1px solid white;
+    font-size: 17px;
+    margin-top: 6px;
+    color:rgba(255, 255, 255, 0.5);
+  }
+  .input-up{
+    width: 45%;
+    padding-top: 10px;
+  }
+  .input-down {
+    width: 45%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .tips{
+    font-weight: lighter;
+    display: flex;
+    flex-direction: fow;
+    justify-content: center;
+    font-size: 14px;
+    color: white;
+  }

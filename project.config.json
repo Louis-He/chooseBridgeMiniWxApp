@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.94",
 	"appid": "wx142471566f6fc60f",
-	"projectname": "chooseBridgeMiniWxApp",
+	"projectname": "%E6%A1%A5%E9%80%89WXapp",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -30,12 +30,24 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
 					"name": "高校启动",
 					"pathName": "pages/university/university",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "searchCourses",
+					"pathName": "pages/courses/courses",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "course results",
+					"pathName": "pages/courses/result/result",
 					"query": ""
 				}
 			]

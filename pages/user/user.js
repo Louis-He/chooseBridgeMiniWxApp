@@ -1,22 +1,25 @@
-// pages/university/university/result.js
+// pages/user/user.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    inputShowed: false,
-    inputVal: "",
-    professor: "Dietrich Burbulla\n",
-    school: "University of Toronto",
-    college: "Department of mathematics"
+    firstView: true,
+    username: "叮咚的雨",
+    rp: 20,
+    university: "University of Toronto",
+    discipline: "Computer Engineering",
+    highSchoolAddress: "上海",
+    graduateYear: "在读",
+    emailFlag: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
   },
 
   /**
@@ -67,25 +70,13 @@ Page({
   onShareAppMessage: function () {
   
   },
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
-  inputTyping: function (e) {
-    this.setData({
-      inputVal: e.detail.value
-    });
+
+  /**
+   * 用户更改学术信息
+   */
+  updateAcemedicPage: function (){
+    wx.navigateTo({
+      url: 'acedemicForm/acedemicForm',
+    })
   }
 })

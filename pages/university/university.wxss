@@ -13,24 +13,32 @@ page{
   flex-direction: row;
 }
 .name-base {
-  width: 40%;
+  font-weight: lighter;
+  width: 43%;
   color: white;
   background-color: #FF8C00;
   margin-bottom: 15rpx;
   margin-left: 100rpx; 
 }
 .area-title {
-  width: 40%;
+  font-weight: lighter;
+  width: 43%;
   color: white;
   background-color: #000000;
   margin-bottom: 15rpx;
   margin-right: 100rpx;
 }
-.weui-cells {
-  width: 73%;
-  margin-left: 100rpx;
+.input-view {
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 17px;
+  width: 72%;
+  margin-left: 97rpx;
+  padding-left: 5px;
 }
 .searchBtn {
-  width: 74%;
-  margin-top: 30rpx;
+  font-weight: lighter;
+  width: 75%;
+  margin-top: 20rpx;
 }

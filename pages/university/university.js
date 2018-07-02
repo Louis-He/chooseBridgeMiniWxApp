@@ -68,23 +68,6 @@ Page({
   onShareAppMessage: function () {
   
   },
-
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
   inputTyping: function (e) {
     this.setData({
       inputVal: e.detail.value
@@ -101,8 +84,8 @@ Page({
     });
   },
   toUniversity: function () {
-    wx.redirectTo({
-      url: '/university',
+    wx.navigateTo({
+      url: '../university/result/result'
     });
   }
 })
