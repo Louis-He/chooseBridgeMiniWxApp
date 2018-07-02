@@ -58,7 +58,7 @@
 
     <view class="weui-cells__title">个人设置</view>
         <view class="weui-cells weui-cells_after-title">
-            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <navigator url="infoForm/infoForm" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__bd">修改个人基本信息</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
