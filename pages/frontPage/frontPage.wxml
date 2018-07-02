@@ -1,6 +1,7 @@
 <!--pages/frontPage/frontPage.wxml-->
 <view class="back">
-  <image mode="widthFix" style="width:100%" src='frontlogo.png'></image>
+  <image mode="widthFix" style="width:100%"
+  src='../../images/frontlogo.png'></image>
   <view class="welcome">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <text style="color:white">{{userInfo.nickName}}\n欢迎使用巧选校园</text>

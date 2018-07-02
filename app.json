@@ -8,7 +8,8 @@
     "pages/logs/logs",
     "pages/university/university",
     "pages/university/result/result",
-    "pages/courses/result/result"
+    "pages/courses/result/result",
+    "pages/comment/comment.wxml"
   ],
   "window": {
     "backgroundTextStyle": "light",
