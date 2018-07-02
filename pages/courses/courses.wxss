@@ -1,10 +1,9 @@
 /* pages/courses/courses.wxss */
 @import '../university/weui.wxss';
 page{
-  background-color: #3F53AF;  
+    background: linear-gradient(#1C5388, #0F3881);
 }
 .top-image {
-  background-color: #3F53AF;
   }
   .border {
     width: 95%;
