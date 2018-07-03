@@ -73,7 +73,7 @@ page{
   color: white;
 }
 .weui-cell_access{
-  background-color:  #144284;
+  background-color:  #154584;
   color: white;
 }
 .weui-cell:before{
