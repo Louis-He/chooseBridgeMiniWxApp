@@ -1,5 +1,6 @@
 /* pages/user/user.wxss */
 @import '../importwxss/weui.wxss';
+@import '../importwxss/msg.wxss';
 page{
     background: linear-gradient(#1C5388, #0F3881);
 }
@@ -78,4 +79,23 @@ page{
 }
 .weui-cell:before{
   border-top:1rpx solid #A0A0A0;
+}
+.weui-btn-mini-recommand{
+  margin-top: 10rpx;
+  font-size: 20rpx;
+  background-color: #359ACA;
+  color: white;
+  border-radius: 10rpx;
+  margin-left: 70rpx;
+  margin-right: 70rpx;
+}
+.weui-btn-firstView-recommand{
+  margin-top: 150rpx;
+  background-color: #359ACA;
+  color: white;
+  border-radius: 100rpx;
+  font-size: 32rpx;
+}
+.weui-agree__link{
+  color: white
 }
