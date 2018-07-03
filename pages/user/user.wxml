@@ -41,21 +41,7 @@
         </view>
       </view>
     </view>
-
-    <view class="page__bd">
-      <view class="weui-grids">
-        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
-            <view class="weui-grid__label">我的RP值：{{rp}}</view>
-        </navigator>
-        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
-            <view class="weui-grid__label">{{rp}}</view>
-        </navigator>
-        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
-            <view class="weui-grid__label">{{rp}}</view>
-        </navigator>
-      </view>
-    </view>
-
+    
     <view class="weui-cells__title">个人设置</view>
     <view class="weui-cells weui-cells_after-title">
         <navigator url="infoForm/infoForm" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
