@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    "email": "example1@mail.example.com",
+    "newEmail": "example2@mail.example.com"
   },
 
   /**
@@ -62,5 +63,11 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  requestConfirm: function(){
+    wx.navigateTo({
+      url: 'success',
+    })
   }
 })

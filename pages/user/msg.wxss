@@ -1,0 +1,26 @@
+@import 'weui.wxss';
+page{
+    background: linear-gradient(#1C5388, #0F3881);
+}
+.weui-msg__title{
+  color: white
+}
+
+.weui-btn-recommand{
+  background-color: #359ACA;
+  color: white;
+  border-radius: 100rpx;
+  font-size: 32rpx;
+}
+
+.weui-btn{
+  background-color: grey;
+  color: white;
+  border-radius: 100rpx;
+  font-size: 32rpx;
+}
+
+.weui-btn-area{
+  padding-left: 200rpx;
+  padding-right: 200rpx;
+}

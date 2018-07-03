@@ -32,6 +32,10 @@ page{
   padding-right: 200rpx;
 }
 
+.weui-cell:before{
+  border-top:1rpx solid grey;
+  color: grey;
+}
 /*
 .weui-cell__bd{
   font-weight: 200;

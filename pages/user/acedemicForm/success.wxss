@@ -1,5 +1,3 @@
 /* pages/user/acedemicForm/success.wxss */
 @import '../weui.wxss';
-page{
-    background: linear-gradient(#1C5388, #0F3881);
-}
+@import '../msg.wxss'

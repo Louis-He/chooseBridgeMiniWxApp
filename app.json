@@ -11,7 +11,8 @@
     "pages/user/infoForm/infoForm",
     "pages/user/acedemicForm/success",
     "pages/user/acedemicForm/fail",
-    "pages/user/emailForm/emailForm"
+    "pages/user/emailForm/emailForm",
+    "pages/user/emailForm/success"
   ],
   "window": {
     "backgroundTextStyle": "light",
