@@ -15,29 +15,51 @@ page{
   font-weight: lighter;
   width: 43%;
   color: white;
-  background-color: #FF8C00;
+  background-color: rgba(53, 154, 202, 0.2); /* FF8C00*/
   margin-bottom: 15rpx;
-  margin-left: 100rpx; 
+  margin-left: 100rpx;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.name-base::after {
+  border: none;
+}
+.area-title::after {
+  border: none;
 }
 .area-title {
   font-weight: lighter;
   width: 43%;
   color: white;
-  background-color: #000000;
+  background-color: rgba(255, 255, 255, 0.2);
   margin-bottom: 15rpx;
   margin-right: 100rpx;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 .input-view {
-  border: 2px solid white;
-  border-radius: 5px;
-  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: transparent;
   font-size: 17px;
   width: 72%;
-  margin-left: 97rpx;
-  padding-left: 5px;
+  align-self: center;
+  margin-left: 97rpx; 
+  padding: 5px 0px 5px 0px;
 }
 .searchBtn {
   font-weight: lighter;
+  color: white;
   width: 75%;
   margin-top: 20rpx;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.input-text {
+  border-bottom: 1px solid white;
+  text-align: center;
+}
+.text-view {
+  color: white;
+  font-weight: lighter;
 }

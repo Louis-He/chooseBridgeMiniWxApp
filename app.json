@@ -13,7 +13,9 @@
     "pages/user/acedemicForm/fail",
     "pages/user/emailForm/emailForm",
     "pages/user/emailForm/success",
-    "pages/user/emailForm/fail"
+    "pages/user/emailForm/fail",
+    "pages/university/result/result",
+    "pages/courses/result/result"
   ],
   "window": {
     "backgroundTextStyle": "light",
