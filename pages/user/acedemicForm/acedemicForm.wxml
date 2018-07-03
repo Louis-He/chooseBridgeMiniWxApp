@@ -22,16 +22,16 @@
 
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">高中所在地</view>
+        <view class="weui-label">高中所在省/州</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" value="{{highSchoolCity}}" placeholder="请输入高中所在地"/>
+        <input class="weui-input" value="{{highSchoolCity}}" placeholder="请输入高中所在省/州"/>
       </view>
     </view>
     
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">日期</view>
+        <view class="weui-label">毕业年份</view>
       </view>
       <view class="weui-cell__bd">
         <picker mode="date" value="{{graduateYear}}" start="2000-01-01" end="2030-09-01" bindchange="bindDateChange">
