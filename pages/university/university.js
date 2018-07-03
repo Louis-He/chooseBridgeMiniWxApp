@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    blankVal: "请输入学校名称",
+    blankVal: "高校",
     inputVal: "",
     professor: "Dietrich Burbulla\n",
     school: "University of Toronto",
