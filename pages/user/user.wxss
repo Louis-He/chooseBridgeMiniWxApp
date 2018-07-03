@@ -12,7 +12,7 @@ page{
   align-items:center;/*垂直居中*/
   justify-content:flex-start;/*水平居中*/
   text-align: center;
-  background: #3F53AF;
+   background: linear-gradient(#1C5388, #0F3881);
 }
 .cards{
   width: 92%;
