@@ -21,9 +21,9 @@
             <image mode='widthFix' src='../../../images/namecard.png'                         style='width:100%;height:100%'></image>
           </view>
           <view class="item item2">
-            <text class='name1'>{{university}}</text>
+            <text class='name'>{{university}}</text>
             <text class='subname'>
-              {{state}} \n{{country}}
+              {{state}} {{country}}
             </text>
           </view>
           <view class="item item3">
@@ -38,11 +38,11 @@
           <view class="item item2">
             <text class='name'>{{uiuc}}</text>
             <view class='subname'>
-              {{uiucState}}
+              {{uiucState}} {{country}}
             </view>
-            <view class='subname'>
+            <!-- <view class='subname'>
               {{country}}
-            </view>
+            </view> -->
           </view>
           <view class="item item3">
             <image src='../../../images/arrow.png' style='width:50%;                         height:20%'></image>
