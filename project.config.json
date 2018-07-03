@@ -55,6 +55,12 @@
 					"name": "uni result",
 					"pathName": "pages/university/result/result",
 					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "添加高校",
+					"pathName": "pages/university/newUniversity/newUniversity",
+					"query": ""
 				}
 			]
 		}
