@@ -1,3 +1,3 @@
-/* pages/user/emailForm/emailForm.wxss */
+/* pages/university/newUniversity/newUniversity.wxss */
 @import '../../importwxss/weui.wxss';
 @import '../../importwxss/form.wxss';

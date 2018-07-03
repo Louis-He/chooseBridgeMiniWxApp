@@ -5,6 +5,19 @@
     src='../../images/frontlogo.png'></image>
     <view class="welcome">
       <text style="color:white">{{userInfo.nickName}}\n欢迎使用桥选校园</text>
+      <checkbox-group bindchange="bindAgreeChange">
+        <label class="weui-agree" for="weuiAgree">
+            <view class="weui-agree__text">
+                <checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{isAgree}}" />
+                <view class="weui-agree__checkbox-icon">
+                    <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+                </view>
+                阅读并同意<navigator url="" class="weui-agree__link">《相关条款》</navigator>
+            </view>
+        </label>
+      </checkbox-group>
+      <button class="weui-btn-mini-recommand" open-type="getUserInfo">同意巧选校园使用您的基本信息</button>
+      <button class="weui-btn-firstView-recommand" bindtap='firstUse'>{{firstViewmsg}}</button>
     </view>
   </view>
 </block>

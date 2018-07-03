@@ -15,7 +15,8 @@
     "pages/user/emailForm/success",
     "pages/user/emailForm/fail",
     "pages/university/result/result",
-    "pages/courses/result/result"
+    "pages/courses/result/result",
+    "pages/university/newUniversity/newUniversity"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,8 +26,8 @@
   },
   "tabBar": {
     "borderStyle": "#333333",
-    "backgroundColor": "white",
-    "color": "grey",
+    "backgroundColor": "#FFFFFF",
+    "color": "#AAAAAA",
     "selectedColor": "#3F53AF",
     "list": [
       {
