@@ -8,8 +8,9 @@
     <button class = "area-title" bindtap='areaBase'>按地区</button>
   </view>
   <view class="input-view"> 
-        <input class="weui-input" placeholder-style='font-weight:lighter'
-        placeholder = "{{blankVal}}" 
-        bindinput='inputTyping' confirm-type='search'/>
+    <text class='text-view'>我想查找</text>
+     <input class="input-text" placeholder-style='font-weight:lighter; color:white'
+     placeholder = "{{blankVal}}" 
+     bindinput='inputTyping' confirm-type='search'/>
 </view> 
    <button class = "searchBtn" bindtap='toUniversity'>搜索</button> 
