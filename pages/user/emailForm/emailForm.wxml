@@ -1,2 +1,27 @@
 <!--pages/user/emailForm/emailForm.wxml-->
-<text>pages/user/emailForm/emailForm.wxml</text>
+<view class="page">
+  <view class="weui-cells__title">修改绑定邮箱</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">我的邮箱</view>
+      </view>
+      <view class="weui-cell__bd-disabled">
+        <input class="weui-input" disabled="disabled" value="{{email}}" placeholder=""/>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">我的新邮箱</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" value="{{newEmail}}" placeholder=""/>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-btn-area">
+    <button class="weui-btn" bindtap="requestConfirm">发送验证</button>
+  </view>
+</view>

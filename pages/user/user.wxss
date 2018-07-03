@@ -76,3 +76,6 @@ page{
   background-color:  #144284;
   color: white;
 }
+.weui-cell:before{
+  border-top:1rpx solid #A0A0A0;
+}
