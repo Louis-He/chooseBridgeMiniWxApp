@@ -14,6 +14,28 @@ page{
 }
 
 .weui-btn{
-  background-color: #67CCCE;
+  background-color: #359ACA;
   color: white;
+  border-radius: 100rpx;
+  font-size: 32rpx;
 }
+
+.weui-label{
+  font-weight: 200;
+  font-size: 28rpx;
+  /*letter-spacing: 2rpx;*/
+  width: 120px;
+}
+
+.weui-btn-area{
+  padding-left: 200rpx;
+  padding-right: 200rpx;
+}
+
+/*
+.weui-cell__bd{
+  font-weight: 200;
+  font-size: 28rpx;
+  letter-spacing: 4rpx;
+}
+*/

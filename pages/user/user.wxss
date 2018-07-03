@@ -69,3 +69,10 @@ page{
   color: black;
   font-size: 32rpx;
 }
+.weui-grid__label{
+  color: white;
+}
+.weui-cell_access{
+  background-color:  #144284;
+  color: white;
+}
