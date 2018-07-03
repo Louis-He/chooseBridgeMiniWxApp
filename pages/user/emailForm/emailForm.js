@@ -66,8 +66,18 @@ Page({
   },
 
   requestConfirm: function(){
-    wx.navigateTo({
-      url: 'success',
+    wx.request({
+      url: '',
+      success: function (res) {
+        wx.navigateTo({
+          url: 'success',
+        })
+      },
+      fail: function (res) {
+        wx.navigateTo({
+          url: 'fail',
+        })
+      }
     })
   }
 })

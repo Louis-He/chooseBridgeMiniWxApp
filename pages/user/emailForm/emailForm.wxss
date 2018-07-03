@@ -1,5 +1,5 @@
 /* pages/user/emailForm/emailForm.wxss */
-@import '../weui.wxss';
+@import '../../importwxss/weui.wxss';
 page{
     background: linear-gradient(#1C5388, #0F3881);
 }

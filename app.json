@@ -12,7 +12,8 @@
     "pages/user/acedemicForm/success",
     "pages/user/acedemicForm/fail",
     "pages/user/emailForm/emailForm",
-    "pages/user/emailForm/success"
+    "pages/user/emailForm/success",
+    "pages/user/emailForm/fail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,8 +23,8 @@
   },
   "tabBar": {
     "borderStyle": "#333333",
-    "backgroundColor": "#CCCCCC",
-    "color": "#white",
+    "backgroundColor": "white",
+    "color": "grey",
     "selectedColor": "#3F53AF",
     "list": [
       {
