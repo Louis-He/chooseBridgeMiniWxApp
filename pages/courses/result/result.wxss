@@ -1,9 +1,22 @@
 /* pages/courses/result/result.wxss */
 @import '../../university/result/weui.wxss';
 page{
-  background-color: #3F53AF;  
+  background: linear-gradient(#1C5388, #0F3881); 
 }
-.searchbar-result{
+.weui-search-bar {
+  background: linear-gradient(#1C5388, #0F3881);
+  border-color: transparent;
+}
+.weui-search-bar::after {
+  border: none;
+}
+.weui-search-bar__form {
+  border-radius: 100rpx;
+}
+.weui-search-bar__label {
+  border-radius: 100rpx;
+}
+ .searchbar-result{
     margin-top: 0;
     font-size: 30rpx;
 }
@@ -14,40 +27,51 @@ page{
     padding: 12px 15px 12px 35px;
 }
 .cancel{
-  color: #3F53AF;  
+  color: white;  
   font-size: 28rpx;
-}
+} 
 .cards{
   width: 92%;
   height: 100%;
   padding: 30rpx;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   justify-content: center;
 }
+ .cards::after {
+  border: none;
+} 
 .universityCard{
   margin-bottom: 20rpx;
   width: 100%;
-  height: 170rpx;
-  border-radius: 15rpx;
-  background-color: white;
+  border-radius: 30rpx;
   display: flex;
   flex-direction: row;
-  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.5); 
+  line-height: 1.2em;
+  background-color: rgba(255, 255, 255, 0.2); 
+  color: white;
+  letter-spacing: 1.5px;
+  height: 170rpx;
 }
-
+ .universityCard::after {
+  border: none;
+} 
 .item {
   height: 100%;
 }
 
 .item1 {
-  padding: 20rpx;
+  padding: 20rpx; 
   width: 9%;
   height: 30%;
 }
 
 .item2 {
   width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .item3 {
@@ -58,30 +82,30 @@ page{
 }
 
 .name{
-  font-family:Arial, Helvetica, sans-serif;
-  font-size: 48rpx;
-  font-weight: bold;
+  font-size: 40rpx;
+  align-items: center;
 }
 
 .subname{
-  font-family:Arial, Helvetica, sans-serif;
   font-size: 28rpx;
+  font-weight: lighter;
   line-height: 30rpx;
 }
 
 .create-new{
-  font-family:Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: center;
-  flex-direction: column; 
-  padding-left: 77px;  
+  flex-direction: column;
+  align-items: center;
+  padding-left: 160rpx;   
+  font-weight: lighter;
 }
 
 .button{
-  align-items: center;
-  font-size: 15px;
-  margin-top: 2px;
+  font-size: 28rpx;
+  margin-top: 5rpx;
   height: 40%;
-  padding-bottom: 40px;
-  background-color: #63B8FF;
+  text-align: center;
+  background-color: #359ACA;
+  color: white;
 }
