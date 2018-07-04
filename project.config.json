@@ -61,6 +61,12 @@
 					"name": "添加高校",
 					"pathName": "pages/university/newUniversity/newUniversity",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "错误开始",
+					"pathName": "pages/user/lowQualityNetwork",
+					"query": ""
 				}
 			]
 		}
