@@ -8,6 +8,7 @@ Page({
     inputShowed: false,
     inputVal: "",
     professor: "Federico Mandelman",
+    professor2: "This is a very long name for test purposes",
     school: "Emory University",
     college: "Emory College of Arts and Science"
   },
