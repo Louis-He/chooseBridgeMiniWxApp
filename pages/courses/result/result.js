@@ -1,4 +1,4 @@
-// pages/courses/result/result.js
+// pages/courses/courses/result.js
 Page({
 
   /**
@@ -7,9 +7,9 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    professor: "Dietrich Burbulla\n",
-    school: "University of Toronto",
-    college: "Department of mathematics"
+    professor: "Federico Mandelman",
+    school: "Emory University",
+    college: "Emory College of Arts and Science"
   },
 
   /**
@@ -88,9 +88,9 @@ Page({
       inputVal: e.detail.value
     });
   },
-  createNew: function (e) {
+  createNew: function () {
     wx.navigateTo({
-      url: '../../comment/comment.wxml',
+      url: '../../comment/comment.wxml'
     })
   }
 })
