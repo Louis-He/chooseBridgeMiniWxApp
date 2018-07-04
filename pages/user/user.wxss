@@ -81,8 +81,8 @@ page{
   border-top:1rpx solid #A0A0A0;
 }
 .weui-btn-mini-recommand{
-  margin-top: 10rpx;
-  font-size: 20rpx;
+  margin-top: 150rpx;
+  font-size: 28rpx;
   background-color: #359ACA;
   color: white;
   border-radius: 10rpx;
