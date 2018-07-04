@@ -12,7 +12,7 @@ Page({
     firstViewmsg: "",
     firstView: true,
     bothTrue: false,
-    username: "叮咚的雨",
+    username: "",
     rp: 20,
     university: "University of Toronto",
     discipline: "Computer Engineering",
@@ -192,7 +192,10 @@ Page({
           // 已经授权，直接获取用户信息
           wx.getUserInfo({
             success: function (res) {
-              console.log(res.rawData)
+              console.log(res.userInfo.nickName)
+              that.setData({
+                'username': res.userInfo.nickName
+              })
             },
             fail: function (res) {
               console.log("fail")
