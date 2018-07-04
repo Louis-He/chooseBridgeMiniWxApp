@@ -52,7 +52,7 @@ page{
   background-color: rgba(255, 255, 255, 0.2); 
   color: white;
   letter-spacing: 1.5px;
-  height: 170rpx;
+  height: 185rpx;
 }
  .universityCard::after {
   border: none;
@@ -84,12 +84,14 @@ page{
 .name{
   font-size: 40rpx;
   align-items: center;
+  padding-top: 10rpx; 
 }
 
 .subname{
   font-size: 28rpx;
   font-weight: lighter;
   line-height: 30rpx;
+  padding-bottom: 10rpx; 
 }
 
 .create-new{
@@ -97,7 +99,7 @@ page{
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  padding-left: 160rpx;   
+  padding-left: 170rpx;   
   font-weight: lighter;
 }
 
