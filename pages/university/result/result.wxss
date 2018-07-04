@@ -97,7 +97,7 @@ page{
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  padding-left: 170rpx;   
+  padding-left: 160rpx;   
   font-weight: lighter;
 }
 
