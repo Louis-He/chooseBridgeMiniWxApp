@@ -1,8 +1,9 @@
-/* pages/university/university.wxss */
+/* pages/university/result/result.wxss */
 @import 'weui.wxss';
 page{
-    background: linear-gradient(#1C5388, #0F3881);
+  background: linear-gradient(#1C5388, #0F3881); 
 }
+/*original university wxss  */
 .top-image {
   width: 100%;
   height: 100%;
@@ -15,7 +16,7 @@ page{
   font-weight: lighter;
   width: 43%;
   color: white;
-  background-color: rgba(53, 154, 202, 0.2); /* FF8C00*/
+  background-color: rgba(255, 255, 255, 0.2); /* FF8C00*/
   margin-bottom: 15rpx;
   margin-left: 100rpx;
   border-top-right-radius: 0rpx;
@@ -31,7 +32,7 @@ page{
   font-weight: lighter;
   width: 43%;
   color: white;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(53, 154, 202, 0.2);
   margin-bottom: 15rpx;
   margin-right: 100rpx;
   border-top-left-radius: 0rpx;
@@ -43,7 +44,7 @@ page{
   justify-content: center;
   background-color: transparent;
   font-size: 35rpx;
-  width: 72%;
+  width: 75%;
   align-self: center;
   margin-left: 97rpx; 
   padding: 15rpx 0rpx 15rpx 0rpx;
@@ -58,8 +59,131 @@ page{
 .input-text {
   border-bottom: 1rpx solid white;
   text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: lighter;
+}
+.input-text-area {
+  border-bottom: 1rpx solid white;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: lighter;
 }
 .text-view {
   color: white;
   font-weight: lighter;
+  white-space: nowrap;
+}
+/*original sub-page wxss  */
+.weui-search-bar {
+  background: linear-gradient(#1C5388, #0F3881);
+  border-color: transparent;
+}
+.weui-search-bar::after {
+  border: none;
+}
+.weui-search-bar__form {
+  border-radius: 100rpx;
+}
+.weui-search-bar__label {
+  border-radius: 100rpx;
+}
+ .searchbar-result{
+    margin-top: 0;
+    font-size: 30rpx;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+.cancel{
+  color: white;  
+  font-size: 28rpx;
+} 
+.cards{
+  width: 92%;
+  height: 100%;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+}
+ .cards::after {
+  border: none;
+} 
+.universityCard{
+  margin-bottom: 20rpx;
+  width: 100%;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.5); 
+  line-height: 1.2em;
+  background-color: rgba(255, 255, 255, 0.2); 
+  color: white;
+  letter-spacing: 1.5px;
+  height: 170rpx;
+}
+ .universityCard::after {
+  border: none;
+} 
+.item {
+  height: 100%;
+}
+
+.item1 {
+  padding: 20rpx; 
+  width: 9%;
+  height: 30%;
+}
+
+.item2 {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.item3 {
+  padding: 5rpx;
+  width: 5%;
+  display: flex;
+  align-items: center;
+}
+
+.name{
+  font-size: 40rpx;
+  align-items: center;
+}
+
+.subname{
+  font-size: 28rpx;
+  font-weight: lighter;
+  line-height: 30rpx;
+}
+
+.create-new{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-weight: lighter;
+  margin-bottom: 20rpx;
+  border-radius: 30rpx;
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.5); 
+  line-height: 1.2em;
+  background-color: rgba(255, 255, 255, 0.2); 
+  color: white;
+  letter-spacing: 1.5px;
+  height: 170rpx; 
+}
+
+.button{
+  font-size: 28rpx;
+  margin-top: 5rpx;
+  height: 40%;
+  text-align: center;
+  background-color: #359ACA;
+  color: white;
 }
