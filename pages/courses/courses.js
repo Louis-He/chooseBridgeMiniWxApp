@@ -1,13 +1,20 @@
-// pages/courses/courses.js
+// pages/courses/courses/result.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    firstView: true,
+    inputShowed: false,
+    inputVal: "",
+    professor: "Federico Mandelman",
+    professor2: "This is a very long name for test purposes",
+    school: "Emory University",
+    college: "Emory College of Arts and Science",
     blankUni: "学校",
     blankPro: "教授",
-    inputVal: "",
+    inputVal: ""
   },
 
   /**
@@ -66,13 +73,34 @@ Page({
 
   },
   toProfessor: function () {
-    wx.navigateTo({
-      url: '../courses/result/result',
-    })
+    this.setData({
+      firstView: false
+    });
+  },
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
   },
   inputTyping: function (e) {
     this.setData({
       inputVal: e.detail.value
     });
+  },
+  createNew: function () {
+    wx.navigateTo({
+      url: '../../comment/comment.wxml'
+    })
   }
 })

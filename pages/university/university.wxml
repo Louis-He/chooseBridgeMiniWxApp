@@ -1,16 +1,97 @@
-<!--pages/university/university.wxml-->
-<view class = "top-image">
+<!--original university page  -->
+<block wx:if="{{firstView}}">
+  <view class = "top-image">
   <image mode = "widthFix" style = "width:100%" 
   src ='/images/default-user-bg.png'></image>
 </view> 
-<view class="searchbar">
+<block wx:if="{{nameBase}}">
+  <view class="searchbar">
     <button class = "name-base" bindtap='nameBase'>按名称</button>
     <button class = "area-title" bindtap='areaBase'>按地区</button>
   </view>
+</block>
+<block wx:if="{{!nameBase}}">
+  <view class="searchbar">
+    <button class = "name-base" bindtap='nameBase' style='background-color:rgba       (53, 154, 202, 0.2);'>按名称</button>
+    <button class = "area-title" bindtap='areaBase'style='background-color:rgba       (255, 255, 255, 0.2);'>按地区</button>
+  </view>
+</block>
+  <block wx:if="{{nameBase}}">
   <view class="input-view"> 
     <text class='text-view'>我想查找</text>
-     <input class="input-text" placeholder-style='font-weight:lighter; color:white'
+     <input class="input-text" placeholder-style=
+     'color:rgba(255,255,255,0.5);font-weight:lighter;font-size:30rpx;'
      placeholder = "{{blankVal}}" 
      bindinput='inputTyping' confirm-type='search'/>
 </view> 
+</block>
+<block wx:if="{{!nameBase}}">
+  <view class="input-view"> 
+    <text class='text-view'>我想查找</text>
+     <input class="input-text-area" placeholder-style=
+     'color:rgba(255,255,255,0.5);font-weight:lighter;font-size:30rpx;'
+     placeholder = "{{blankVal}}" 
+     bindinput='inputTyping' confirm-type='search'/>
+      <text class='text-view'>的高校</text>
+</view> 
+</block>
    <button class = "searchBtn" bindtap='toUniversity'>搜索</button> 
+</block>
+<!--original sub page  -->
+<block wx:if="{{!firstView}}">
+<view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" placeholder="请输入教授名" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                    <icon class="weui-icon-search" type="search" size="14"></icon>
+                    <view class="weui-search-bar__text">搜索</view>
+                </label>
+            </view>
+            <view class="cancel weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+        </view>
+
+        <view class="cards">
+        <view class="universityCard">
+          <view class="item item1">
+            <image mode='widthFix' src='../../../images/institute.png'                         style='width:120%;height:120%'></image>
+          </view>
+          <view class="item item2">
+          <view class='name'>
+            <text class='name'>{{university}}</text>
+            </view>
+            <text class='subname'>
+              {{state}} {{country}}
+            </text>
+          </view>
+          <view class="item item3">
+            <image src='../../../images/arrowNew.png' style='width:80%;                         height:20%'></image>
+          </view>
+        </view>
+
+        <view class="universityCard">
+          <view class="item item1">
+            <image src='../../../images/institute.png' style='width:120%;                     height:120%' mode='widthFix'></image>
+          </view>
+          <view class="item item2">
+            <text class='name'>{{uiuc}}</text>
+            <view class='subname'>
+              {{uiucState}} {{country}}
+            </view>
+          </view>
+          <view class="item item3">
+            <image src='../../../images/arrowNew.png' style='width:80%;                         height:20%'></image>
+          </view>
+        </view>
+
+          <view class='create-new'>
+            <text>没有您所在的高校？</text>
+            <button class ='button' bindtap='createNew'>创建新高校！</button>
+          </view>
+    </view>
+    </block>

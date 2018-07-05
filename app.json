@@ -14,8 +14,6 @@
     "pages/user/emailForm/emailForm",
     "pages/user/emailForm/success",
     "pages/user/emailForm/fail",
-    "pages/university/result/result",
-    "pages/courses/result/result",
     "pages/university/newUniversity/newUniversity",
     "pages/user/lowQualityNetwork"
   ],
