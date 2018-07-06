@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    debug: false,
+    debug: true,
     isAgree: false,
     firstViewmsg: "",
     firstView: true,
@@ -89,7 +89,14 @@ Page({
           },
           fail: function (res) {
             /* 网络环境不佳 */
-            that.lowQualityNetwork();
+            console.log("lowQuality Feedback Test: ", that.data.debug)
+            if (!that.data.debug) {
+              that.lowQualityNetwork();
+            } else {
+              that.setData({
+                username: "Debug Mode"
+              })
+            }
           },
           complete: function () {
 
@@ -220,7 +227,14 @@ Page({
         }
       },
       fail: function (res){
-        that.lowQualityNetwork();
+        console.log("lowQuality Feedback Test: ", that.data.debug)
+        if (!that.data.debug) {
+          that.lowQualityNetwork();
+        } else {
+          that.setData({
+            username: "Debug Mode"
+          })
+        }
       }
     })
   },
