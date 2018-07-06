@@ -4,10 +4,10 @@
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">学校名称</view>
+        <view class="weui-label">*学校名称</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" value="{{university}}" placeholder="请输入学校官方语言全称"/>
+        <input class="weui-input" bindinput="universityInput" value="{{university}}" placeholder="请输入学校官方语言全称"/>
       </view>
     </view>
 
@@ -16,49 +16,49 @@
         <view class="weui-label">学校简称</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" value="{{discipline}}" placeholder="请输入学校简称"/>
+        <input class="weui-input" bindinput="abbrUniversityInput" value="{{abbrUniversity}}" placeholder="请输入学校简称"/>
       </view>
     </view>
 
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">国家</view>
+        <view class="weui-label">*国家</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" value="{{highSchoolCity}}" placeholder="国家"/>
+        <input class="weui-input" bindinput='countryInput' value="{{country}}" placeholder="国家"/>
       </view>
     </view>
     
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">省市/联邦州</view>
+        <view class="weui-label">*省市/联邦州</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" value="{{highSchoolCity}}" placeholder="省市/联邦州"/>
+        <input class="weui-input" bindinput='provinceInput' value="{{province}}" placeholder="省市/联邦州"/>
       </view>
     </view>
 
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">城市</view>
+        <view class="weui-label">*城市</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" value="{{highSchoolCity}}" placeholder="城市"/>
+        <input class="weui-input" bindinput='cityInput' value="{{city}}" placeholder="城市"/>
       </view>
     </view>
 
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">学校首页</view>
+        <view class="weui-label">*学校首页</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" value="http://" placeholder="国家"/>
+        <input class="weui-input" bindinput='homePageInput' value="http://" placeholder="国家"/>
       </view>
     </view>
-
   </view>
 
   <view class="weui-btn-area">
-    <button class="weui-btn" bindtap="confirm">确定创建</button>
+    <button class="weui-btn" bindtap="confirm" form-type='submit'>确定创建</button>
   </view>
+
 </view>
