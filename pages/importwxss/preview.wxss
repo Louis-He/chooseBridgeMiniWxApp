@@ -37,3 +37,6 @@ page{
   color: #67CCCE;
   font-weight: 600;
 }
+.weui-form-preview__value_in-hd{
+  font-size: 48 rpx;
+}

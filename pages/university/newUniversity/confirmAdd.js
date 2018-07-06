@@ -26,21 +26,39 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this
+    wx.getStorage({
+      key: 'tmpUniv',
+      success: function(res) {
+        that.setData({
+          "requestConfirmData": res.data
+        })
+      },
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-   console.log("调用onHide")
+   wx.removeStorage({
+     key: 'tmpUniv',
+     success: function(res) {
+       console.log("onHide: 用户离开确认页面，tmpUniv缓存变量清除")
+     },
+   })
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    wx.removeStorage({
+      key: 'tmpUniv',
+      success: function (res) {
+        console.log("onUnload: 用户离开确认页面，tmpUniv缓存变量清除")
+      },
+    })
   },
 
   /**
