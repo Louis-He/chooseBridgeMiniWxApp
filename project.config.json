@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -66,6 +66,18 @@
 					"id": -1,
 					"name": "错误开始",
 					"pathName": "pages/user/lowQualityNetwork",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "高校主页",
+					"pathName": "pages/university/specificUni/specificUni",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "教授主页",
+					"pathName": "pages/courses/specificPro/specificPro",
 					"query": ""
 				}
 			]

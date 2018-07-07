@@ -15,7 +15,9 @@
     "pages/user/emailForm/success",
     "pages/user/emailForm/fail",
     "pages/university/newUniversity/newUniversity",
-    "pages/user/lowQualityNetwork"
+    "pages/user/lowQualityNetwork",
+    "pages/university/specificUni/specificUni",
+    "pages/courses/specificPro/specificPro"
   ],
   "window": {
     "backgroundTextStyle": "light",
