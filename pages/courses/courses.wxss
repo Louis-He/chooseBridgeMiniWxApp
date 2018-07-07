@@ -1,9 +1,11 @@
-/* pages/courses/courses.wxss */
+/* pages/courses/result/result.wxss */
 @import '../university/weui.wxss';
 page{
-    background: linear-gradient(#1C5388, #0F3881);
+  background: linear-gradient(#1C5388, #0F3881); 
 }
-  .border {
+
+/*original course page wxss code*/
+.border {
     width: 95%;
     border-radius: 5px;
     margin-left: 10px;
@@ -64,3 +66,120 @@ page{
     font-size: 14px;
     color: white;
   }
+
+/*original search result page wxss code*/
+.weui-search-bar {
+  background: linear-gradient(#1C5388, #0F3881);
+  border-color: transparent;
+}
+.weui-search-bar::after {
+  border: none;
+}
+.weui-search-bar__form {
+  border-radius: 100rpx;
+}
+.weui-search-bar__label {
+  border-radius: 100rpx;
+}
+ .searchbar-result{
+    margin-top: 0;
+    font-size: 30rpx;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+.cancel{
+  color: white;  
+  font-size: 28rpx;
+} 
+.cards{
+  width: 92%;
+  height: 100%;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+}
+ .cards::after {
+  border: none;
+} 
+.universityCard{
+  margin-bottom: 20rpx;
+  width: 100%;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.5); 
+  line-height: 1.2em;
+  background-color: rgba(255, 255, 255, 0.2); 
+  color: white;
+  letter-spacing: 1.5px;
+  height: 185rpx;
+}
+ .universityCard::after {
+  border: none;
+} 
+.item {
+  height: 100%;
+}
+
+.item1 {
+  padding: 20rpx; 
+  width: 9%;
+  height: 30%;
+}
+
+.item2 {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.item3 {
+  padding: 5rpx;
+  width: 5%;
+  display: flex;
+  align-items: center;
+}
+
+.name{
+  font-size: 40rpx;
+  align-items: center;
+  padding-top: 40rpx; 
+}
+
+.subname{
+  font-size: 28rpx;
+  font-weight: lighter;
+  line-height: 30rpx;
+  padding-bottom: 45rpx; 
+}
+
+.create-new{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-weight: lighter;
+  margin-bottom: 20rpx;
+  border-radius: 30rpx;
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.5); 
+  line-height: 1.2em;
+  background-color: rgba(255, 255, 255, 0.2); 
+  color: white;
+  letter-spacing: 1.5px;
+  height: 170rpx; 
+}
+
+.button{
+  font-size: 28rpx;
+  margin-top: 5rpx;
+  height: 40%;
+  text-align: center;
+  background-color: #359ACA;
+  color: white;
+}
