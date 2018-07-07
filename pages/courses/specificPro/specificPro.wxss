@@ -1,0 +1,246 @@
+/* pages/courses/specificPro/specificPro.wxss */
+@import '../../university/weui.wxss';
+page {
+  background: linear-gradient(#1C5388, #0F3881);
+}
+.weui-search-bar {
+  background: linear-gradient(#1C5388, #0F3881);
+  border-color: transparent;
+}
+.weui-search-bar::after {
+  border: none;
+}
+.weui-search-bar__form {
+  border-radius: 100rpx;
+}
+.weui-search-bar__label {
+  border-radius: 100rpx;
+}
+ .searchbar-result{
+    margin-top: 0;
+    font-size: 30rpx;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+.cancel{
+  color: white;  
+  font-size: 28rpx;
+} 
+.basic-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.user-logo {
+  width: 180rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+  margin-left: 5rpx;
+}
+.text-view {
+  color: white;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.name {
+  font-size: 40rpx;
+  letter-spacing: 0.05em;
+}
+.school {
+  font-size: 26rpx;
+  font-weight: lighter;
+  letter-spacing: 0.05em;
+  line-height: 1.2em;
+  margin-bottom: 20rpx;
+  margin-right: 5rpx;
+}
+.button-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  white-space: nowrap;
+}
+.left-button {
+  color: white;
+  font-size: 26rpx;
+  font-weight: lighter;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 100rpx;
+}
+.right-button {
+  color: white;
+  font-size: 26rpx;
+  font-weight: lighter;
+  background-color: #E16B8C;
+  border-radius: 100rpx;
+}
+.overall-tag-view {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30rpx;
+  margin: 20rpx 10rpx 0rpx 10rpx;
+  height: 185rpx; 
+}
+.tag-text-view {
+  white-space: nowrap;
+  color: white;
+  font-size: 35rpx;
+  margin-left: 20rpx;
+  margin-bottom: 15rpx;
+}
+.tags-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  white-space: nowrap;
+}
+.tag-array-view {
+  background-color: #359ACA;
+  color: white;
+  border-radius: 100rpx;
+  font-size: 22rpx;
+  font-weight: lighter;
+  margin: 0rpx 5rpx 15rpx 0rpx;
+  padding: 5rpx 10rpx 5rpx 10rpx;
+}
+.avg-work-view {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30rpx;
+  margin: 20rpx 10rpx 0rpx 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.arrow-view {
+  width: 40rpx;
+  align-self: center;
+  margin-bottom: 15rpx;
+}
+.work-left-view {
+  text-align: center;
+  margin-top: 2rpx;
+}
+.text-1 {
+  font-size: 26rpx;
+  font-weight: lighter;
+  color: white;
+}
+.text-2 {
+  font-size: 55rpx;
+  color: white;
+}
+.work-right-view {
+  line-height: 1em;
+  margin-top: 20rpx;
+  margin-right: 50rpx;
+}
+.big-text {
+  color: white;
+  padding-top: 20rpx;
+}
+.normal-text {
+  color: white;
+  font-size: 26rpx;
+  font-weight: lighter;
+  letter-spacing: 0.05em; 
+  line-height: 1em;
+}
+.button-text {
+  color: white;
+  font-size: 26rpx;
+  font-weight: lighter;
+}
+.class-name {
+  color: white;
+  font-size: 26rpx;
+  font-weight: lighter;
+  letter-spacing: 0.05em;
+}
+.right {
+  margin-left: 100rpx;
+}
+.share-view {
+  text-align: center;
+}
+.share {
+    margin-top: 10rpx;  
+}
+.comment {
+  background-color: #359ACA;
+  margin-left: 250rpx;
+  margin-right: 250rpx;
+  border-radius: 20rpx;
+}
+.lowest {
+  justify-content: space-between;
+  line-height: 1em;
+}
+.bold {
+  font-weight: normal;
+}
+.lowest-tag {
+  padding: 0rpx 18rpx 0rpx 18rpx;
+}
+.like-view {
+  width: 40rpx;
+  padding-top: 15rpx;
+}
+.arrow-view-down {
+  width: 25rpx;
+  margin-right: 10rpx;
+}
+.comment-left-view {
+  text-align: center;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+.left-num {
+  font-size: 20rpx;
+}
+.right-num {
+  font-size: 20rpx;
+}
+.right-like {
+  padding-left: 20rpx;
+}
+.down-part {
+  margin-top: 10rpx;
+}
+.bottom-num {
+  display: flex;
+  flex-direction: row;
+}
+.cmt-view {
+   display: flex;
+   flex-direction: row;
+}
+.cmt-right {
+  padding-left: 110rpx;
+}
+.comment-right-view {
+  padding-left: 20rpx;
+}
+.num-view {
+  font-size: 22rpx;
+}
+.right-num-btm {
+   padding-left: 15rpx; 
+}
+.book-view {
+  width: 28rpx;
+  margin: 15rpx 10rpx 0rpx 0rpx;
+}
+.lower-tag {
+  padding-top: 12rpx;
+}
+.comment-most-right-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

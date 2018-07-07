@@ -114,9 +114,17 @@ Page({
       nameBase: false
     });
   },
-  toUniversity: function () {
+  toResult: function () {
     this.setData({
       firstView: false
     });
+  },
+  toUniversity: function() {
+    wx.navigateTo({
+      url: 'specificUni/specificUni',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   }
 })

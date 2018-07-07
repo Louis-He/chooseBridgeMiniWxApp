@@ -27,7 +27,7 @@
       <text class='guide-right'>教授所授课程</text>
     </view>
     <view class='input-bar'>
-      <button class='search-btn' bindtap='toProfessor'>搜索</button>
+      <button class='search-btn' bindtap='toResult'>搜索</button>
     </view>
   </view>
   <text class='tips'>小贴士：只输入高校名可查看该学校所有课程哦！</text>
@@ -79,7 +79,7 @@
     </view>
 
     <view class="cards">
-        <view class="universityCard">
+        <view class="universityCard" bindtap='toProfessor'>
           <view class="item item1">
             <image src='../../../images/user.png' style='width:100%;                     height:110%'></image>
           </view>
@@ -94,7 +94,7 @@
           </view>
         </view>
 
-        <view class="universityCard">
+        <view class="universityCard" bindtap='toProfessor'>
           <view class="item item1">
             <image src='../../../images/user.png' style='width:100%;                     height:110%'></image>
           </view>
@@ -105,7 +105,7 @@
             </text>
           </view>
           <view class="item item3">
-            <image src='../../../images/arrowNew.png' style='width:80%;                         height:20%'></image>
+            <image class='userLogo' src='../../../images/arrowNew.png'                  style='width:80%; height:20%'></image>
           </view>
         </view>
 

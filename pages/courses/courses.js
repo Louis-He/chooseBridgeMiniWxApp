@@ -72,10 +72,18 @@ Page({
   onShareAppMessage: function () {
 
   },
-  toProfessor: function () {
+  toResult: function () {
     this.setData({
       firstView: false
     });
+  },
+  toProfessor: function() {
+    wx.navigateTo({
+      url: 'specificPro/specificPro',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
   showInput: function () {
     this.setData({
