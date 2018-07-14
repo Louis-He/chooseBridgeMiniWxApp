@@ -1,0 +1,24 @@
+<!--pages/comment/newComment/newUnivCom/detailCom.wxml-->
+<view class="weui-cells__title">文字点评</view>
+<view class="weui-cells__subtitle">我们提供了以下示例问题供你选择，也欢迎分享校园生活中的趣事，让大家对你的学校有更多了解！</view>
+<view class="weui-cells__content">·你的学校名声好吗？学术水平如何？</view>
+<view class="weui-cells__content">·在学校的衣食住行方便吗？你有没有一些特别的生活策略？</view>
+<view class="weui-cells__content">·校园内课外活动多吗？学校对于学生活动支持吗？</view>
+<view class="weui-cells__content">·新学期的校园有哪些不同？</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <block wx:if="{{wordNumber<=500}}">
+        <view class="weui-textarea-counter">{{wordNumber}}/500</view>
+      </block>
+      <block wx:if="{{wordNumber>500}}">
+        <view class="weui-textarea-counter_warn">{{wordNumber}}/500</view>
+      </block>
+      <textarea class="weui-textarea" bindinput="contentInput" placeholder="请输入文本" style="height: 12.0em" maxlength="500"/>
+      
+    </view>
+  </view>
+</view>
+<view class="weui-btn-area">
+  <button class="weui-btn" bindtap="nextStep" form-type='submit'>下一步</button>
+</view>

@@ -1,0 +1,3 @@
+/* pages/courses/newCourse/newCourse.wxss */
+@import '../../importwxss/weui.wxss';
+@import '../../importwxss/form.wxss';

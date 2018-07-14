@@ -1,0 +1,31 @@
+/* pages/comment/newComment/newUnivCom/detailCom.wxss */
+@import '../../../importwxss/weui.wxss';
+@import '../../../importwxss/form.wxss';
+.weui-cell__bd-disabled{
+  color: #70CEDC;
+}
+.page__bd{
+  padding-bottom: 40px;
+}
+.weui-cells__title{
+  font-size: 42rpx;
+}
+.weui-cells__subtitle{
+  margin-top:.77em;
+  margin-bottom:.3em;
+  padding-left:15px;
+  padding-right:15px;
+  font-size: 28rpx;
+  color: #BBBBBB;
+}
+.weui-cells__content{
+  margin-top:.3em;
+  margin-bottom:.3em;
+  padding-left:15px;
+  padding-right:15px;
+  font-size: 24rpx;
+  color: #BBBBBB;
+}
+.weui-textarea-counter_warn{
+  text-align:right;
+}
