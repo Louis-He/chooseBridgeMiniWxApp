@@ -1,2 +1,3 @@
 <!--pages/comment/comment.wxml-->
-<text>pages/comment/comment.wxml</text>
+<text>待建设</text>
+<button bindtap='newUnivCom'>univ Comment</button>

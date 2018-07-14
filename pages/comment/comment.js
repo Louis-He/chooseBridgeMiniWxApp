@@ -62,5 +62,11 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  newUnivCom: function () {
+    wx.navigateTo({
+      url: 'newComment/newUnivCom/newUnivCom',
+    })
   }
 })
