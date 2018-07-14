@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -78,6 +78,24 @@
 					"id": -1,
 					"name": "教授主页",
 					"pathName": "pages/courses/specificPro/specificPro",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加课程",
+					"pathName": "pages/courses/newCourse/newCourse",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "添加评价",
+					"pathName": "pages/comment/newComment/newUnivCom/newUnivCom",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加具体评价",
+					"pathName": "pages/comment/newComment/newUnivCom/detailCom",
 					"query": ""
 				}
 			]

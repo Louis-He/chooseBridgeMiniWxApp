@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    is_modal_Hidden: true,
+    is_modal_Msg: '我是一个自定义组件',
+    is_modal_Title: '提示'
   },
 
   /**
@@ -121,16 +123,11 @@ Page({
 
     if (popError){
       /* 填写检查不通过，要求用户重新填写 */
-      wx.showModal({
-        title: '您有部分内容没有填写',
-        content: '您有以下部分没有填写：' + errorMsg,
-        showCancel: false,
-        success: function (res) {
-          if (res.confirm) {
-            console.log('用户已经确认')
-          }
-        }
-      });
+      errorMsg = "您有以下部分没有填写：\n" + errorMsg;
+      this.setData({
+        is_modal_Hidden: false,
+        is_modal_Msg: errorMsg
+      })
     }else{
       var tmpUniversityInfo = {
         Name : this.data.university,
