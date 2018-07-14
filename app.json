@@ -19,7 +19,11 @@
     "pages/university/newUniversity/confirmAdd",
     "pages/university/newUniversity/success",
     "pages/university/specificUni/specificUni",
-    "pages/courses/specificPro/specificPro"
+    "pages/courses/specificPro/specificPro",
+    "pages/modal/modal",
+    "pages/courses/newCourse/newCourse",
+    "pages/comment/newComment/newUnivCom/newUnivCom",
+    "pages/comment/newComment/newUnivCom/detailCom"
   ],
   "window": {
     "backgroundTextStyle": "light",

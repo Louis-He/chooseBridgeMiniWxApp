@@ -99,7 +99,7 @@ Page({
   },
   createNew: function () {
     wx.navigateTo({
-      url: '../../comment/comment.wxml'
+      url: 'newUniversity/newUniversity.wxml'
     })
   },
   nameBase: function () {

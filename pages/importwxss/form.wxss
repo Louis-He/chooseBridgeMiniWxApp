@@ -3,7 +3,7 @@ page{
 }
 /* override weui.wxss*/
 .weui-cells{
-  background-color:#1C5388;
+  background-color:transparent;
   color: white;
 }
 
@@ -30,6 +30,7 @@ page{
 }
 
 .weui-btn-area{
+  background-color: transparent;
   padding-left: 200rpx;
   padding-right: 200rpx;
 }
@@ -37,4 +38,8 @@ page{
 .weui-cell:before{
   border-top:1rpx solid grey;
   color: grey;
+}
+
+.weui-select{
+  border-right: 0rpx;
 }
