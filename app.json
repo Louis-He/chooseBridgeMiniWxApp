@@ -17,7 +17,9 @@
     "pages/university/newUniversity/newUniversity",
     "pages/user/lowQualityNetwork",
     "pages/university/specificUni/specificUni",
-    "pages/courses/specificPro/specificPro"
+    "pages/courses/specificPro/specificPro",
+    "pages/courses/specificPro/commentDetail/commentDetail",
+    "pages/university/specificUni/cmtDetail/cmtDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

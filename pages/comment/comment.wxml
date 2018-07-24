@@ -1,2 +1,40 @@
 <!--pages/comment/comment.wxml-->
-<text>pages/comment/comment.wxml</text>
+<block wx:if="{{accessible}}">
+  <view class = "top-image">
+    <image mode = "widthFix" style = "width:100%" 
+    src ='/images/default-user-bg.png'></image>
+  </view> 
+  <block wx:if="{{courseBase}}">
+    <view class="searchbar">
+      <button class = "name-base" bindtap='courseBase' style='background-color: rgba(255, 255, 255, 0.2);'>课程</button>
+      <button class = "area-title" bindtap='universityBase' style='background-color: rgba(53, 154, 202, 0.2);'>高校</button>
+    </view>
+  </block>
+  <block wx:if="{{!courseBase}}">
+    <view class="searchbar">
+      <button class = "name-base" bindtap='courseBase' style='background-color: rgba(53, 154, 202, 0.2);'>课程</button>
+      <button class = "area-title" bindtap='universityBase'style='background-color: rgba(255, 255, 255, 0.2);'>高校</button>
+    </view>
+  </block>
+    <block wx:if="{{courseBase}}">
+    <view class="input-view"> 
+      <text class='text-view'>我想分享</text>
+      <input class="input-text" placeholder-style=
+      'color:rgba(255,255,255,0.5);font-weight:lighter;font-size:30rpx;'
+      placeholder = "{{blankVal}}" 
+      bindinput='inputTyping' confirm-type='search'/>
+      <text class='text-view'>的课程</text>
+  </view> 
+  </block>
+  <block wx:if="{{!courseBase}}">
+    <view class="input-view"> 
+      <text class='text-view'>我想分享</text>
+      <input class="input-text-area" placeholder-style=
+      'color:rgba(255,255,255,0.5);font-weight:lighter;font-size:30rpx;'
+      placeholder = "{{blankVal}}" 
+      bindinput='inputTyping' confirm-type='search'/>
+      <text class='text-view'>的生活</text>
+  </view> 
+  </block>
+    <button class = "searchBtn" bindtap='toResult'>搜索</button> 
+</block>

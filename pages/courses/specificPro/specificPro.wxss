@@ -36,11 +36,11 @@ page {
   justify-content: center;
 }
 .user-logo {
-  width: 180rpx;
+  position: relative;
+  width: 20%;
+  left: 5rpx;
   display: flex;
   align-items: center;
-  margin-top: 10rpx;
-  margin-left: 5rpx;
 }
 .text-view {
   color: white;
@@ -48,6 +48,10 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+.top-right-text-view {
+  position: relative;
+  width: 80%;
 }
 .name {
   font-size: 40rpx;
@@ -85,7 +89,8 @@ page {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 30rpx;
   margin: 20rpx 10rpx 0rpx 10rpx;
-  height: 185rpx; 
+  height: 185rpx;
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.2);
 }
 .tag-text-view {
   white-space: nowrap;
@@ -116,6 +121,7 @@ page {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.2);
 }
 .arrow-view {
   width: 40rpx;
@@ -169,7 +175,7 @@ page {
   text-align: center;
 }
 .share {
-    margin-top: 10rpx;  
+  margin-top: 10rpx;  
 }
 .comment {
   background-color: #359ACA;

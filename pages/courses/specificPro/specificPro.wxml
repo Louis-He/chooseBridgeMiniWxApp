@@ -19,7 +19,7 @@
 <view class='basic-info'>
   <image class='user-logo' src='../../../images/user.png'                  
     style='height:auto' mode='widthFix'></image>
-  <view class='text-view'>
+  <view class='text-view top-right-text-view'>
     <text class='name'>{{proName}} \n</text>
     <text class='school'>{{uniName}} \n {{schoolName}}</text>
   </view>
@@ -93,7 +93,7 @@
   </button>
 </view>
 
-<view class='avg-work-view lowest'>
+<view class='avg-work-view lowest' bindtap='showCmtDetail'>
   <view class='comment-left-view'>
     <text class='normal-text'>{{commentTime}}\n 努力指数\n</text>
     <view class='text-2 down-part'>{{workingIndex}}\n</view>
