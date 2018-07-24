@@ -1,0 +1,123 @@
+<!--pages/comment/newComment/newProfCom/newProfCom.wxml-->
+<modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" modal-title="{{is_modal_Title}}"/>
+<view class="page">
+  <scroll-view scroll-y="true" style="height: {{scrollHeight}}px">
+    <view class="weui-cells__title">评价教授</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*学校名称</view>
+        </view>
+        <view class="weui-cell__bd-disabled">
+          <input class="weui-input" disabled='disabled' bindinput="universityInput" value="{{university}}" placeholder="请退出后立即联系管理员"/>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+              <view class="weui-label">*校区</view>
+          </view>
+          <view class="weui-cell__bd">
+              <picker bindchange="bindCampusChange" value="{{campusIndex}}" range="{{campuses}}">
+                  <view class="weui-select weui-select_in-select-after">{{campuses[campusIndex]}}</view>
+              </picker>
+          </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*社会声誉</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider bindchange="socialReputationChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+        </view>
+      </view>
+      
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*学术水平</view>
+        </view>
+          <view class="weui-cell__bd">
+          <slider bindchange="academicLevelChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*网络服务</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider bindchange="WebServiceChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*住宿条件</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider bindchange="domConditionChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*餐饮质量</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider bindchange="foodQualityChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+        </view>
+      </view>
+      
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*校园地理位置</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider bindchange="geoLocationChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+        </view>
+      </view> 
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*校园课外活动</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider bindchange="activityChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*校园基础设施</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider bindchange="infrastructureChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*生活幸福指数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider bindchange="happinessChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*校方与学生关系</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider bindchange="relationshipChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+        </view>
+      </view>
+
+    </view>
+    
+    <view class="weui-btn-area">
+      <button class="weui-btn" bindtap="nextStep" form-type='submit'>下一步</button>
+    </view>
+  </scroll-view>
+</view>

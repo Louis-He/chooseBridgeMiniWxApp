@@ -1,19 +1,14 @@
-// pages/user/infoForm/infoForm.js
+// pages/comment/newComment/newProfCom/newProfCom.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    countryCodes: ["+86", "+80", "+84", "+87"],
-    countryCodeIndex: 0,
-
-    "userName": "TestName",
-    "firstName": "FIRST",
-    "lastName": "LAST",
-    "lastName": "LAST",
-    "Signature": "神马都是浮云"
-
+    is_modal_Hidden: true,
+    is_modal_Msg: '我是一个自定义组件',
+    is_modal_Title: '提示',
+  
   },
 
   /**
@@ -72,28 +67,17 @@ Page({
   
   },
 
-  bindCountryCodeChange: function (e) {
-    console.log('picker country code 发生选择改变，携带值为', e.detail.value);
-
-    this.setData({
-      countryCodeIndex: e.detail.value
-    })
+  setScrollHeight: function () {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.info(res.windowHeight);
+        that.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    });
   },
 
-  submit: function (){
-    wx.request({
-      url: '',
-      success: function (res) {
-        wx.navigateTo({
-          url: 'success',
-        })
-      },
-      fail: function (res) {
-        wx.navigateTo({
-          url: 'fail',
-        })
-      }
-    })
-  }
-
+  
 })

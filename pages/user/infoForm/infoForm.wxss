@@ -1,1 +1,3 @@
 /* pages/user/infoForm/infoForm.wxss */
+@import '../../importwxss/weui.wxss';
+@import '../../importwxss/form.wxss';
