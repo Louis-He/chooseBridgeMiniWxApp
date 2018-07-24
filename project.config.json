@@ -30,7 +30,11 @@
 			"list": []
 		},
 		"miniprogram": {
+<<<<<<< HEAD
 			"current": 8,
+=======
+			"current": 4,
+>>>>>>> 56d20bc3b7c4de0c42578f8bd0469f12722d30fb
 			"list": [
 				{
 					"id": -1,

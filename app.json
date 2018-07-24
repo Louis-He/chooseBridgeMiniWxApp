@@ -16,6 +16,8 @@
     "pages/user/emailForm/fail",
     "pages/university/newUniversity/newUniversity",
     "pages/user/lowQualityNetwork",
+    "pages/university/newUniversity/confirmAdd",
+    "pages/university/newUniversity/success",
     "pages/university/specificUni/specificUni",
     "pages/courses/specificPro/specificPro",
     "pages/courses/specificPro/commentDetail/commentDetail",
