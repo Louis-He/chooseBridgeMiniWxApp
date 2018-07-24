@@ -172,13 +172,7 @@ Page({
         is_modal_Msg: errorMsg
       })
     }
-
-
-
-
-
-
-
+    
     this.setData({
       'tmpUnivComment': { 'campus': this.data.campus, 'reputation': this.data.reputation, 'academic': this.data.academic, 'webService': this.data.webService, 'dom': this.data.dom, 'food': this.data.food, 'geo': this.data.geo, 'activity': this.data.activity, 'infrastructure': this.data.infrastructure, 'happiness': this.data.happiness, 'relationship': this.data.relationship}
     })

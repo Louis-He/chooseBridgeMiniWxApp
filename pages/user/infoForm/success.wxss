@@ -1,0 +1,3 @@
+/* pages/user/infoForm/success.wxss */
+@import '../../importwxss/weui.wxss';
+@import '../../importwxss/msg.wxss';

@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -76,8 +76,6 @@
 				},
 				{
 					"id": 9,
-					"name": "添加评价",
-					"pathName": "pages/comment/newComment/newUnivCom/newUnivCom",
 					"name": "具体课程评价",
 					"pathName": "pages/courses/specificPro/commentDetail/commentDetail",
 					"query": ""
@@ -87,7 +85,12 @@
 					"name": "具体高校评价",
 					"pathName": "pages/university/specificUni/cmtDetail/cmtDetail",
 					"query": ""
-        }
+				},
+				{
+					"id": -1,
+					"name": "添加教授点评",
+					"pathName": "pages/comment/newComment/newProfCom/newProfCom"
+				}
 			]
 		}
 	}
