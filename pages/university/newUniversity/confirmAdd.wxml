@@ -1,0 +1,40 @@
+<!--pages/university/newUniversity/confirmAdd.wxml-->
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">请确认添加学校</view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__label">学校名称</view>
+                <view class="weui-form-preview__value_in-hd">{{requestConfirmData.Name}}</view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">学校简称</view>
+                    <view class="weui-form-preview__value">{{requestConfirmData.abbr}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">国家</view>
+                    <view class="weui-form-preview__value">{{requestConfirmData.country}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">省市/联邦州</view>
+                    <view class="weui-form-preview__value">{{requestConfirmData.province}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">城市</view>
+                    <view class="weui-form-preview__value">{{requestConfirmData.city}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">学校首页</view>
+                    <view class="weui-form-preview__value">{{requestConfirmData.homePage}}</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__ft">
+                <view class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" bindtap='edit'>返回编辑</view>
+                <view class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap='confirm'>确认添加</view>
+            </view>
+        </view>
+    </view>
+</view>

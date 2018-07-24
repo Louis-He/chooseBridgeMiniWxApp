@@ -1,0 +1,42 @@
+page{
+      background: linear-gradient(#1C5388, #0F3881);
+}
+.weui-form-preview{
+    margin-bottom: 25px;
+}
+.page__hd {
+    padding: 40px;
+}
+.page__bd {
+    padding-bottom: 40px;
+}
+.page__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+    color: #67CCCE
+}
+.weui-form-preview__label{
+  color: white;
+  font-weight: 200;
+}
+.weui-form-preview__value_in-hd{
+  color: white
+}
+.weui-form-preview{
+  background-color: #1C5388
+}
+.weui-form-preview__value{
+  color: white;
+  font-weight: 400;
+}
+.weui-form-preview__btn_default{
+  color: #CCCCCC
+}
+.weui-form-preview__btn_primary{
+  color: #67CCCE;
+  font-weight: 600;
+}
+.weui-form-preview__value_in-hd{
+  font-size: 48 rpx;
+}
