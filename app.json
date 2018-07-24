@@ -23,7 +23,9 @@
     "pages/modal/modal",
     "pages/courses/newCourse/newCourse",
     "pages/comment/newComment/newUnivCom/newUnivCom",
-    "pages/comment/newComment/newUnivCom/detailCom"
+    "pages/comment/newComment/newUnivCom/detailCom",  
+    "pages/courses/specificPro/commentDetail/commentDetail",
+    "pages/university/specificUni/cmtDetail/cmtDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,1 +1,2 @@
 /* pages/comment/comment.wxss */
+@import '../university/university.wxss';
