@@ -45,18 +45,6 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "course results",
-					"pathName": "pages/courses/result/result",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "uni result",
-					"pathName": "pages/university/result/result",
-					"query": ""
-				},
-				{
 					"id": 4,
 					"name": "添加高校",
 					"pathName": "pages/university/newUniversity/newUniversity",
@@ -90,14 +78,16 @@
 					"id": 9,
 					"name": "添加评价",
 					"pathName": "pages/comment/newComment/newUnivCom/newUnivCom",
+					"name": "具体课程评价",
+					"pathName": "pages/courses/specificPro/commentDetail/commentDetail",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "添加具体评价",
-					"pathName": "pages/comment/newComment/newUnivCom/detailCom",
+					"name": "具体高校评价",
+					"pathName": "pages/university/specificUni/cmtDetail/cmtDetail",
 					"query": ""
-				}
+        }
 			]
 		}
 	}

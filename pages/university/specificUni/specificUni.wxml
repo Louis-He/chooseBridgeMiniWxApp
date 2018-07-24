@@ -15,3 +15,215 @@
             </view>
             <view class="cancel weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
+
+<!--  未点击箭头，显示总分  -->
+<block wx:if="{{!arrowTouched}}">
+  <view class='basic-school-view'>
+    <view class='upper-view'>
+      <view class='overall-score-view'>
+        <text class='light-small-text'>综合得分\n</text>
+        <text class='big-num-view'>3.6</text>
+      </view>
+      <view class='uni-info-view'>
+        <view class='text-view top-name-display'>
+          <text class='bold-uni-text'>{{uniName}}\n</text>
+          <view class='sub-text'>{{location}}</view>
+        </view>
+        <view class='btn-display'>
+          <button class='share-btn-view'>分享给好友</button>
+          <button class='like-btn-view'>已有9999+人点赞</button>
+        </view>
+      </view>
+    </view>
+    <view class='dividing-line-display'>
+      <view class='dividing-line'></view>
+    </view>
+    <swiper indicator-dots='true' indicator-active-color='white' circular='true' 
+      current="{{swiperIdx}}" bindchange='onSlideChangeEnd' style='height: 230rpx;'>
+      <swiper-item>
+        <view class='swiper-hide-ctt-view'>
+          <view class='bold-uni-text swiper-title hide'>
+            {{campusName}}
+          </view>
+          <view class='swiper-ctt-left hide-right'>
+            <text class='light-small-text'>综合得分 \n</text>
+            <text class='big-num-view'>4.7</text>
+          </view>
+        </view>
+        <view class='image-center-view'>
+          <image class='arrow-view' src='../../../images/arrowDown.png' 
+          bindtap='showMore'style='height:auto'mode='widthFix'></image>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class='swiper-hide-ctt-view'>
+          <view class='bold-uni-text swiper-title hide'>
+            Oxford Campus
+          </view>
+          <view class='swiper-ctt-left hide-right'>
+            <text class='light-small-text'>综合得分 \n</text>
+            <text class='big-num-view'>4.7</text>
+          </view>
+        </view>
+        <view class='image-center-view'>
+          <image class='arrow-view' src='../../../images/arrowDown.png' 
+          bindtap='showMore'style='height:auto'mode='widthFix'></image>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</block>
+
+<!--  点击箭头后展示详情部分  -->
+<block wx:if="{{arrowTouched}}">
+  <view class='basic-school-view'>
+    <view class='upper-view'>
+      <view class='overall-score-view'>
+        <text class='light-small-text'>综合得分\n</text>
+        <text class='big-num-view'>3.6</text>
+      </view>
+      <view class='uni-info-view'>
+        <view class='text-view top-name-display'>
+          <text class='bold-uni-text'>{{uniName}}\n</text>
+          <view class='sub-text'>{{location}}</view>
+        </view>
+        <view class='btn-display'>
+          <button class='share-btn-view'>分享给好友</button>
+          <button class='like-btn-view'>已有9999+人点赞</button>
+        </view>
+      </view>
+    </view>
+    <view style='width:100%; height:1rpx; background:#f3f3f3;               margin-left:30rpx; margin-right:30rpx;'></view>
+    <swiper class='swiper-view' indicator-dots='true' circular='true'
+    current='{{swiperIdx}}' bindchange='onSlideChangeEnd' 
+    indicator-active-color='white'>
+      <swiper-item>
+        <view class='bold-uni-text swiper-title'>{{campusName}}</view>
+        <view class='swpier-ctt-view'>
+          <view class='swiper-ctt-left'>
+            <text class='light-small-text'>综合得分 \n</text>
+            <text class='big-num-view'>4.7</text>
+          </view>
+          <view class='swiper-ctt-right'>
+            <view class='sub-text cmt-detail' 
+             wx:for="{{detailCmtLeft}}">
+              {{item.category}}
+            </view>
+          </view>
+          <view class='swiper-ctt-right'>
+            <view class='sub-text cmt-detail' 
+            wx:for="{{detailCmtRight}}">
+              {{item.category}}
+            </view>
+          </view> 
+        </view>
+        <view class='image-center-view'>
+          <image class='arrow-view' src='../../../images/arrowUp.png' 
+          bindtap='hide'style='height:auto'mode='widthFix'></image>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class='bold-uni-text swiper-title'>Oxford Campus</view>
+        <view class='swpier-ctt-view'>
+          <view class='swiper-ctt-left'>
+            <text class='light-small-text'>综合得分 \n</text>
+            <text class='big-num-view'>4.7</text>
+          </view>
+          <view class='swiper-ctt-right'>
+            <view class='sub-text cmt-detail' 
+             wx:for="{{detailCmtLeft}}">
+              {{item.category}}
+            </view>
+          </view>
+          <view class='swiper-ctt-right'>
+            <view class='sub-text cmt-detail' 
+            wx:for="{{detailCmtRight}}">
+              {{item.category}}
+            </view>
+          </view> 
+        </view>
+        <view class='image-center-view'>
+          <image class='arrow-view' src='../../../images/arrowUp.png' 
+          bindtap='hide'style='height:auto'mode='widthFix'></image>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</block>
+
+<view class='basic-school-view rcmd-view'>
+  <view class='big-bold-text'>
+    <view class='rcmd-left-view'>
+      <view class='sub-text rcmd-text base64-image'>荐</view>
+    </view>
+    <text>Effrosyni Seitaridou</text>
+    <view class='rcmd-sub-text'>
+      <text class='sub-text'>教授</text>
+    </view>
+  </view>
+  <view class='rcmd-arrow-view'>
+    <image class='rcmd-arrow-view' src='../../../images/arrowNew.png' 
+    bindtap='hide'style='height:auto'mode='widthFix'></image>
+  </view>
+</view>
+
+<view class='basic-school-view share-view'>
+  <view class='big-text'>想与大家分享你的学习经历？</view>
+  <view class='cmt-btn'>
+    <button class='tag-array-view button-text comment' 
+    bindtap='commentCourse'>点评你的课程！
+    </button>
+  </view>
+</view>
+
+<view class='basic-school-view bottom-view' bindtap='showCmtDetail'>
+  <view class='up-cmt-overall-view'>
+    <view class='sub-text cmt-text'>2018-06</view>
+    <view class='sub-text cmt-text'>University Park Campus</view>
+  </view>
+  <view class='up-cmt-overall-view'>
+    <view class='image-center-view' style='margin-right:40rpx;'>
+      <view class='smile-face-view'>
+        <image class='face-view' src='../../../images/smileface.png' 
+        style='height:auto' mode='widthFix'></image>
+      </view>
+      <view class='big-num-view'>3.2</view>
+    </view>
+      <view class='cmt-like-view'>
+        <image class='like-view' src='../../../images/like.png' 
+        style='height:auto' mode='widthFix'></image>
+        <view class='small-num'>999+</view>
+      </view>
+      <view class='cmt-like-view'>
+        <image class='like-view' src='../../../images/dislike.png' 
+        style='height:auto' mode='widthFix'></image>
+        <view class='small-num'>999+</view>
+      </view>
+  </view>
+</view>
+
+<view class='basic-school-view bottom-view'bindtap='showCmtDetail'>
+  <view class='up-cmt-overall-view'>
+    <view class='sub-text cmt-text'>2018.06</view>
+    <view class='sub-text cmt-text'>University Park Campus</view>
+  </view>
+  <view class='up-cmt-overall-view'>
+    <view class='image-center-view' style='margin-right:40rpx;'>
+      <view class='smile-face-view'>
+        <image class='face-view' src='../../../images/smileface.png' 
+        style='height:auto' mode='widthFix'></image>
+      </view>
+    <view class='big-num-view'>3.2</view>
+    </view>
+      <view class='cmt-like-view'>
+        <image class='like-view' src='../../../images/like.png' 
+        style='height:auto' mode='widthFix'></image>
+        <view class='small-num'>999+</view>
+      </view>
+      <view class='cmt-like-view'>
+        <image class='like-view' src='../../../images/dislike.png' 
+        style='height:auto' mode='widthFix'></image>
+        <view class='small-num'>999+</view>
+      </view>
+  </view>
+</view>

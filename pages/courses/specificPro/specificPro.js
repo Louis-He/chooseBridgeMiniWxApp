@@ -63,5 +63,10 @@ Page({
     wx.navigateTo({
       url: '../../../pages/university/university',
     })
+  },
+  showCmtDetail: function () {
+    wx.navigateTo({
+      url: 'commentDetail/commentDetail',
+    })
   }
 })
