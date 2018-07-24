@@ -1,0 +1,6 @@
+/* pages/university/specificUni/cmtDetail/cmtDetail.wxss */
+@import  '../../../courses/specificPro/commentDetail/commentDetail.wxss';
+.happyface-view {
+  width: 50rpx;
+  padding-right: 10rpx;
+}

@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -42,18 +42,6 @@
 					"id": -1,
 					"name": "searchCourses",
 					"pathName": "pages/courses/courses",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "course results",
-					"pathName": "pages/courses/result/result",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "uni result",
-					"pathName": "pages/university/result/result",
 					"query": ""
 				},
 				{
@@ -79,6 +67,23 @@
 					"name": "教授主页",
 					"pathName": "pages/courses/specificPro/specificPro",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "具体课程评价",
+					"pathName": "pages/courses/specificPro/commentDetail/commentDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "具体高校评价",
+					"pathName": "pages/university/specificUni/cmtDetail/cmtDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "点评页面",
+					"pathName": "pages/comment/comment"
 				}
 			]
 		}

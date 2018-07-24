@@ -5,7 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    inputShowed: false,
+    inputVal: "",
+    university: "Emory University",
+    state: "Atlanta, Georgia",
+    uiuc: "University of Illinois at Urbana-Champaign",
+    uiucState: "Urbana, Iliinois",
+    country: "美国",
+    accessible: true,
+    courseBase: true,
+    blankVal: "高校",
+    inputVal: "",
+    professor: "Dietrich Burbulla\n",
+    school: "University of Toronto",
+    college: "Department of mathematics"
   },
 
   /**
@@ -62,5 +75,37 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  courseBase: function () {
+    this.setData({
+      blankVal: "教授",
+      courseBase: true
+    });
+  },
+  universityBase: function () {
+    this.setData({
+      blankVal: "高校",
+      courseBase: false
+    });
+  },
+  toResult: function (e) {
+    if (this.data.courseBase == true)
+    {
+      wx.switchTab({
+        url: '../courses/courses',
+      })
+    } else {
+      wx.switchTab({
+        url: '../university/university',
+      })
+    }
+  },
+  toUniversity: function () {
+    wx.navigateTo({
+      url: 'specificUni/specificUni',
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   }
 })
