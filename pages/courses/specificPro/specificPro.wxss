@@ -124,7 +124,8 @@ page {
   box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.2);
 }
 .arrow-view {
-  width: 40rpx;
+  height: auto;
+  width: 28rpx;
   align-self: center;
   margin-bottom: 15rpx;
 }
@@ -186,6 +187,7 @@ page {
 .lowest {
   justify-content: space-between;
   line-height: 1em;
+
 }
 .bold {
   font-weight: normal;
@@ -198,13 +200,16 @@ page {
   padding-top: 15rpx;
 }
 .arrow-view-down {
-  width: 25rpx;
+  height: auto;
+  width: 18rpx;
   margin-right: 10rpx;
 }
 .comment-left-view {
   text-align: center;
   margin-left: 20rpx;
   margin-right: 20rpx;
+  position: relative;
+  width: 18%;
 }
 .left-num {
   font-size: 20rpx;
@@ -231,6 +236,8 @@ page {
 }
 .comment-right-view {
   padding-left: 20rpx;
+  position: relative;
+  width: 70%;
 }
 .num-view {
   font-size: 22rpx;
@@ -249,4 +256,6 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  width: 12%;
 }
