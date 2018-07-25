@@ -28,7 +28,8 @@
     "pages/university/specificUni/cmtDetail/cmtDetail",
     "pages/comment/newComment/newProfCom/newProfCom",
     "pages/user/infoForm/success",
-    "pages/user/infoForm/fail"
+    "pages/user/infoForm/fail",
+    "pages/comment/newComment/newProfCom/detailCom"
   ],
   "window": {
     "backgroundTextStyle": "light",

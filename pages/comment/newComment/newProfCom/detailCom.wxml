@@ -1,0 +1,26 @@
+<!--pages/comment/newComment/newUnivCom/detailCom.wxml-->
+<view class="weui-cells__title">文字点评</view>
+<view class="weui-cells__subtitle">我们提供了以下示例问题供您选择，也欢迎分享课程学习中的趣事，让大家对这门课程有更多了解！</view>
+<view class="weui-cells__content">·这门课抢课难度如何？点名情况如何？</view>
+<view class="weui-cells__content">·从这门课能学到什么？讨论为主还是讲课为主？巩固还是拓展课本？</view>
+<view class="weui-cells__content">·作业是怎样的？小组项目？练习题？阅读？写作？还是？</view>
+<view class="weui-cells__content">·考试频率多高？考试内容与题型？给分情况如何？</view>
+<view class="weui-cells__content">·应该如何学习这门课程？您有什么特别的学习建议？</view>
+<view class="weui-cells__content">·这学期的课程与之前有哪些不同？</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <block wx:if="{{wordNumber<=500}}">
+        <view class="weui-textarea-counter">{{wordNumber}}/500</view>
+      </block>
+      <block wx:if="{{wordNumber>500}}">
+        <view class="weui-textarea-counter_warn">{{wordNumber}}/500</view>
+      </block>
+      <textarea class="weui-textarea" bindinput="contentInput" placeholder="请输入文本" style="height: 12.0em" maxlength="500"/>
+      
+    </view>
+  </view>
+</view>
+<view class="weui-btn-area">
+  <button class="weui-btn" bindtap="nextStep" form-type='submit'>下一步</button>
+</view>

@@ -43,3 +43,11 @@ page{
 .weui-select{
   border-right: 0rpx;
 }
+
+.weui-input{
+  padding-left: 20rpx;
+}
+
+.weui-select{
+  padding-left: 20rpx;
+}
