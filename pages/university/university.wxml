@@ -37,13 +37,15 @@
 </block>
    <button class = "searchBtn" bindtap='toResult'>搜索</button> 
 </block>
+
 <!--original sub page  -->
 <block wx:if="{{!firstView}}">
+<scroll-view scroll-y='true'>
 <view class="weui-search-bar">
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
                     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                    <input type="text" class="weui-search-bar__input" placeholder="请输入教授名" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <input type="text" class="weui-search-bar__input" placeholder="请输入学校名称" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
                     <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                         <icon type="clear" size="14"></icon>
                     </view>
@@ -55,6 +57,7 @@
             </view>
             <view class="cancel weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
+        
 
         <view class="cards">
         <view class="universityCard" bindtap='toUniversity'>
@@ -71,7 +74,8 @@
             </text>
           </view>
           <view class="item item3">
-            <image src='/images/arrowNew.png' style='width:80%; height:20%'></image>
+            <image src='/images/arrowNew.png' style='width:18rpx; height:auto' 
+            mode='widthFix'></image>
           </view>
         </view>
 
@@ -87,7 +91,8 @@
             </view>
           </view>
           <view class="item item3">
-            <image src='/images/arrowNew.png' style='width:80%;height:20%'></image>
+            <image src='/images/arrowNew.png' style='width:18rpx;height:auto'
+            mode='widthFix'></image>
           </view>
         </view>
 
@@ -96,4 +101,5 @@
             <button class ='button' bindtap='createNew'>创建新高校！</button>
           </view>
     </view>
-    </block>
+  </scroll-view>
+</block>

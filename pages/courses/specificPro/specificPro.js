@@ -28,6 +28,12 @@ Page({
     hide: true,
     commentTime: '2018-06'
   },
+  /**
+  * 生命周期函数--监听页面加载
+  */
+  onLoad: function (options) {
+    this.setScrollHeight();
+  },
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -68,5 +74,16 @@ Page({
     wx.navigateTo({
       url: 'commentDetail/commentDetail',
     })
+  },
+  setScrollHeight: function () {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.info(res.windowHeight);
+        that.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    });
   }
 })
