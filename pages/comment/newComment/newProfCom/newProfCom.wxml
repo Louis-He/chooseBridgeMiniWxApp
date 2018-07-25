@@ -9,7 +9,7 @@
           <view class="weui-label">*官方课程编号</view>
         </view>
         <view class="weui-cell__bd-disabled">
-          <input class="weui-input" bindinput="universityInput" value="{{university}}" placeholder="课程编号"/>
+          <input class="weui-input" bindinput="codeInput" value="{{code}}" placeholder="课程编号"/>
         </view>
       </view>
 
@@ -18,7 +18,7 @@
           <view class="weui-label">*课程名</view>
         </view>
         <view class="weui-cell__bd-disabled">
-          <input class="weui-input" bindinput="universityInput" value="{{university}}" placeholder="课程名"/>
+          <input class="weui-input" bindinput="courseInput" value="{{course}}" placeholder="课程名"/>
         </view>
       </view>
 
@@ -36,7 +36,7 @@
           <view class="weui-label">*课程难度</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="socialReputationChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="courseDifficultyChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
         </view>
       </view>
       
@@ -45,7 +45,7 @@
           <view class="weui-label">*书面作业量</view>
         </view>
           <view class="weui-cell__bd">
-          <slider bindchange="academicLevelChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="homeworkChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
         </view>
       </view>
 
@@ -54,7 +54,7 @@
           <view class="weui-label">*课程与考试相关度</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="WebServiceChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="relevanceChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
         </view>
       </view>
 
@@ -63,7 +63,7 @@
           <view class="weui-label">*每月考试数量</view>
         </view>
         <view class="weui-cell__bd-disabled">
-          <input type='digit' class="weui-input" bindinput="universityInput" value="{{university}}" placeholder="总考试数/上课时间"/>
+          <input type='digit' class="weui-input" bindinput="monthlyTestChange" value="{{university}}" placeholder="总考试数/上课时间"/>
         </view>
       </view>
 
@@ -72,7 +72,7 @@
           <view class="weui-label">*每周课后所需时间</view>
         </view>
         <view class="weui-cell__bd-disabled">
-          <input type='digit' class="weui-input" bindinput="universityInput" value="{{university}}" placeholder="小时每周"/>
+          <input type='digit' class="weui-input" bindinput="extraTimeChange" value="{{university}}" placeholder="小时每周"/>
         </view>
         <view class="weui-cell__ft">
           <view class="weui-vcode-btn">小时</view>
