@@ -61,7 +61,7 @@ Page({
   },
   commentCourse: function () {
     wx.navigateTo({
-      url: '../../../pages/university/university',
+      url: '../../comment/newComment/newProfCom/newProfCom',
     })
   },
   showCmtDetail: function () {

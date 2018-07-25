@@ -8,3 +8,12 @@
 .page__bd{
   padding-bottom: 40px;
 }
+.radio {
+  transform: scaleY(0.78) scaleX(0.8);
+}
+.marginRight{
+  margin-right: 20px;
+}
+.weui-vcode-btn{
+  color: #70CEDC;
+}
