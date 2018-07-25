@@ -1,150 +1,152 @@
 <!--pages/courses/specificPro/specificPro.wxml-->
-<view class="weui-search-bar">
-            <view class="weui-search-bar__form">
-                <view class="weui-search-bar__box">
-                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                    <input type="text" class="weui-search-bar__input" placeholder="请输入教授名" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
-                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-                        <icon type="clear" size="14"></icon>
-                    </view>
-                </view>
-                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-                    <icon class="weui-icon-search" type="search" size="14"></icon>
-                    <view class="weui-search-bar__text">搜索</view>
-                </label>
+<scroll-view scroll-y='true'style="height: {{scrollHeight}}px">
+  <view class="weui-search-bar">
+              <view class="weui-search-bar__form">
+                  <view class="weui-search-bar__box">
+                      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                      <input type="text" class="weui-search-bar__input" placeholder="请输入教授名" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                      <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                          <icon type="clear" size="14"></icon>
+                      </view>
+                  </view>
+                  <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                      <icon class="weui-icon-search" type="search" size="14"></icon>
+                      <view class="weui-search-bar__text">搜索</view>
+                  </label>
+              </view>
+              <view class="cancel weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+  </view>
+
+  <view class='basic-info'>
+    <image class='user-logo' src='/images/user.png'                  
+      style='height:auto' mode='widthFix'></image>
+    <view class='text-view top-right-text-view'>
+      <text class='name'>{{proName}} \n</text>
+      <text class='school'>{{uniName}} \n {{schoolName}}</text>
+    </view>
+  </view>
+
+  <view class='button-view'>
+    <button class='left-button' bindtap='toPersonalPage'>教授个人主页</button>
+    <button class='left-button' bindtap='share'>分享ta给好友</button>
+    <button class='right-button'>已有{{numOfLikes}}人点赞</button>
+  </view>
+
+  <view class='overall-tag-view'>
+    <text class='tag-text-view'>ta的标签</text>
+    <view class='tags-view'>
+      <view class='tag-array-view' wx:for="{{tagsUp}}">
+        {{item.tag}} {{item.num}}
+      </view>
+    </view>
+    <view class='tags-view'>
+      <view class='tag-array-view' wx:for="{{tagsDown}}">
+        {{item.tag}} {{item.num}}
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{!arrowTouched}}">
+    <view class='avg-work-view' bindtap='showMore'>
+      <view class='work-left-view'>
+        <text class='normal-text'>平均努力指数\n</text>
+        <text class='text-2'>{{workingIndex}}</text>
+      </view>
+      <view class='work-right-view'>
+        <text class='big-text'>所授课程\n</text>
+        <text class='normal-text'>看看同学们在这些课程上的努力程度\n</text>
+        <text class='class-name'>HIST170QW 3.2</text>
+        <text class='class-name right'>HIST270QW 3.2\n</text>
+        <view class='button-view'>
+          <image class='arrow-view' src='/images/arrowDown.png'   
+          mode='widthFix'>
+          </image>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{arrowTouched}}">
+    <view class='avg-work-view' bindtap='hide'>
+      <view class='work-left-view'>
+        <text class='normal-text'>平均努力指数\n</text>
+        <text class='text-2'>{{workingIndex}}</text>
+      </view>
+      <view class='work-right-view'>
+        <text class='big-text'>所授课程\n</text>
+        <text class='normal-text'>看看同学们在这些课程上的努力程度\n</text>
+        <text class='class-name'>HIST170QW 3.2</text>
+        <text class='class-name right'>HIST270QW 3.2\n</text>
+        <text class='class-name'>HIST170QW 3.2</text>
+        <text class='class-name right'>HIST270QW 3.2\n</text>
+        <view class='button-view'>
+          <image class='arrow-view' src='/images/arrowUp.png'   
+          style='width:80%height:20%' mode='widthFix'>
+          </image>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class='overall-tag-view share-view'>
+    <view class='share big-text'>想与大家分享你的学习经历？</view>
+    <button class='tag-array-view button-text comment' 
+      bindtap='commentCourse'>点评你的课程！
+    </button>
+  </view>
+
+  <view class='avg-work-view lowest' bindtap='showCmtDetail'>
+      <view class='comment-left-view'>
+        <text class='normal-text'>{{commentTime}}\n 努力指数\n</text>
+        <view class='text-2 down-part'>{{workingIndex}}\n</view>
+        <view>
+          <image class='like-view' src='/images/like.png' 
+            style='height:auto' mode='widthFix'></image>
+          <image class='like-view right-like' src='/images/dislike.png'
+          style='height:auto' mode='widthFix'></image>
+          <view class='bottom-num'>
+            <view class='normal-text num-view'>999+</view>
+            <view class='normal-text num-view right-num-btm'>999+</view>
+          </view>
+        </view>
+      </view>
+      <view class='comment-right-view'>
+        <image class='book-view' src='/images/book.png'
+          style='height:auto' mode='widthFix'></image>
+        <text class='class-name'>HIST170QW\n</text>
+        <text class='normal-text bold'>课程名: </text>
+        <text class='normal-text'>Intro to Computer Science & test\n</text>
+        <view class='course-cmt-view'>
+          <view class='cmt-view'>
+            <view>
+              <text class='normal-text bold'>是否记出勤: </text>
+              <text class='normal-text'>否</text>
             </view>
-            <view class="cancel weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-</view>
-
-<view class='basic-info'>
-  <image class='user-logo' src='../../../images/user.png'                  
-    style='height:auto' mode='widthFix'></image>
-  <view class='text-view top-right-text-view'>
-    <text class='name'>{{proName}} \n</text>
-    <text class='school'>{{uniName}} \n {{schoolName}}</text>
-  </view>
-</view>
-
-<view class='button-view'>
-  <button class='left-button' bindtap='toPersonalPage'>教授个人主页</button>
-  <button class='left-button' bindtap='share'>分享ta给好友</button>
-  <button class='right-button'>已有{{numOfLikes}}人点赞</button>
-</view>
-
-<view class='overall-tag-view'>
-  <text class='tag-text-view'>ta的标签</text>
-  <view class='tags-view'>
-    <view class='tag-array-view' wx:for="{{tagsUp}}">
-      {{item.tag}} {{item.num}}
-    </view>
-  </view>
-  <view class='tags-view'>
-    <view class='tag-array-view' wx:for="{{tagsDown}}">
-      {{item.tag}} {{item.num}}
-    </view>
-  </view>
-</view>
-
-<block wx:if="{{!arrowTouched}}">
-  <view class='avg-work-view'>
-    <view class='work-left-view'>
-      <text class='normal-text'>平均努力指数\n</text>
-      <text class='text-2'>{{workingIndex}}</text>
-    </view>
-    <view class='work-right-view'>
-      <text class='big-text'>所授课程\n</text>
-      <text class='normal-text'>看看同学们在这些课程上的努力程度\n</text>
-      <text class='class-name'>HIST170QW 3.2</text>
-      <text class='class-name right'>HIST270QW 3.2\n</text>
-      <view class='button-view'>
-        <image class='arrow-view' src='../../../images/arrowDown.png'   
-        bindtap='showMore' mode='widthFix'>
-        </image>
-      </view>
-    </view>
-  </view>
-</block>
-<block wx:if="{{arrowTouched}}">
-  <view class='avg-work-view'>
-    <view class='work-left-view'>
-      <text class='normal-text'>平均努力指数\n</text>
-      <text class='text-2'>{{workingIndex}}</text>
-    </view>
-    <view class='work-right-view'>
-      <text class='big-text'>所授课程\n</text>
-      <text class='normal-text'>看看同学们在这些课程上的努力程度\n</text>
-      <text class='class-name'>HIST170QW 3.2</text>
-      <text class='class-name right'>HIST270QW 3.2\n</text>
-      <text class='class-name'>HIST170QW 3.2</text>
-      <text class='class-name right'>HIST270QW 3.2\n</text>
-      <view class='button-view'>
-        <image class='arrow-view' src='../../../images/arrowDown.png'   
-        bindtap='hide' style='width:80%height:20%' mode='widthFix'>
-        </image>
-      </view>
-    </view>
-  </view>
-</block>
-
-<view class='overall-tag-view share-view'>
-  <view class='share big-text'>想与大家分享你的学习经历？</view>
-  <button class='tag-array-view button-text comment' 
-    bindtap='commentCourse'>点评你的课程！
-  </button>
-</view>
-
-<view class='avg-work-view lowest' bindtap='showCmtDetail'>
-  <view class='comment-left-view'>
-    <text class='normal-text'>{{commentTime}}\n 努力指数\n</text>
-    <view class='text-2 down-part'>{{workingIndex}}\n</view>
-    <view>
-      <image class='like-view' src='../../../images/like.png' 
-        style='height:auto' mode='widthFix'></image>
-      <image class='like-view right-like' src='../../../images/dislike.png'
-      style='height:auto' mode='widthFix'></image>
-      <view class='bottom-num'>
-        <view class='normal-text num-view'>999+</view>
-        <view class='normal-text num-view right-num-btm'>999+</view>
-      </view>
-    </view>
-  </view>
-  <view class='comment-right-view'>
-    <image class='book-view' src='../../../images/book.png'
-      style='height:auto' mode='widthFix'></image>
-    <text class='class-name'>HIST170QW\n</text>
-    <text class='normal-text bold'>课程名: </text>
-    <text class='normal-text'>Intro to Computer Science & test\n</text>
-    <view class='course-cmt-view'>
-      <view class='cmt-view'>
-        <view>
-          <text class='normal-text bold'>是否记出勤: </text>
-          <text class='normal-text'>否</text>
+            <view class='cmt-right'>
+              <text class='normal-text bold'>书面作业量: </text>
+              <text class='normal-text'>适中</text>
+            </view>
+          </view>
+          <view class='cmt-view'>
+            <view>
+              <text class='normal-text bold'>课程难度: </text>
+              <text class='normal-text'>较易</text>
+            </view>
+            <view class='cmt-right'>
+              <text class='normal-text bold'>我的成绩: </text>
+              <text class='normal-text'>A\n</text>
+            </view>
+          </view>
         </view>
-        <view class='cmt-right'>
-          <text class='normal-text bold'>书面作业量: </text>
-          <text class='normal-text'>适中</text>
+        <view class='course-cmt-view'></view>
+        <view class='tags-view lower-tag'>
+          <view class='tag-array-view lowest-tag' wx:for="{{tagsUp}}">
+            {{item.tag}}
+          </view>
         </view>
       </view>
-      <view class='cmt-view'>
-        <view>
-          <text class='normal-text bold'>课程难度: </text>
-          <text class='normal-text'>较易</text>
-        </view>
-        <view class='cmt-right'>
-          <text class='normal-text bold'>我的成绩: </text>
-          <text class='normal-text'>A\n</text>
-        </view>
-      </view>
-    </view>
-    <view class='course-cmt-view'></view>
-    <view class='tags-view lower-tag'>
-      <view class='tag-array-view lowest-tag' wx:for="{{tagsUp}}">
-        {{item.tag}}
-      </view>
-    </view>
+    <view class='comment-most-right-view'>
+      <image class='arrow-view-down' src='/images/arrowNew.png'
+        mode='widthFix'></image> 
+    </view> 
   </view>
-  <view class='comment-most-right-view'>
-    <image class='arrow-view-down' src='../../../images/arrowNew.png'
-      mode='widthFix'></image> 
-  </view> 
-</view>
+</scroll-view>
