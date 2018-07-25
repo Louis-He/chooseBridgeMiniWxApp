@@ -21,7 +21,6 @@
     "pages/university/specificUni/specificUni",
     "pages/courses/specificPro/specificPro",
     "pages/modal/modal",
-    "pages/courses/newCourse/newCourse",
     "pages/comment/newComment/newUnivCom/newUnivCom",
     "pages/comment/newComment/newUnivCom/detailCom",
     "pages/courses/specificPro/commentDetail/commentDetail",
@@ -29,7 +28,8 @@
     "pages/comment/newComment/newProfCom/newProfCom",
     "pages/user/infoForm/success",
     "pages/user/infoForm/fail",
-    "pages/comment/newComment/newProfCom/detailCom"
+    "pages/comment/newComment/newProfCom/detailCom",
+    "pages/courses/newPro/newPro"
   ],
   "window": {
     "backgroundTextStyle": "light",

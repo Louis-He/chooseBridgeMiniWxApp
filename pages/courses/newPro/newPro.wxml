@@ -1,0 +1,56 @@
+<!--pages/courses/newPro/newPro.wxml-->
+<modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" modal-title="{{is_modal_Title}}"/>
+<view class="page">
+  <view class="weui-cells__title">创建教授</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">*姓</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput="lastNameInput" value="{{lastName}}" placeholder="请输入官方教授姓"/>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">*名</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput="firstNameInput" value="{{firstName}}" placeholder="教授名"/>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">*学校</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput='universityInput' value="{{university}}" placeholder="所属学校"/>
+      </view>
+    </view>
+    
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">*学院</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput='departmentInput' value="{{department}}" placeholder="所属学院"/>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">个人首页</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput='homePageInput' value="http://" placeholder=""/>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-btn-area">
+    <button class="weui-btn" bindtap="confirm" form-type='submit'>确定创建</button>
+  </view>
+
+</view>

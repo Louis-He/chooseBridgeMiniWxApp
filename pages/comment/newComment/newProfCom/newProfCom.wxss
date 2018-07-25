@@ -17,3 +17,6 @@
 .weui-vcode-btn{
   color: #70CEDC;
 }
+.weui-label{
+  width: 130px;
+}

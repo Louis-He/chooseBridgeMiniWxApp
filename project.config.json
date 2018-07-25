@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -89,7 +89,13 @@
 				{
 					"id": -1,
 					"name": "添加教授点评",
-					"pathName": "pages/comment/newComment/newProfCom/newProfCom"
+					"pathName": "pages/comment/newComment/newProfCom/newProfCom",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加教授",
+					"pathName": "pages/courses/newPro/newPro"
 				}
 			]
 		}
