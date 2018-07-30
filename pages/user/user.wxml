@@ -48,6 +48,16 @@
             <view class="subDetailContent">
               毕业年份： {{graduateYear}}
             </view>
+            <block wx:if="{{expireDay}}">
+              <view class="subDetailContent">
+                您的特权将于 {{expireDay}} 过期
+              </view>
+            </block>
+            <block wx:if="{{!expireDay}}">
+              <view class="subDetailContent">
+                您暂未开通特权
+              </view>
+            </block>
             <view class="emailConfirmationTrue" wx:if="{{emailFlag}}">
               您的邮箱已激活
             </view>
