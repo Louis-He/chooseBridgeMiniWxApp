@@ -12,7 +12,7 @@ Page({
     uiuc: "University of Illinois at Urbana-Champaign",
     uiucState: "Urbana, Iliinois",
     country: "美国",
-    accessible: true,
+    accessible: false,
     courseBase: true,
     blankVal: "高校",
     inputVal: "",
