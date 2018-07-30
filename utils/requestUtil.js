@@ -54,13 +54,13 @@ function getChooseBridgeUserInfo(unionID, _callback){
   var explicitData = {"union_id": unionID};
   
   var requestData = {"union_id": unionID, "sign": that.getSign(explicitData)}
-  //console.log(requetsData);
+  //console.log(requetData);
   wx.request({
     url: 'https://i.choosebridge.com/api/wechat/login',
     method: 'POST',
     data: requestData,
     success: function (res){
-      //console.log(res)
+      console.log(res)
       _callback(res);
     }
   })

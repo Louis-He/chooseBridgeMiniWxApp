@@ -306,9 +306,9 @@ Page({
                 })
               }
 
-              if (result.data.entities[0].vip_expire) {
+              if (result.data.entities[0].is_vip) {
                 that.setData({
-                  expireDay: result.data.entities[0].vip_expire
+                  expireDay: result.data.entities[0].vip_expire_day
                 })
               } else {
                 that.setData({

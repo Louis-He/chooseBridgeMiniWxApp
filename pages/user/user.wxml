@@ -50,12 +50,12 @@
             </view>
             <block wx:if="{{expireDay}}">
               <view class="subDetailContent">
-                您的特权将于 {{expireDay}} 过期
+                您的桥选学生VIP特权剩余 {{expireDay}} 天
               </view>
             </block>
             <block wx:if="{{!expireDay}}">
               <view class="subDetailContent">
-                您暂未开通特权
+                您暂未获得桥选学生VIP特权
               </view>
             </block>
             <view class="emailConfirmationTrue" wx:if="{{emailFlag}}">
