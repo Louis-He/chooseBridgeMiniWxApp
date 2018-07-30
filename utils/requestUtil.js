@@ -65,7 +65,6 @@ function getChooseBridgeUserInfo(unionID, _callback){
   })
 }
 
-
 /**
  * 加密工具函数
  * 对于inputData进行md5加密

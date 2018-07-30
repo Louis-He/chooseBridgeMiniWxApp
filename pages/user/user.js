@@ -28,6 +28,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    if (app.globalData.userInfo != null){
+      this.setData({
+        username: app.globalData.userInfo.nickName
+      })
+    }
     
   },
 
@@ -230,111 +235,204 @@ Page({
           code: inputCode,
           sign: getSign
         }
-
-        wx.getUserInfo({
-          withCredentials: true,
-          success: function (res) {
-            // 获取用户unionID数据
-            requestUtil.getUserUnionID(firstRequestedData, res, function(result){
-              //console.log(res);
-              //console.log(result);
-              that.setData({
-                username: res.userInfo.nickName
-              })
-              // debug mode!!!
-              requestUtil.getChooseBridgeUserInfo(result.data.data.unionId, function(res){
-                var academicInfo = res.data.entities[0].academic;
-                // 设置大学、专业、毕业年份、高中地区和邮箱状态
-                console.log(res)
-                if(academicInfo.school_name){
-                  that.setData({
-                    university: academicInfo.school_name
-                  })
-                }else{
-                  that.setData({
-                    university: '未登记'
-                  })
-                }
-
-                if (academicInfo.major) {
-                  that.setData({
-                    discipline: academicInfo.major
-                  })
-                } else {
-                  that.setData({
-                    discipline: '未登记'
-                  })
-                }
-
-                if (academicInfo.graduate_year) {
-                  that.setData({
-                    graduateYear: academicInfo.graduate_year
-                  })
-                } else {
-                  that.setData({
-                    graduateYear: '未登记'
-                  })
-                }
-
-                if (academicInfo.exam_province) {
-                  that.setData({
-                    highSchoolAddress: academicInfo.exam_province
-                  })
-                } else {
-                  that.setData({
-                    highSchoolAddress: '未登记'
-                  })
-                }
-
-                if (res.data.entities[0].profile.email_verified) {
-                  that.setData({
-                    emailFlag: true
-                  })
-                } else {
-                  that.setData({
-                    emailFlag: false
-                  })
-                }
-
-                if (res.data.entities[0].points) {
-                  that.setData({
-                    rp: res.data.entities[0].points
-                  })
-                } else {
-                  that.setData({
-                    rp: "0"
-                  })
-                }
-
-                if (res.data.entities[0].vip_expire) {
-                  that.setData({
-                    expireDay: res.data.entities[0].vip_expire
-                  })
-                } else {
-                  that.setData({
-                    expireDay: false
-                  })
-                }
-                
-              })
-            })
-
-          },
-          fail: function (res) {
-            console.log("fail")
-            wx.showModal({
-              content: '授权状态发生更改，请重新给予我们获取基本信息的权限以保证正常使用',
-              showCancel: false,
-              success: function (res) {
-                if (res.confirm) {
-                  console.log('用户确认返回首页重新确认权限')
-                }
+        
+        // 检查是否已经储存unionId，若已经储存那么直接使用，否则前往请求unionId
+        wx.getStorage({
+          key: 'unionId',
+          success: function(res) {
+            // 如果存在，直接请求
+            requestUtil.getChooseBridgeUserInfo(res.data, function (result) {
+              console.log(result.data.entities[0].academic)
+              var academicInfo = result.data.entities[0].academic
+              // 设置大学、专业、毕业年份、高中地区和邮箱状态
+              
+              if (academicInfo.school_name) {
+                that.setData({
+                  university: academicInfo.school_name
+                })
+              } else {
+                that.setData({
+                  university: '未登记'
+                })
               }
-            });
-            that.setData({
-              "firstView": true,
-              "isAgree": false,
-              "firstViewmsg": "继续使用巧选校园"
+
+              if (academicInfo.major) {
+                that.setData({
+                  discipline: academicInfo.major
+                })
+              } else {
+                that.setData({
+                  discipline: '未登记'
+                })
+              }
+
+              if (academicInfo.graduate_year) {
+                that.setData({
+                  graduateYear: academicInfo.graduate_year
+                })
+              } else {
+                that.setData({
+                  graduateYear: '未登记'
+                })
+              }
+
+              if (academicInfo.exam_province) {
+                that.setData({
+                  highSchoolAddress: academicInfo.exam_province
+                })
+              } else {
+                that.setData({
+                  highSchoolAddress: '未登记'
+                })
+              }
+
+              if (result.data.entities[0].profile.email_verified) {
+                that.setData({
+                  emailFlag: true
+                })
+              } else {
+                that.setData({
+                  emailFlag: false
+                })
+              }
+
+              if (result.data.entities[0].points) {
+                that.setData({
+                  rp: result.data.entities[0].points
+                })
+              } else {
+                that.setData({
+                  rp: "0"
+                })
+              }
+
+              if (result.data.entities[0].vip_expire) {
+                that.setData({
+                  expireDay: result.data.entities[0].vip_expire
+                })
+              } else {
+                that.setData({
+                  expireDay: false
+                })
+              }
+
+            })
+          },
+          fail: function(res){
+            // 否则先取得unionId
+            wx.getUserInfo({
+              withCredentials: true,
+              success: function (res) {
+                // 获取用户unionID数据
+                requestUtil.getUserUnionID(firstRequestedData, res, function (result) {
+                  //console.log(res);
+                  //console.log(result);
+                  that.setData({
+                    username: res.userInfo.nickName
+                  })
+                  app.globalData.userInfo = res
+                  console.log(app.globalData)
+                  wx.setStorage({
+                    key: 'unionId',
+                    data: result.data.data.unionId,
+                  })
+
+                  // 获取用户unionId后得到用户choosebridge个人信息
+                  requestUtil.getChooseBridgeUserInfo(result.data.data.unionId, function (res) {
+                    var academicInfo = res.data.entities[0].academic;
+                    // 设置大学、专业、毕业年份、高中地区和邮箱状态
+                    console.log(res)
+                    if (academicInfo.school_name) {
+                      that.setData({
+                        university: academicInfo.school_name
+                      })
+                    } else {
+                      that.setData({
+                        university: '未登记'
+                      })
+                    }
+
+                    if (academicInfo.major) {
+                      that.setData({
+                        discipline: academicInfo.major
+                      })
+                    } else {
+                      that.setData({
+                        discipline: '未登记'
+                      })
+                    }
+
+                    if (academicInfo.graduate_year) {
+                      that.setData({
+                        graduateYear: academicInfo.graduate_year
+                      })
+                    } else {
+                      that.setData({
+                        graduateYear: '未登记'
+                      })
+                    }
+
+                    if (academicInfo.exam_province) {
+                      that.setData({
+                        highSchoolAddress: academicInfo.exam_province
+                      })
+                    } else {
+                      that.setData({
+                        highSchoolAddress: '未登记'
+                      })
+                    }
+
+                    if (res.data.entities[0].profile.email_verified) {
+                      that.setData({
+                        emailFlag: true
+                      })
+                    } else {
+                      that.setData({
+                        emailFlag: false
+                      })
+                    }
+
+                    if (res.data.entities[0].points) {
+                      that.setData({
+                        rp: res.data.entities[0].points
+                      })
+                    } else {
+                      that.setData({
+                        rp: "0"
+                      })
+                    }
+
+                    if (res.data.entities[0].vip_expire) {
+                      that.setData({
+                        expireDay: res.data.entities[0].vip_expire
+                      })
+                    } else {
+                      that.setData({
+                        expireDay: false
+                      })
+                    }
+
+                  })
+                })
+
+              },
+              fail: function (res) {
+                console.log("fail")
+                wx.showModal({
+                  content: '授权状态发生更改，请重新给予我们获取基本信息的权限以保证正常使用',
+                  showCancel: false,
+                  success: function (res) {
+                    if (res.confirm) {
+                      console.log('用户确认返回首页重新确认权限')
+                    }
+                  }
+                });
+                that.setData({
+                  "firstView": true,
+                  "isAgree": false,
+                  "firstViewmsg": "继续使用巧选校园"
+                })
+              }
             })
           }
         })
