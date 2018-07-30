@@ -46,7 +46,7 @@ function getUserUnionID(firstRequestedData, tmpUserInfo, _callback) {
 /**
  * 得到用户在ChooseBridge服务器上的个人信息
  * 用法：
- * requestUtil.getChooseBridgeUserInfo(result.data.data.unionId, function(res){
+ * requestUtil.getChooseBridgeUserInfo(unionId, function(res){
               })
  */
 function getChooseBridgeUserInfo(unionID, _callback){
@@ -60,7 +60,37 @@ function getChooseBridgeUserInfo(unionID, _callback){
     method: 'POST',
     data: requestData,
     success: function (res){
+      //console.log(res)
       _callback(res);
+    }
+  })
+}
+
+/**
+ * 传入用户entities->id，返回用户viewmycourses中的个人信息
+ * 用法：
+ * getViewmycoursesUserInfo(userid, function(res){
+              })
+ */
+function getViewmycoursesUserInfo(userid, _callback){
+  var that = this;
+  var explicitData = { "ucenter_id": userid };
+  var requestData = { "ucenter_id": userid, "sign": that.getSign(explicitData) };
+
+  wx.request({
+    url: 'https://api.viewmycourses.com/api/wechat/login',
+    method: 'POST',
+    data: requestData,
+    success: function(res){
+      var header = { "token": res.data.token };
+      wx.request({
+        url: 'https://api.viewmycourses.com/api/get-student',
+        method: 'GET',
+        header: header,
+        success: function (res) {
+          _callback(res);
+        }
+      })
     }
   })
 }
@@ -81,6 +111,7 @@ function getSign(inputData) {
 module.exports = {
   getChooseBridgeUserInfo: getChooseBridgeUserInfo,
   getUserUnionID: getUserUnionID,
+  getViewmycoursesUserInfo: getViewmycoursesUserInfo,
   getSign: getSign
 }
 

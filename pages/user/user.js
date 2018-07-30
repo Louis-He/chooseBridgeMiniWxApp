@@ -242,7 +242,7 @@ Page({
           success: function(res) {
             // 如果存在，直接请求
             requestUtil.getChooseBridgeUserInfo(res.data, function (result) {
-              console.log(result.data.entities[0].academic)
+              //console.log(result.data.entities[0].academic)
               var academicInfo = result.data.entities[0].academic
               // 设置大学、专业、毕业年份、高中地区和邮箱状态
               
@@ -316,6 +316,11 @@ Page({
                 })
               }
 
+              // 请求viewmycourses系统中用户的信息
+              requestUtil.getViewmycoursesUserInfo(result.data.entities[0].id, function(result){
+                console.log(result)
+              })
+
             })
           },
           fail: function(res){
@@ -331,7 +336,7 @@ Page({
                     username: res.userInfo.nickName
                   })
                   app.globalData.userInfo = res
-                  console.log(app.globalData)
+                  //console.log(app.globalData)
                   wx.setStorage({
                     key: 'unionId',
                     data: result.data.data.unionId,
@@ -341,7 +346,7 @@ Page({
                   requestUtil.getChooseBridgeUserInfo(result.data.data.unionId, function (res) {
                     var academicInfo = res.data.entities[0].academic;
                     // 设置大学、专业、毕业年份、高中地区和邮箱状态
-                    console.log(res)
+                    //console.log(res)
                     if (academicInfo.school_name) {
                       that.setData({
                         university: academicInfo.school_name
@@ -436,6 +441,7 @@ Page({
             })
           }
         })
+
       }
     })
   },
