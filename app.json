@@ -29,7 +29,8 @@
     "pages/user/infoForm/success",
     "pages/user/infoForm/fail",
     "pages/comment/newComment/newProfCom/detailCom",
-    "pages/courses/newPro/newPro"
+    "pages/courses/newPro/newPro",
+    "pages/user/privilegeForm/privilegeForm"
   ],
   "window": {
     "backgroundTextStyle": "light",
