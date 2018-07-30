@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 12,
 			"list": [
 				{
 					"id": -1,
@@ -95,7 +95,19 @@
 				{
 					"id": -1,
 					"name": "添加教授",
-					"pathName": "pages/courses/newPro/newPro"
+					"pathName": "pages/courses/newPro/newPro",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "点评页面",
+					"pathName": "pages/comment/comment",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "兑换特权",
+					"pathName": "pages/user/privilegeForm/privilegeForm"
 				}
 			]
 		}
