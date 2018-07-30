@@ -1,6 +1,7 @@
 // pages/user/user.js
 const app = getApp()
 var utilMd5 = require('../../utils/util.js'); 
+var requestUtil = require('../../utils/requestUtil.js'); 
 
 Page({
 
@@ -9,25 +10,25 @@ Page({
    */
   data: {
     debug: true,
-    isAgree: false,
+    isAgree: false ,
     firstViewmsg: "",
     firstView: true,
     bothTrue: false,
-    username: "",
-    rp: 20,
-    university: "University of Toronto",
-    discipline: "Computer Engineering",
-    highSchoolAddress: "上海",
-    graduateYear: "在读",
-    emailFlag: true,
+    username: "拼命获取中...",
+    rp: 0,
+    university: "获取中...",
+    discipline: "获取中...",
+    highSchoolAddress: "获取中...",
+    graduateYear: "获取中...",
+    emailFlag: false,
+    expireDay: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    var password = utilMd5.hexMD5('password');
-    console.log(password)
+    
   },
 
   /**
@@ -199,33 +200,9 @@ Page({
       success: function (res) {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，直接获取用户信息
-          wx.getUserInfo({
-            success: function (res) {
-              console.log(res.userInfo.nickName)
-              that.setData({
-                'username': res.userInfo.nickName
-              })
-            },
-            fail: function (res) {
-              console.log("fail")
-              wx.showModal({
-                content: '授权状态发生更改，请重新给予我们获取基本信息的权限以保证正常使用',
-                showCancel: false,
-                success: function (res) {
-                  if (res.confirm) {
-                    console.log('用户确认返回首页重新确认权限')
-                  }
-                }
-              });
-              that.setData({
-                "firstView": true,
-                "isAgree": false,
-                "firstViewmsg": "继续使用巧选校园"
-              })
-            }
-          })
+          that.getUserUnionID()
         } else {
-          console.log("WTF不应该出现的console log？！")
+          console.log("WTF不应该出现的 tm哪里出问题了？！")
         }
       },
       fail: function (res){
@@ -237,6 +214,130 @@ Page({
             username: "Debug Mode"
           })
         }
+      }
+    })
+  },
+
+  getUserUnionID: function(){
+    var that = this
+    wx.login({
+      success: res => {
+        var inputCode = res.code
+        var explicitData = {code: inputCode}
+        var getSign = requestUtil.getSign(explicitData)
+
+        var firstRequestedData = {
+          code: inputCode,
+          sign: getSign
+        }
+
+        wx.getUserInfo({
+          withCredentials: true,
+          success: function (res) {
+            // 获取用户unionID数据
+            requestUtil.getUserUnionID(firstRequestedData, res, function(result){
+              //console.log(res);
+              //console.log(result);
+              that.setData({
+                username: res.userInfo.nickName
+              })
+              // debug mode!!!
+              requestUtil.getChooseBridgeUserInfo(result.data.data.unionId, function(res){
+                var academicInfo = res.data.entities[0].academic;
+                // 设置大学、专业、毕业年份、高中地区和邮箱状态
+                console.log(res)
+                if(academicInfo.school_name){
+                  that.setData({
+                    university: academicInfo.school_name
+                  })
+                }else{
+                  that.setData({
+                    university: '未登记'
+                  })
+                }
+
+                if (academicInfo.major) {
+                  that.setData({
+                    discipline: academicInfo.major
+                  })
+                } else {
+                  that.setData({
+                    discipline: '未登记'
+                  })
+                }
+
+                if (academicInfo.graduate_year) {
+                  that.setData({
+                    graduateYear: academicInfo.graduate_year
+                  })
+                } else {
+                  that.setData({
+                    graduateYear: '未登记'
+                  })
+                }
+
+                if (academicInfo.exam_province) {
+                  that.setData({
+                    highSchoolAddress: academicInfo.exam_province
+                  })
+                } else {
+                  that.setData({
+                    highSchoolAddress: '未登记'
+                  })
+                }
+
+                if (res.data.entities[0].profile.email_verified) {
+                  that.setData({
+                    emailFlag: true
+                  })
+                } else {
+                  that.setData({
+                    emailFlag: false
+                  })
+                }
+
+                if (res.data.entities[0].points) {
+                  that.setData({
+                    rp: res.data.entities[0].points
+                  })
+                } else {
+                  that.setData({
+                    rp: "0"
+                  })
+                }
+
+                if (res.data.entities[0].vip_expire) {
+                  that.setData({
+                    expireDay: res.data.entities[0].vip_expire
+                  })
+                } else {
+                  that.setData({
+                    expireDay: false
+                  })
+                }
+                
+              })
+            })
+
+          },
+          fail: function (res) {
+            console.log("fail")
+            wx.showModal({
+              content: '授权状态发生更改，请重新给予我们获取基本信息的权限以保证正常使用',
+              showCancel: false,
+              success: function (res) {
+                if (res.confirm) {
+                  console.log('用户确认返回首页重新确认权限')
+                }
+              }
+            });
+            that.setData({
+              "firstView": true,
+              "isAgree": false,
+              "firstViewmsg": "继续使用巧选校园"
+            })
+          }
+        })
       }
     })
   },
