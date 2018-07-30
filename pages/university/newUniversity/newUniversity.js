@@ -1,4 +1,5 @@
 // pages/university/newUniversity/newUniversity.js
+var requestUtil = require('../../../utils/requestUtil.js'); 
 Page({
 
   /**
@@ -7,14 +8,46 @@ Page({
   data: {
     is_modal_Hidden: true,
     is_modal_Msg: '我是一个自定义组件',
-    is_modal_Title: '提示'
+    is_modal_Title: '提示',
+    countries: [],
+    countryIndex: 0,
+    provinces: [],
+    provinceIndices: [],
+    provinceIndex: 0,
+    cities: [],
+    cityIndices: [],
+    cityIndex: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    // 初始化国家信息
+    requestUtil.getCountries(function(result){
+      that.setData({
+        countries: result,
+        country: result[0],
+        countryIndex: 0
+      })
+      // 初始化省份信息
+      requestUtil.getProvinceByCountry(parseInt(that.data.countryIndex) + 1, function (provincesResult) {
+        // console.log(provincesResult)
+        that.setData({
+          provinceIndices: provincesResult[0], 
+          provinces: provincesResult[1],
+          provinceIndex: 0,
+        })
+        // 初始化城市信息
+        requestUtil.getCityByProvince(parseInt(that.data.provinceIndex) + 1, function (citiesResult) {
+          that.setData({
+            cityIndices: citiesResult[0],
+            cities: citiesResult[1]
+          })
+        })
+      })
+    })
   },
 
   /**
@@ -80,38 +113,6 @@ Page({
         errorMsg += "学校名称";
       }
     }
-    if (!this.data.country) {
-      popError = true;
-      if (errorMsg) {
-        errorMsg += ",国家";
-      } else {
-        errorMsg += "国家";
-      }
-    }
-    if (!this.data.country) {
-      popError = true;
-      if (errorMsg) {
-        errorMsg += ",国家";
-      } else {
-        errorMsg += "国家";
-      }
-    }
-    if (!this.data.province) {
-      popError = true;
-      if (errorMsg) {
-        errorMsg += ",省市/联邦州";
-      } else {
-        errorMsg += "省市/联邦州";
-      }
-    }
-    if (!this.data.city) {
-      popError = true;
-      if (errorMsg) {
-        errorMsg += ",城市";
-      } else {
-        errorMsg += "城市";
-      }
-    }
     if (!this.data.homePage) {
       popError = true;
       if (errorMsg) {
@@ -129,18 +130,22 @@ Page({
         is_modal_Msg: errorMsg
       })
     }else{
+      // console.log(this.data.provinces[this.data.provinceIndices[this.data.provinceIndex]])
+      // console.log(this.data.cityIndices[this.data.cityIndex])
       var tmpUniversityInfo = {
         Name : this.data.university,
         abbr : this.data.abbrUniversity,
         country : this.data.country,
-        province : this.data.province,
-        city : this.data.city,
-        homePage : this.data.homePage
+        province: this.data.provinces[this.data.provinceIndex],
+        city: this.data.cities[this.data.cityIndex],
+        homePage : this.data.homePage,
+        country_id: parseInt(this.data.countryIndex) + 1,
+        province_id: this.data.provinceIndices[this.data.provinceIndex],
+        city_id: this.data.cityIndices[this.data.cityIndex]
       }
 
-
-      console.log("填写检查通过: tmpUniversityInfo = ")
-      console.log(tmpUniversityInfo)
+      // console.log("填写检查通过: tmpUniversityInfo = ")
+      // console.log(tmpUniversityInfo)
       wx.setStorage({
         key: 'tmpUniv',
         data: tmpUniversityInfo,
@@ -167,21 +172,58 @@ Page({
     })
   },
 
-  countryInput: function (e) {
+  bindCountryChange: function (e) {
+    var that = this;
+    // console.log('picker country 发生选择改变，携带值为', this.data.countries[e.detail.value]);
     this.setData({
-      country: e.detail.value
+      country: that.data.countries[e.detail.value],
+      countryIndex: parseInt(e.detail.value)
+    })
+    // console.log(e.detail.value)
+    // 更改国家后需要重新初始化省份信息
+    requestUtil.getProvinceByCountry(parseInt(that.data.countryIndex) + 1, function (provincesResult) {
+      console.log(provincesResult)
+      that.setData({
+        provinceIndices: provincesResult[0],
+        provinces: provincesResult[1],
+        provinceIndex: 0
+      })
+      // 初始化城市信息
+      requestUtil.getCityByProvince(parseInt(that.data.provinceIndices[that.data.provinceIndex]) , function (citiesResult) {
+        console.log(citiesResult)
+        that.setData({
+          cityIndices: citiesResult[0],
+          cities: citiesResult[1],
+          cityIndex: 0
+        })
+      })
     })
   },
 
-  provinceInput: function (e) {
+  bindProvinceChange: function (e) {
+    var that = this;
+    // console.log('picker country 发生选择改变，携带值为', this.data.countries[e.detail.value]);
     this.setData({
-      province: e.detail.value
+      province: that.data.provinces[e.detail.value],
+      provinceIndex: parseInt(e.detail.value)
+    })
+    // 更改省份后需要重新初始化城市信息
+
+    requestUtil.getCityByProvince(parseInt(that.data.provinceIndices[that.data.provinceIndex]), function (citiesResult) {
+      // console.log(citiesResult)
+      that.setData({
+        cityIndices: citiesResult[0],
+        cities: citiesResult[1],
+      })
     })
   },
 
-  cityInput: function (e) {
+  bindCityChange: function (e) {
+    var that = this;
+    // console.log('picker country 发生选择改变，携带值为', this.data.countries[e.detail.value]);
     this.setData({
-      city: e.detail.value
+      city: that.data.cities[e.detail.value],
+      cityIndex: e.detail.value
     })
   },
 

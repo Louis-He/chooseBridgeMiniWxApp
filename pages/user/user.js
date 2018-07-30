@@ -316,7 +316,13 @@ Page({
                 })
               }
 
-              // 请求viewmycourses系统中用户的信息
+              // 存储user唯一id
+              wx.setStorage({
+                key: 'user_id',
+                data: result.data.entities[0].id,
+              })
+
+              // 请求viewmycourses系统中的用户的信息, 没有在fail中编译
               requestUtil.getViewmycoursesUserInfo(result.data.entities[0].id, function(result){
                 console.log(result)
               })
@@ -407,15 +413,21 @@ Page({
                       })
                     }
 
-                    if (res.data.entities[0].vip_expire) {
+                    if (res.data.entities[0].is_vip) {
                       that.setData({
-                        expireDay: res.data.entities[0].vip_expire
+                        expireDay: res.data.entities[0].vip_expire_day
                       })
                     } else {
                       that.setData({
                         expireDay: false
                       })
                     }
+
+                    // 存储user唯一id
+                    wx.setStorage({
+                      key: 'user_id',
+                      data: res.data.entities[0].id,
+                    })
 
                   })
                 })

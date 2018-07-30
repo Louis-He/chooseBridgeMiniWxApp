@@ -1,4 +1,5 @@
 // pages/university/newUniversity/confirmAdd.js
+var requestUtil = require('../../../utils/requestUtil.js'); 
 Page({
 
   /**
@@ -89,8 +90,42 @@ Page({
   },
 
   confirm: function(){
-    wx.navigateTo({
-      url: 'success',
+    var that = this;
+    wx.getStorage({
+      key: 'user_id',
+      success: function(res) {
+        requestUtil.getViewmycoursesToken(res.data, function(result){
+          // console.log(result)
+          var explicitData = { "token": result};
+          // console.log(explicitData)
+          var getSign = requestUtil.getSign(explicitData)
+
+          var requestedData = {
+            token: result,
+            sign: getSign
+          }
+
+          wx.request({
+            url: 'https://api.viewmycourses.com//api/school/create',
+            method: 'POST',
+            header: requestedData,
+            data: {
+              "school_name": that.data.requestConfirmData.Name,
+              "school_nick_name": that.data.requestConfirmData.abbr,
+              "country_id": that.data.requestConfirmData.country_id,
+              "province_id": that.data.requestConfirmData.province_id,
+              "city_id": that.data.requestConfirmData.city_id,
+              "website_url": that.data.requestConfirmData.homePage,
+              "agreement": true
+            },
+            success: function (res) {
+              wx.navigateTo({
+                url: 'success',
+              })
+            }
+          })
+        })
+      },
     })
   }
 })
