@@ -204,8 +204,37 @@ function getCityByProvince(provinceID, _callback) {
 }
 
 /**
+ * 获取某个学校的具体信息，主要为了获取所有校区信息
+ * 传入数据：school_id
+ * 返回数据：[campusIndicesList, campusList]
+ * 函数类型：回掉函数
+ */
+function getSchoolInfo(schoolID, _callback){
+  wx.request({
+    url: 'https://api.viewmycourses.com//open-api/get-school-detail',
+    method: 'GET',
+    data: { "school_id": schoolID },
+    success: function(res){
+      var campusJson = res.data.data.schoolDistrictInfo;
+      var arrayLength = campusJson.length;
+      var campusList = new Array();
+      var campusIndicesList = new Array();
+      var i = 0;
+      for (i = 0; i < arrayLength; i++) {
+        campusList[i] = campusJson[i].school_district_name;
+        campusIndicesList[i] = campusJson[i].school_district_id;
+      }
+
+      _callback([campusIndicesList, campusList])
+    }
+  })
+}
+
+/**
  * 数据库中搜索用户输入的大学名称
  * 返回相对应的大学数据
+ * 传入数据：用户输入的schoolName
+ * 函数类型：回掉函数
  */
 function getSchoolByCondition(schoolName, _callback) {
   var that = this;
@@ -299,8 +328,9 @@ module.exports = {
   getCountries: getCountries,
   getProvinceByCountry: getProvinceByCountry,
   getCityByProvince: getCityByProvince,
-  getSign: getSign,
+  getSchoolInfo: getSchoolInfo,
   getSchoolByCondition: getSchoolByCondition,
-  getProfessorByCondition: getProfessorByCondition
+  getProfessorByCondition: getProfessorByCondition,
+  getSign: getSign
 }
 

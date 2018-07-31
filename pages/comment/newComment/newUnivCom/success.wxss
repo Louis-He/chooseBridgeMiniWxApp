@@ -1,0 +1,3 @@
+/* pages/comment/newComment/newUnivCom/success.wxss */
+@import '../../../importwxss/weui.wxss';
+@import '../../../importwxss/msg.wxss';
