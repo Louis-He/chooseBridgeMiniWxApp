@@ -1,4 +1,5 @@
 // pages/comment/newComment/newUnivCom/newUnivCom.js
+var requestUtil = require('../../../../utils/requestUtil.js'); 
 Page({
 
   /**
@@ -8,8 +9,9 @@ Page({
     is_modal_Hidden: true,
     is_modal_Msg: '我是一个自定义组件',
     is_modal_Title: '提示',
-    "university": "TEST Univ.",
-    "campuses": ["请选择","Campus1", "Campus2", "Campus3"],
+    "university": "上海脚痛大学（测试）",
+    "campuses": [],
+    "campusIndices": [],
     "campusIndex": 0,
     "campus": null,
     "reputation": 0,
@@ -28,7 +30,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     this.setScrollHeight();
+    requestUtil.getSchoolInfo(4, function (result){
+      console.log(result);
+      that.setData({
+        campuses: result[1],
+        campusIndices: result[0],
+        campus: result[1][0]
+      })
+    })
   },
 
   /**
@@ -164,17 +175,20 @@ Page({
 
   nextStep: function () {
     // Check the input
+    /*
     if (!this.data.campus || this.data.reputation){
       console.log()
+      var errorMsg = "请填写完整"
 
       this.setData({
         is_modal_Hidden: false,
         is_modal_Msg: errorMsg
       })
     }
+    */
     
     this.setData({
-      'tmpUnivComment': { 'campus': this.data.campus, 'reputation': this.data.reputation, 'academic': this.data.academic, 'webService': this.data.webService, 'dom': this.data.dom, 'food': this.data.food, 'geo': this.data.geo, 'activity': this.data.activity, 'infrastructure': this.data.infrastructure, 'happiness': this.data.happiness, 'relationship': this.data.relationship}
+      'tmpUnivComment': { "school_id": 4, "school_district_id": this.data.campusIndices[this.data.campusIndex], 'campus': this.data.campus, 'reputation': this.data.reputation, 'academic': this.data.academic, 'webService': this.data.webService, 'dom': this.data.dom, 'food': this.data.food, 'geo': this.data.geo, 'activity': this.data.activity, 'infrastructure': this.data.infrastructure, 'happiness': this.data.happiness, 'relationship': this.data.relationship, }
     })
 
     wx.setStorage({

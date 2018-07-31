@@ -52,12 +52,6 @@
 				},
 				{
 					"id": -1,
-					"name": "错误开始",
-					"pathName": "pages/user/lowQualityNetwork",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "高校主页",
 					"pathName": "pages/university/specificUni/specificUni",
 					"query": ""
@@ -107,7 +101,14 @@
 				{
 					"id": -1,
 					"name": "兑换特权",
-					"pathName": "pages/user/privilegeForm/privilegeForm"
+					"pathName": "pages/user/privilegeForm/privilegeForm",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加高校评价",
+					"pathName": "pages/comment/newComment/newUnivCom/newUnivCom",
+					"query": ""
 				}
 			]
 		}
