@@ -1,4 +1,5 @@
 // pages/university/university/result.js
+var requestUtil = require('../../utils/requestUtil.js');
 Page({
 
   /**
@@ -26,6 +27,7 @@ Page({
    */
   onLoad: function (options) {
     this.setScrollHeight();
+    var that = this;
   },
 
   /**
@@ -115,18 +117,29 @@ Page({
     });
   },
   toResult: function () {
+    var that = this;
     this.setData({
       firstView: false
     });
+    requestUtil.getSchoolByCondition(that.data.inputVal, function(result) {
+      console.log(result);
+      that.setData({
+        university: result[0].school_name,
+        state: result[0].province,
+        country: result[0].country
+      })
+    });
+    // this.setData({
+    //   university: this.data.data.schools[0].school_name
+    // })
   },
+
   toUniversity: function() {
     wx.navigateTo({
-      url: 'specificUni/specificUni',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
+      url: 'specificUni/specificUni'
+    });
   },
+
   setScrollHeight: function () {
     var that = this;
     wx.getSystemInfo({
@@ -137,5 +150,5 @@ Page({
         });
       }
     });
-  }
+  },
 })

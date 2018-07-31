@@ -26,6 +26,7 @@ Page({
     var that = this;
     // 初始化国家信息
     requestUtil.getCountries(function(result){
+      console.log(result);
       that.setData({
         countries: result,
         country: result[0],
@@ -33,7 +34,7 @@ Page({
       })
       // 初始化省份信息
       requestUtil.getProvinceByCountry(parseInt(that.data.countryIndex) + 1, function (provincesResult) {
-        // console.log(provincesResult)
+        console.log(provincesResult)
         that.setData({
           provinceIndices: provincesResult[0], 
           provinces: provincesResult[1],

@@ -64,7 +64,7 @@ function getChooseBridgeUserInfo(unionID, _callback){
     method: 'POST',
     data: requestData,
     success: function (res){
-      console.log(res)
+      //console.log(res)
       _callback(res);
     }
   })
@@ -133,6 +133,7 @@ function getCountries(_callback){
     url: 'https://api.viewmycourses.com//open-api/geo/get-all-countrys',
     method: 'GET',
     success: function(res){
+      console.log(res);
       var arrayLength = res.data.data.length;
       var countryList = new Array()
       var i = 0;
@@ -202,6 +203,46 @@ function getCityByProvince(provinceID, _callback) {
   })
 }
 
+/**
+ * 在数据库中搜索用户输入的大学名称
+ * 返回相对应的大学数据
+ */
+function getSchoolByCondition(schoolName, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function(res) {
+      that.getViewmycoursesToken(res.data, function(result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/get-school-by-condition',
+          data: { "school_name": schoolName },
+          header: requestedData,
+          method: 'GET',
+          // data: { "school-name": schoolName },
+          success: function (res) {
+            console.log(res);
+            var arrayLength = res.data.data.schools.length;
+            var schoolList = new Array ();
+            for (var i = 0; i < arrayLength; i++) {
+              schoolList[i] = res.data.data.schools[i];
+            }
+            _callback(schoolList);
+          }
+        })
+      })
+    },
+  })
+  
+
+}
+
 // 以下为辅助函数
 /**
  * 加密工具函数
@@ -224,6 +265,7 @@ module.exports = {
   getCountries: getCountries,
   getProvinceByCountry: getProvinceByCountry,
   getCityByProvince: getCityByProvince,
-  getSign: getSign
+  getSign: getSign,
+  getSchoolByCondition: getSchoolByCondition
 }
 
