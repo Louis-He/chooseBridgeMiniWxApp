@@ -60,38 +60,22 @@
         
 
         <view class="cards">
-        <view class="universityCard" bindtap='toUniversity'>
+        <view class="universityCard" bindtap='toUniversity' 
+        wx:for="{{universities.length}}">
           <view class="item item1">
             <image mode='widthFix' src='/images/institute.png' 
             style='width:120%;height:120%'></image>
           </view>
           <view class="item item2">
           <view class='name'>
-            <text class='name'>{{university}}</text>
+            <text class='name'>{{universities[index].school_name}}</text>
             </view>
             <text class='subname'>
-              {{state}} {{country}}
+              {{universities[index].province}} {{universities[index].country}}
             </text>
           </view>
           <view class="item item3">
             <image src='/images/arrowNew.png' style='width:18rpx; height:auto' 
-            mode='widthFix'></image>
-          </view>
-        </view>
-
-        <view class="universityCard" bindtap='toUniversity'>
-          <view class="item item1">
-            <image src='/images/institute.png' 
-            style='width:120%;height:120%' mode='widthFix'></image>
-          </view>
-          <view class="item item2">
-            <text class='name'>{{uiuc}}</text>
-            <view class='subname'>
-              {{uiucState}} {{country}}
-            </view>
-          </view>
-          <view class="item item3">
-            <image src='/images/arrowNew.png' style='width:18rpx;height:auto'
             mode='widthFix'></image>
           </view>
         </view>

@@ -1,5 +1,5 @@
 <!--pages/comment/comment.wxml-->
-<block wx:if="{{!accessible}}">
+<block wx:if="{{!accessible && !showResults}}">
   <view class = "top-image">
     <image mode = "widthFix" style = "width:100%" 
     src ='/images/default-user-bg.png'></image>
@@ -17,7 +17,9 @@
     <button class='block-button-view'>邀请好友</button>
   </view>
 </block>
-<block wx:if="{{accessible}}">
+
+
+<block wx:if="{{accessible && !showResults}}">
   <view class = "top-image">
     <image mode = "widthFix" style = "width:100%" 
     src ='/images/default-user-bg.png'></image>
@@ -55,4 +57,54 @@
   </view> 
   </block>
     <button class = "searchBtn" bindtap='toResult'>搜索</button> 
+</block>
+
+<!-- 点击搜索后进入高校结果页面 -->
+<block wx:if="{{accessible && showResults && !courseBase}}">
+<scroll-view scroll-y='true'>
+<view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" placeholder="请输入学校名称" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                    <icon class="weui-icon-search" type="search" size="14"></icon>
+                    <view class="weui-search-bar__text">搜索</view>
+                </label>
+            </view>
+            <view class="cancel weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+        </view>
+        
+
+        <view class="cards">
+        <view class="universityCard" bindtap='commentUniversity' 
+        wx:for="{{universities.length}}">
+          <view class="item item1">
+            <image mode='widthFix' src='/images/institute.png' 
+            style='width:120%;height:120%'></image>
+          </view>
+          <view class="item item2">
+          <view class='name'>
+            <text class='name'>{{universities[index].school_name}}</text>
+            </view>
+            <text class='subname'>
+              {{universities[index].province}} {{universities[index].country}}
+            </text>
+          </view>
+          <view class="item item3">
+            <image src='/images/arrowNew.png' style='width:18rpx; height:auto' 
+            mode='widthFix'></image>
+          </view>
+        </view>
+
+          <view class='create-new'>
+            <text>没有您所在的高校？</text>
+            <button class ='button' bindtap='createNew'>创建新高校！</button>
+          </view>
+    </view>
+  </scroll-view>
 </block>

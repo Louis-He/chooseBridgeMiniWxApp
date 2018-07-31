@@ -80,14 +80,15 @@
         </view>
 
         <view class="cards">
-            <view class="universityCard" bindtap='toProfessor'>
+            <view class="universityCard" bindtap='toProfessor'
+            wx:for="{{professors.length}}">
               <view class="item item1">
                 <image src='/images/user.png' style='width:100%;height:110%'></image>
               </view>
               <view class="item item2">
-                <text class='name'>{{professor}}</text>
+                <text class='name'>{{professors[index].professor_full_name}}</text>
                 <text class='subname'>
-                  {{school}} \n {{college}}
+                  {{professors[index].school_name}} \n {{professors[index].college}}
                 </text>
               </view>
               <view class="item item3">
@@ -96,26 +97,10 @@
               </view>
             </view>
 
-            <view class="universityCard" bindtap='toProfessor'>
-              <view class="item item1">
-                <image src='/images/user.png' style='width:100%;height:110%'></image>
-              </view>
-              <view class="item item2">
-                <text class='name'>{{professor2}}</text>
-                <text class='subname'>
-                  {{school}} \n {{college}}
-                </text>
-              </view>
-              <view class="item item3">
-                <image class='userLogo' src='/images/arrowNew.png'
-                style='width:18rpx; height:auto' mode='widthFix'></image>
-              </view>
+            <view class='create-new'>
+              <text>没有您想查询的教授？</text>
+              <button class ='button' bindtap='createNew'>创建新教授！</button>
             </view>
-
-              <view class='create-new'>
-                <text>没有您想查询的教授？</text>
-                <button class ='button' bindtap='createNew'>创建新教授！</button>
-              </view>
         </view>
     </view>
   </scroll-view>

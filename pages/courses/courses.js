@@ -1,4 +1,5 @@
 // pages/courses/courses/result.js
+var requestUtil = require('../../utils/requestUtil.js');
 Page({
 
   /**
@@ -9,12 +10,12 @@ Page({
     inputShowed: false,
     inputVal: "",
     professor: "Federico Mandelman",
-    professor2: "This is a very long name for test purposes",
     school: "Emory University",
     college: "Emory College of Arts and Science",
     blankUni: "学校",
     blankPro: "教授",
-    inputVal: ""
+    inputVal: "",
+    professors: []
   },
 
   /**
@@ -22,6 +23,7 @@ Page({
    */
   onLoad: function (options) {
     this.setScrollHeight();
+    var that = this;
   },
 
   /**
@@ -73,8 +75,15 @@ Page({
 
   },
   toResult: function () {
+    var that = this;
     this.setData({
       firstView: false
+    });
+    requestUtil.getProfessorByCondition(that.data.inputVal, function (result) {
+      console.log(result);
+      that.setData({
+        professors: result
+      })
     });
   },
   toProfessor: function() {
