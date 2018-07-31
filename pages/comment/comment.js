@@ -1,4 +1,5 @@
 // pages/comment/comment.js
+var requestUtil = require('../../utils/requestUtil.js');
 Page({
 
   /**
@@ -7,18 +8,11 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    university: "Emory University",
-    state: "Atlanta, Georgia",
-    uiuc: "University of Illinois at Urbana-Champaign",
-    uiucState: "Urbana, Iliinois",
-    country: "美国",
     accessible: true,
     courseBase: true,
-    blankVal: "高校",
-    inputVal: "",
-    professor: "Dietrich Burbulla\n",
-    school: "University of Toronto",
-    college: "Department of mathematics"
+    blankVal: "教授",
+    showResults: false,
+    universities: []
   },
 
   /**
@@ -76,6 +70,27 @@ Page({
   onShareAppMessage: function () {
   
   },
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    this.setData({
+      inputVal: e.detail.value
+    });
+  },
 
   courseBase: function () {
     this.setData({
@@ -90,23 +105,30 @@ Page({
     });
   },
   toResult: function () {
-    if (this.data.courseBase == true)
-    {
-      wx.switchTab({
-        url: '../courses/courses',
+    this.setData({
+      showResults: true
+    });
+    var that = this;
+    requestUtil.getSchoolByCondition(that.data.inputVal, function (result) {
+      console.log(result);
+      that.setData({
+        universities: result
       })
-    } else {
-      wx.switchTab({
-        url: '../university/university',
-      })
-    }
+    });
   },
-  toUniversity: function () {
+  commentUniversity: function () {
     wx.navigateTo({
-      url: 'specificUni/specificUni',
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+      url: 'newComment/newUnivCom/newUnivCom',
     })
-  }
+  },
+  commentProfessor: function () {
+    wx.navigateTo({
+      url: 'newComment/newProfCom/newProfCom',
+    })
+  },
+  createNew: function () {
+    wx.navigateTo({
+      url: '../university/newUniversity/newUniversity'
+    })
+  },
 })

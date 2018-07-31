@@ -204,7 +204,7 @@ function getCityByProvince(provinceID, _callback) {
 }
 
 /**
- * 在数据库中搜索用户输入的大学名称
+ * 数据库中搜索用户输入的大学名称
  * 返回相对应的大学数据
  */
 function getSchoolByCondition(schoolName, _callback) {
@@ -225,9 +225,8 @@ function getSchoolByCondition(schoolName, _callback) {
           data: { "school_name": schoolName },
           header: requestedData,
           method: 'GET',
-          // data: { "school-name": schoolName },
           success: function (res) {
-            console.log(res);
+            //console.log(res);
             var arrayLength = res.data.data.schools.length;
             var schoolList = new Array ();
             for (var i = 0; i < arrayLength; i++) {
@@ -239,8 +238,43 @@ function getSchoolByCondition(schoolName, _callback) {
       })
     },
   })
-  
+}
 
+/**
+ * 
+ * 
+ */
+function getProfessorByCondition(professorName, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/get-professor-by-condition',
+          data: { "professor_name": professorName },
+          header: requestedData,
+          method: 'GET',
+          success: function (res) {
+            console.log(res);
+            var arrayLength = res.data.data.professors.length;
+            var professorList = new Array();
+            for (var i = 0; i < arrayLength; i++) {
+              professorList[i] = res.data.data.professors[i];
+            }
+            _callback(professorList);
+          }
+        })
+      })
+    },
+  })
 }
 
 // 以下为辅助函数
@@ -266,6 +300,7 @@ module.exports = {
   getProvinceByCountry: getProvinceByCountry,
   getCityByProvince: getCityByProvince,
   getSign: getSign,
-  getSchoolByCondition: getSchoolByCondition
+  getSchoolByCondition: getSchoolByCondition,
+  getProfessorByCondition: getProfessorByCondition
 }
 

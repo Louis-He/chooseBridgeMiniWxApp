@@ -8,18 +8,14 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    university: "Emory University",
-    state: "Atlanta, Georgia",
-    uiuc: "University of Illinois at Urbana-Champaign",
-    uiucState: "Urbana, Iliinois",
-    country: "美国",
+    universities: [],
     firstView: true,
     nameBase: true,
     blankVal: "高校",
     inputVal: "",
     professor: "Dietrich Burbulla\n",
     school: "University of Toronto",
-    college: "Department of mathematics"
+    college: "Department of mathematics",
   },
 
   /**
@@ -124,14 +120,9 @@ Page({
     requestUtil.getSchoolByCondition(that.data.inputVal, function(result) {
       console.log(result);
       that.setData({
-        university: result[0].school_name,
-        state: result[0].province,
-        country: result[0].country
+        universities: result
       })
     });
-    // this.setData({
-    //   university: this.data.data.schools[0].school_name
-    // })
   },
 
   toUniversity: function() {
