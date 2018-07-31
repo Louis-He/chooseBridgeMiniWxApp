@@ -12,7 +12,7 @@ Page({
     uiuc: "University of Illinois at Urbana-Champaign",
     uiucState: "Urbana, Iliinois",
     country: "美国",
-    accessible: false,
+    accessible: true,
     courseBase: true,
     blankVal: "高校",
     inputVal: "",
@@ -89,7 +89,7 @@ Page({
       courseBase: false
     });
   },
-  toResult: function (e) {
+  toResult: function () {
     if (this.data.courseBase == true)
     {
       wx.switchTab({
