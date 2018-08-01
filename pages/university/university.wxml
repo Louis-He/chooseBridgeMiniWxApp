@@ -88,7 +88,7 @@
 
         <view class="cards">
         <view class="universityCard" bindtap='toUniversity' 
-        wx:for="{{universities.length}}">
+        wx:for="{{universities.length}}" data-index="{{index}}">
           <view class="item item1">
             <image mode='widthFix' src='/images/institute.png' 
             style='width:120%;height:120%'></image>

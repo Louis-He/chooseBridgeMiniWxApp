@@ -124,10 +124,22 @@ Page({
     });
   },
 
-  toUniversity: function() {
+  toUniversity: function(e) {
     wx.navigateTo({
       url: 'specificUni/specificUni'
     });
+    var that = this;
+    var index = parseInt(e.currentTarget.dataset.index);
+    var pushTmpUniv = {
+      school_name: that.data.universities[index].school_name,
+      school_nickname: that.data.universities[index].school_nick_name,
+      school_id: that.data.universities[index].school_id
+    }
+    console.log(pushTmpUniv);
+    wx.setStorage({
+      key: 'pushTmpUniv',
+      data: pushTmpUniv,
+    })
   },
 
   setScrollHeight: function () {
