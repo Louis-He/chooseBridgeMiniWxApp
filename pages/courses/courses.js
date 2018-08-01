@@ -86,22 +86,21 @@ Page({
       })
     });
   },
-  toProfessor: function() {
+  toProfessor: function(e) {
     wx.navigateTo({
       url: 'specificPro/specificPro',
     })
-    var that = this;
-    var index = parseInt(e.currentTarget.dataset.index);
-    var pushTmpUniv = {
-      school_name: that.data.universities[index].school_name,
-      school_nickname: that.data.universities[index].school_nick_name,
-      school_id: that.data.universities[index].school_id
-    }
-    console.log(pushTmpUniv);
-    wx.setStorage({
-      key: 'pushTmpUniv',
-      data: pushTmpUniv,
-    })
+    // var that = this;
+    // var index = parseInt(e.currentTarget.dataset.index);
+    // var pushTmpProf = {
+    //   professor_full_name: that.data.professors[index].professor_full_name,
+    //   professor_id: that.data.professors[index].professor_id
+    // }
+    // console.log(pushTmpProf);
+    // wx.setStorage({
+    //   key: 'pushTmpProf',
+    //   data: pushTmpProf,
+    // })
   },
   showInput: function () {
     this.setData({
