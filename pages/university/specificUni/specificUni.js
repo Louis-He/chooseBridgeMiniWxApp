@@ -85,5 +85,10 @@ Page({
         });
       }
     });
+  },
+  commentCourse: function() {
+    wx.navigateTo({
+      url: '../../comment/newComment/newUnivCom/newUnivCom',
+    })
   }
 })
