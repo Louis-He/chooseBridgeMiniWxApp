@@ -270,8 +270,10 @@ function getSchoolByCondition(schoolName, _callback) {
 }
 
 /**
- * 
- * 
+ * 数据库中搜索用户输入的教授名称
+ * 返回相对应的教授数据
+ * 传入数据：用户输入的教授名称
+ * 函数类型：回掉函数
  */
 function getProfessorByCondition(professorName, _callback) {
   var that = this;
