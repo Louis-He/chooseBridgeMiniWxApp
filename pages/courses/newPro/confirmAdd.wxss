@@ -1,0 +1,3 @@
+/* pages/courses/newPro/confirmAdd.wxss */
+@import "../../importwxss/weui.wxss";
+@import "../../importwxss/preview.wxss";

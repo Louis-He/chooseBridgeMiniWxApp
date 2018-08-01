@@ -30,7 +30,11 @@
     "pages/user/infoForm/fail",
     "pages/comment/newComment/newProfCom/detailCom",
     "pages/courses/newPro/newPro",
-    "pages/user/privilegeForm/privilegeForm"
+    "pages/user/privilegeForm/privilegeForm",
+    "pages/comment/newComment/newUnivCom/success",
+    "pages/courses/newPro/success",
+    "pages/courses/newPro/confirmAdd",
+    "pages/comment/newComment/newProfCom/success"
   ],
   "window": {
     "backgroundTextStyle": "light",
