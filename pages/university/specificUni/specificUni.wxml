@@ -4,7 +4,7 @@
               <view class="weui-search-bar__form">
                   <view class="weui-search-bar__box">
                       <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                      <input type="text" class="weui-search-bar__input" placeholder="请输入教授名" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                      <input type="text" class="weui-search-bar__input" placeholder="请输入高校名" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm='toResult' confirm-type='search'/>
                       <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                           <icon type="clear" size="14"></icon>
                       </view>
@@ -23,16 +23,18 @@
       <view class='upper-view'>
         <view class='overall-score-view'>
           <text class='light-small-text'>综合得分\n</text>
-          <text class='big-num-view'>3.6</text>
+          <text class='big-num-view'>{{schoolData.overallScore}}</text>
         </view>
         <view class='uni-info-view'>
           <view class='text-view top-name-display'>
-            <text class='bold-uni-text'>{{uniName}}\n</text>
-            <view class='sub-text'>{{location}}</view>
+            <text class='bold-uni-text'>{{schoolData.schoolName}}\n</text>
+            <view class='sub-text'>
+              {{schoolData.city}} {{schoolData.province}} {{schoolData.country}}
+            </view>
           </view>
           <view class='btn-display'>
             <button class='share-btn-view'>分享给好友</button>
-            <button class='like-btn-view'>已有9999+人点赞</button>
+            <button class='like-btn-view'>已有{{schoolData.likesNum}}人点赞</button>
           </view>
         </view>
       </view>
@@ -42,10 +44,10 @@
       <swiper indicator-dots='true' indicator-active-color='white' circular='true' 
         current="{{swiperIdx}}" bindchange='onSlideChangeEnd' style='height: 160rpx;'
         bindtap='showMore'>
-        <swiper-item>
+        <swiper-item wx:for="{{schoolData.schoolDistrictInfo.length}}" data-index="{{index}}">
           <view class='swiper-hide-ctt-view'>
             <view class='bold-uni-text swiper-title hide'>
-              {{campusName}}
+              {{schoolData.schoolDistrictInfo[index].school_district_name}}
               <view class='swiper-arrow-view'>
                 <image class='arrow-view' src='../../../images/arrowDown.png' 
                 style='height:auto'mode='widthFix'></image>
@@ -53,22 +55,7 @@
             </view>
             <view class='swiper-ctt-left hide-right'>
               <text class='light-small-text'>综合得分 \n</text>
-              <text class='big-num-view'>4.7</text>
-            </view>
-          </view>
-        </swiper-item>
-        <swiper-item>
-          <view class='swiper-hide-ctt-view'>
-            <view class='bold-uni-text swiper-title hide'>
-              Oxford Campus
-              <view class='swiper-arrow-view'>
-                <image class='arrow-view' src='../../../images/arrowDown.png' 
-                style='height:auto'mode='widthFix'></image>
-              </view>
-            </view>
-            <view class='swiper-ctt-left hide-right'>
-              <text class='light-small-text'>综合得分 \n</text>
-              <text class='big-num-view'>4.7</text>
+              <text class='big-num-view'>{{schoolData.schoolDistrictInfo[index].school_district_score}}</text>
             </view>
           </view>
         </swiper-item>
@@ -82,59 +69,38 @@
       <view class='upper-view'>
         <view class='overall-score-view'>
           <text class='light-small-text'>综合得分\n</text>
-          <text class='big-num-view'>3.6</text>
+          <text class='big-num-view'>{{schoolData.overallScore}}</text>
         </view>
         <view class='uni-info-view'>
           <view class='text-view top-name-display'>
-            <text class='bold-uni-text'>{{uniName}}\n</text>
-            <view class='sub-text'>{{location}}</view>
+            <text class='bold-uni-text'>{{schoolData.schoolName}}\n</text>
+            <view class='sub-text'>
+              {{schoolData.city}} {{schoolData.province}} {{schoolData.country}}
+            </view>
           </view>
           <view class='btn-display'>
             <button class='share-btn-view'>分享给好友</button>
-            <button class='like-btn-view'>已有9999+人点赞</button>
+            <button class='like-btn-view'>已有{{schoolData.likesNum}}人点赞</button>
           </view>
         </view>
       </view>
-      <view style='width:100%; height:1rpx; background:#f3f3f3;               margin-left:30rpx; margin-right:30rpx;'></view>
+      <view style='width:100%; height:1rpx; background:#f3f3f3;margin-left:30rpx; margin-right:30rpx;'></view>
       <swiper class='swiper-view' indicator-dots='true' circular='true'
       current='{{swiperIdx}}' bindchange='onSlideChangeEnd' 
       indicator-active-color='white' bindtap='hide'>
-        <swiper-item>
-          <view class='bold-uni-text swiper-title'>{{campusName}}</view>
+        <swiper-item wx:for="{{schoolData.schoolDistrictInfo.length}}" data-index="{{index}}">
+          <view class='bold-uni-text swiper-title'>
+            {{schoolData.schoolDistrictInfo[index].school_district_name}}
+          </view>
           <view class='swpier-ctt-view'>
             <view class='swiper-ctt-left'>
               <text class='light-small-text'>综合得分 \n</text>
-              <text class='big-num-view'>4.7</text>
+              <text class='big-num-view'>{{schoolData.schoolDistrictInfo[index].school_district_score}}</text>
             </view>
             <view class='swiper-ctt-right'>
               <view class='sub-text cmt-detail' 
               wx:for="{{detailCmtLeft}}">
-                {{item.category}}
-              </view>
-            </view>
-            <view class='swiper-ctt-right'>
-              <view class='sub-text cmt-detail' 
-              wx:for="{{detailCmtRight}}">
-                {{item.category}}
-              </view>
-            </view> 
-          </view>
-          <view class='image-center-view'>
-            <image class='arrow-view' src='../../../images/arrowUp.png' 
-            style='height:auto'mode='widthFix'></image>
-          </view>
-        </swiper-item>
-        <swiper-item>
-          <view class='bold-uni-text swiper-title'>Oxford Campus</view>
-          <view class='swpier-ctt-view'>
-            <view class='swiper-ctt-left'>
-              <text class='light-small-text'>综合得分 \n</text>
-              <text class='big-num-view'>4.7</text>
-            </view>
-            <view class='swiper-ctt-right'>
-              <view class='sub-text cmt-detail' 
-              wx:for="{{detailCmtLeft}}">
-                {{item.category}}
+                {{item.category}} 
               </view>
             </view>
             <view class='swiper-ctt-right'>
@@ -159,7 +125,7 @@
         <image src='/images/recommand.png' style='height:auto; width:30rpx;' 
         mode='widthFix'></image>
       </view>
-      <text>Effrosyni Seitaridou</text>
+      <text>{{schoolData.rcmdProfessorName}}</text>
       <view class='rcmd-sub-text'>
         <text class='sub-text'>教授</text>
       </view>
@@ -179,11 +145,12 @@
     </view>
   </view>
 
-  <view class='basic-school-view bottom-view' bindtap='showCmtDetail'>
+  <view class='basic-school-view bottom-view' bindtap='showCmtDetail'
+  wx:for="three" data-index='index'>
     <view class='bottom-right-part-display'>
       <view class='up-cmt-overall-view'>
-        <view class='sub-text cmt-text'>2018-06</view>
-        <view class='sub-text cmt-text'>University Park Campus</view>
+        <view class='sub-text cmt-text'>2018-06-06</view>
+        <view class='sub-text cmt-text'>{{schoolData.ratesInfo[index].school_district_name}}</view>
       </view>
       <view class='up-cmt-overall-view'>
         <view class='image-center-view' style='margin-right:40rpx;'>
@@ -191,49 +158,17 @@
             <image class='face-view' src='../../../images/smileface.png' 
             style='height:auto' mode='widthFix'></image>
           </view>
-          <view class='big-num-view'>3.2</view>
+          <view class='big-num-view'>{{schoolData.ratesInfo[index].score}}</view>
         </view>
           <view class='cmt-like-view'>
             <image class='like-view' src='../../../images/like.png' 
             style='height:auto' mode='widthFix'></image>
-            <view class='small-num'>999+</view>
+            <view class='small-num'>{{schoolData.ratesInfo[index].thumbs_up_percent}}</view>
           </view>
           <view class='cmt-like-view'>
             <image class='like-view' src='../../../images/dislike.png' 
             style='height:auto' mode='widthFix'></image>
-            <view class='small-num'>999+</view>
-          </view>
-        </view>
-      </view>
-    <view class='comment-most-right-view'>
-      <image class='arrow-view-down' src='../../../images/arrowNew.png'
-        mode='widthFix'></image> 
-    </view>
-  </view>
-
-  <view class='basic-school-view bottom-view'bindtap='showCmtDetail'>
-    <view class='bottom-right-part-display'>
-      <view class='up-cmt-overall-view'>
-        <view class='sub-text cmt-text'>2018.06</view>
-        <view class='sub-text cmt-text'>University Park Campus</view>
-      </view>
-      <view class='up-cmt-overall-view'>
-        <view class='image-center-view' style='margin-right:40rpx;'>
-          <view class='smile-face-view'>
-            <image class='face-view' src='../../../images/smileface.png' 
-            style='height:auto' mode='widthFix'></image>
-          </view>
-        <view class='big-num-view'>3.2</view>
-        </view>
-          <view class='cmt-like-view'>
-            <image class='like-view' src='../../../images/like.png' 
-            style='height:auto' mode='widthFix'></image>
-            <view class='small-num'>999+</view>
-          </view>
-          <view class='cmt-like-view'>
-            <image class='like-view' src='../../../images/dislike.png' 
-            style='height:auto' mode='widthFix'></image>
-            <view class='small-num'>999+</view>
+            <view class='small-num'>{{schoolData.ratesInfo[index].thumbs_down_percent}}</view>
           </view>
         </view>
       </view>

@@ -255,7 +255,7 @@ function getSchoolByCondition(schoolName, _callback) {
           header: requestedData,
           method: 'GET',
           success: function (res) {
-            console.log(res);
+            //console.log(res);
             var arrayLength = res.data.data.schools.length;
             var schoolList = new Array ();
             for (var i = 0; i < arrayLength; i++) {
@@ -355,7 +355,6 @@ function getCollegeBySchool(schoolId, _callback) {
       that.getViewmycoursesToken(res.data, function (result) {
         var explicitData = { "token": result };
         var getSign = that.getSign(explicitData)
-
         var requestedData = {
           token: result,
           sign: getSign
@@ -381,6 +380,25 @@ function getCollegeBySchool(schoolId, _callback) {
         })
       })
     },
+  })
+}
+
+/**
+ * 数据库中根据学校ID
+ * 返回所有学校相关信息
+ * 传入数据： 学校ID
+ * 函数类型：回掉函数
+ */
+function getSchoolDetail(schoolId, _callback) {
+  wx.request({
+    url: 'https://api.viewmycourses.com/open-api/get-school-detail',
+    method: 'GET',
+    data: {school_id: schoolId},
+    success: function(res) {
+      console.log(res);
+      var schoolData = res.data.data;
+      _callback(schoolData);
+    }
   })
 }
 
@@ -411,6 +429,7 @@ module.exports = {
   getProfessorByCondition: getProfessorByCondition,
   getSchoolGroupByCountry: getSchoolGroupByCountry,
   getCollegeBySchool: getCollegeBySchool,
+  getSchoolDetail: getSchoolDetail,
   getSign: getSign
 }
 
