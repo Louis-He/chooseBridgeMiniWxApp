@@ -16,6 +16,7 @@ Page({
     professor: "Dietrich Burbulla\n",
     school: "University of Toronto",
     college: "Department of mathematics",
+    schoolData: {},
   },
 
   /**
@@ -117,7 +118,7 @@ Page({
       firstView: false
     });
     requestUtil.getSchoolByCondition(that.data.inputVal, function(result) {
-      console.log(result);
+      //console.log(result);
       that.setData({
         universities: result
       })
@@ -135,11 +136,29 @@ Page({
       school_nickname: that.data.universities[index].school_nick_name,
       school_id: that.data.universities[index].school_id
     }
-    console.log(pushTmpUniv);
     wx.setStorage({
       key: 'pushTmpUniv',
       data: pushTmpUniv,
-    })
+    });
+    requestUtil.getSchoolDetail(that.data.universities[index].school_id,
+    function (result) {
+      console.log(result);
+      var tempSchoolData = {
+        schoolName: result.schoolInfo.school_name,
+        city: result.schoolInfo.city,
+        province: result.schoolInfo.province,
+        country: result.schoolInfo.country,
+        rcmdProfessor: result.randomProfessor,
+        overallScore: result.schoolInfo.school_score,
+        likesNum: result.schoolInfo.thumbs_up_num,
+        schoolDistrictInfo: result.schoolDistrictInfo,
+        ratesInfo: result.ratesInfo
+      };
+      wx.setStorage({
+        key: 'tempSchoolData',
+        data: tempSchoolData,
+      })
+    });
   },
 
   setScrollHeight: function () {

@@ -26,12 +26,35 @@ Page({
       {category:'校方与学生群体关系: 3'},
     ],
     swiperIdx: '0',
+    schoolData: {},
+    three: 2
   },
   /**
   * 生命周期函数--监听页面加载
   */
   onLoad: function (options) {
     this.setScrollHeight();
+    var that = this;
+    wx.getStorage({
+      key: 'tempSchoolData',
+      success: function(res) {
+        console.log(res);
+        that.setData({
+          schoolData: {
+            schoolName: res.data.schoolName,
+            city: res.data.city,
+            province: res.data.province,
+            country: res.data.country,
+            rcmdProfessorName: res.data.rcmdProfessor.professor_full_name,
+            overallScore: res.data.overallScore,
+            schoolDistrictInfo: res.data.schoolDistrictInfo,
+            ratesInfo: res.data.ratesInfo,
+            likesNum: res.data.likesNum,
+          }
+        })
+        console.log(that.data.schoolData);
+      },
+    })
   },
   showInput: function () {
     this.setData({
