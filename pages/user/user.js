@@ -29,7 +29,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    console.log(app.globalData.userInfo)
     if (app.globalData.userInfo != null){
+
       this.setData({
         username: app.globalData.userInfo.nickName
       })
@@ -60,12 +62,35 @@ Page({
             firstViewmsg: "决定加入桥选学生社群"
           })
         } else {
-          // 已经进入过小程序，直接进入用户页
+          // 已经进入过小程序，仍需要判断授权问题
           console.log('已进入过小程序')
-          that.setData({
-            'firstView': false
+          wx.getSetting({
+            success: function (res) {
+              if (res.authSetting['scope.userInfo']) {
+                console.log('用户已授权，直接进入')
+                // 已经授权，直接进入小程序
+                wx.setStorage({
+                  key: "firstView",
+                  data: false
+                })
+                that.setData({
+                  "firstView": false,
+                })
+                that.userPageOnLoad();
+              } else {
+                console.log('用户未授权，未进入过小程序')
+                // 否则视作新用户，请求授权
+                wx.setStorage({
+                  key: "firstView",
+                  data: true
+                })
+                that.setData({
+                  "firstView": true,
+                  "firstViewmsg": "请重新基于权限"
+                })
+              }
+            }
           })
-          that.userPageOnLoad();
         }
       },
       fail: function (res) {
