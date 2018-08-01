@@ -32,9 +32,16 @@
           <view class='userCardTitle'>
             {{username}}
           </view>
-          <view class='userCardRP'>
+          <block wx:if="{{isadmin}}">
+            <view class='userCardRP'>
+              欢迎开发者登陆 辛苦了💦
+            </view>
+          </block>
+          <block wx:if="{{!isadmin}}">
+            <view class='userCardRP'>
             RP值：{{rp}}
           </view>
+          </block>
           <view class="detailContent">
             <view class="subDetailContent">
               我的大学： {{university}}

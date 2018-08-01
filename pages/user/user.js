@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isadmin: false,
     debug: true,
     isAgree: false ,
     firstViewmsg: "",
@@ -82,6 +83,7 @@ Page({
               that.setData({
                 "firstView": false,
               })
+              that.userPageOnLoad();
             } else {
               console.log('用户未授权，未进入过小程序')
               // 否则视作新用户，请求授权
@@ -456,6 +458,14 @@ Page({
 
       }
     })
+
+    if (that.data.username == '叮咚的雨' || that.data.username == 'Waldosia' || that.data.username == '何炳昌') {
+      console.log('欢迎管理员')
+      that.setData({
+        isadmin: true
+      })
+    }
+
   },
 
   // 警告用户网络环境差

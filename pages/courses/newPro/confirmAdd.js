@@ -129,6 +129,9 @@ Page({
             }
           })
           */
+          wx.redirectTo({
+            url: 'success',
+          })
         })
       },
     })
