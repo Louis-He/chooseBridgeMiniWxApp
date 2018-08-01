@@ -1,0 +1,37 @@
+<!--pages/courses/newPro/confirmAdd.wxml-->
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">请确认添加教授</view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__label">教授名</view>
+                <view class="weui-form-preview__value_in-hd">{{requestConfirmData.firstName}}</view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">教授姓</view>
+                    <view class="weui-form-preview__value">{{requestConfirmData.lastName}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">大学</view>
+                    <view class="weui-form-preview__value">{{requestConfirmData.university}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">部门</view>
+                    <view class="weui-form-preview__value">{{requestConfirmData.department}}</view>
+                </view>
+                
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">个人首页</view>
+                    <view class="weui-form-preview__value">{{requestConfirmData.homePage}}</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__ft">
+                <view class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" bindtap='edit'>返回编辑</view>
+                <view class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap='confirm'>确认添加</view>
+            </view>
+        </view>
+    </view>
+</view>

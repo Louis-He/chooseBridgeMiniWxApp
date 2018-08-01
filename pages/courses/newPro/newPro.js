@@ -122,12 +122,14 @@ Page({
       }
 
       console.log("填写检查通过: tmpProInfo = ")
-      console.log(tmpProInfo)
+      // console.log(tmpProInfo)
       wx.setStorage({
-        key: 'tmpUniv',
+        key: 'tmpProInfo',
         data: tmpProInfo,
       })
-      wx.navigateTo({
+
+
+      wx.redirectTo({
         url: 'confirmAdd',
       })
     }
