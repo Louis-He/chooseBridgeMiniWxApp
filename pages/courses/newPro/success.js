@@ -68,6 +68,12 @@ Page({
     wx.navigateBack({
       delta: 3
     })
+  },
+
+  goToComment: function () {
+    wx.redirectTo({
+      url: '../../comment/newComment/newProfCom/newProfCom',
+    })
   }
 
 })

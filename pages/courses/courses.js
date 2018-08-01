@@ -117,7 +117,7 @@ Page({
   },
   createNew: function () {
     wx.navigateTo({
-      url: '../../comment/comment.wxml'
+      url: 'newPro/newPro'
     })
   },
   setScrollHeight: function () {

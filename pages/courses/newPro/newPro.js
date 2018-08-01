@@ -129,7 +129,7 @@ Page({
       })
 
 
-      wx.navigateTo({
+      wx.redirectTo({
         url: 'confirmAdd',
       })
     }
