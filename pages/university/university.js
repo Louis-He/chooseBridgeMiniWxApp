@@ -23,7 +23,6 @@ Page({
    */
   onLoad: function (options) {
     this.setScrollHeight();
-    var that = this;
   },
 
   /**

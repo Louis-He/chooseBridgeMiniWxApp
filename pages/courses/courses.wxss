@@ -117,7 +117,7 @@ page{
   background-color: rgba(255, 255, 255, 0.2); 
   color: white;
   letter-spacing: 1.5px;
-  height: 185rpx;
+  height: 170rpx;
 }
  .universityCard::after {
   border: none;
