@@ -61,12 +61,15 @@
 
 <!-- 点击搜索后进入高校结果页面 -->
 <block wx:if="{{accessible && showResults && !courseBase}}">
-<scroll-view scroll-y='true'>
-<view class="weui-search-bar">
+<scroll-view scroll-y='true' style="height: {{scrollHeight}}px">
+<view class="page">
+        <view class="page__bd">
+          <view class="weui-search-bar">
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
                     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                    <input type="text" class="weui-search-bar__input" placeholder="请输入学校名称" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <input type="text" class="weui-search-bar__input" placeholder="请输入学校名称" value="{{inputVal}}" 
+                    focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm='toUnivResult' confirm-type='search'/>
                     <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                         <icon type="clear" size="14"></icon>
                     </view>
@@ -78,6 +81,7 @@
             </view>
             <view class="cancel weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
+      </view>
         
 
         <view class="cards">
@@ -105,6 +109,59 @@
             <text>没有您所在的高校？</text>
             <button class ='button' bindtap='createNew'>创建新高校！</button>
           </view>
+      </view>
+    </view>
+  </scroll-view>
+</block>
+
+<!-- 点击搜索后进入教授结果页面 -->
+<block wx:if="{{accessible && showResults && courseBase}}">
+  <scroll-view scroll-y='true' style="height: {{scrollHeight}}px">
+    <view class="page">
+        <view class="page__bd">
+            <view class="weui-search-bar">
+                <view class="weui-search-bar__form">
+                    <view class="weui-search-bar__box">
+                        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                        <input type="text" class="weui-search-bar__input" placeholder="请输入教授名" value="{{inputVal}}" 
+                        focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm='toProfResult' 
+                        confirm-type='search'/>
+                        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                            <icon type="clear" size="14"></icon>
+                        </view>
+                    </view>
+                    <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                        <icon class="weui-icon-search" type="search" size="14"></icon>
+                        <view class="weui-search-bar__text">搜索</view>
+                    </label>
+                </view>
+                <view class="cancel weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+            </view>
+        </view>
+
+        <view class="cards">
+            <view class="universityCard" bindtap='commentProfessor'
+            wx:for="{{professors.length}}">
+              <view class="item item1">
+                <image src='/images/user.png' style='width:100%;height:110%'></image>
+              </view>
+              <view class="item item2">
+                <text class='name'>{{professors[index].professor_full_name}}</text>
+                <text class='subname'>
+                  {{professors[index].school_name}} \n {{professors[index].college}}
+                </text>
+              </view>
+              <view class="item item3">
+                <image src='/images/arrowNew.png' style='width:18rpx;height:auto'
+                mode='widthFix'></image>
+              </view>
+            </view>
+
+            <view class='create-new'>
+              <text>没有您想查询的教授？</text>
+              <button class ='button' bindtap='createNew'>创建新教授！</button>
+            </view>
+        </view>
     </view>
   </scroll-view>
 </block>

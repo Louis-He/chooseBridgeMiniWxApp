@@ -12,14 +12,15 @@ Page({
     courseBase: true,
     blankVal: "教授",
     showResults: false,
-    universities: []
+    universities: [],
+    professors: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setScrollHeight();
   },
 
   /**
@@ -104,7 +105,28 @@ Page({
       courseBase: false
     });
   },
-  toResult: function () {
+  toResult: function() {
+    this.setData({
+      showResults: true
+    });
+    var that = this;
+    if (!that.data.courseBase) {
+      requestUtil.getSchoolByCondition(that.data.inputVal, function (result) {
+        console.log(result);
+        that.setData({
+          universities: result
+        })
+      });
+    } else {
+      requestUtil.getProfessorByCondition(that.data.inputVal, function (result) {
+        console.log(result);
+        that.setData({
+          professors: result
+        })
+      });
+    }
+  },
+  toUnivResult: function() {
     this.setData({
       showResults: true
     });
@@ -113,6 +135,18 @@ Page({
       console.log(result);
       that.setData({
         universities: result
+      })
+    });
+  },
+  toProfResult: function () {
+    var that = this;
+    this.setData({
+      firstView: false
+    });
+    requestUtil.getProfessorByCondition(that.data.inputVal, function (result) {
+      console.log(result);
+      that.setData({
+        professors: result
       })
     });
   },
@@ -131,4 +165,16 @@ Page({
       url: '../university/newUniversity/newUniversity'
     })
   },
+
+  setScrollHeight: function () {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.info(res.windowHeight);
+        that.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    });
+  }
 })
