@@ -9,7 +9,7 @@ Page({
     is_modal_Hidden: true,
     is_modal_Msg: '我是一个自定义组件',
     is_modal_Title: '提示',
-    "university": "上海脚痛大学（测试）",
+    "university": "Loading",
     "campuses": [],
     "campusIndices": [],
     "campusIndex": 0,
@@ -32,13 +32,27 @@ Page({
   onLoad: function (options) {
     var that = this;
     this.setScrollHeight();
-    requestUtil.getSchoolInfo(4, function (result){
-      console.log(result);
-      that.setData({
-        campuses: result[1],
-        campusIndices: result[0],
-        campus: result[1][0]
-      })
+    wx.getStorage({
+      key: 'pushTmpUniv',
+      success: function(res) {
+        that.setData({
+          university: res.data.school_name
+        })
+        requestUtil.getSchoolInfo(res.data.school_id, function (result) {
+          console.log(result);
+          that.setData({
+            campuses: result[1],
+            campusIndices: result[0],
+            campus: result[1][0]
+          })
+        })
+        wx.removeStorage({
+          key: 'pushTmpUniv',
+          success: function (res) {
+            console.log("注意：pushTmpUniv缓存变量清除")
+          },
+        })
+      },
     })
   },
 
