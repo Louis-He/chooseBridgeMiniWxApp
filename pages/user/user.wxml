@@ -34,7 +34,7 @@
           </view>
           <block wx:if="{{isadmin}}">
             <view class='userCardRP'>
-              欢迎开发者登陆 辛苦了💦
+              欢迎开发者登陆, 辛苦了💦
             </view>
           </block>
           <block wx:if="{{!isadmin}}">
@@ -55,14 +55,21 @@
             <view class="subDetailContent">
               毕业年份： {{graduateYear}}
             </view>
-            <block wx:if="{{expireDay}}">
-              <view class="subDetailContent">
-                您的桥选学生VIP特权剩余 {{expireDay}} 天
-              </view>
+            <block wx:if="{{!isadmin}}">
+              <block wx:if="{{expireDay}}">
+                <view class="subDetailContent">
+                  您的桥选学生VIP特权剩余 {{expireDay}} 天
+                </view>
+              </block>
+              <block wx:if="{{!expireDay}}">
+                <view class="subDetailContent">
+                  您暂未获得桥选学生VIP特权
+                </view>
+              </block>
             </block>
-            <block wx:if="{{!expireDay}}">
+            <block wx:if="{{isadmin}}">
               <view class="subDetailContent">
-                您暂未获得桥选学生VIP特权
+                你拥有开发者SVIP权限
               </view>
             </block>
             <view class="emailConfirmationTrue" wx:if="{{emailFlag}}">

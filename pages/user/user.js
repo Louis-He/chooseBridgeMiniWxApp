@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    firstViewFlag: true,
     isadmin: false,
     debug: true,
     isAgree: false ,
@@ -29,14 +30,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    console.log(app.globalData.userInfo)
-    if (app.globalData.userInfo != null){
-
-      this.setData({
-        username: app.globalData.userInfo.nickName
-      })
-    }
-    
+    var that = this
+    wx.getStorage({
+      key: 'username',
+      success: function(res) {
+        console.log(res.data)
+        that.setData({
+          username: res.data
+        })
+        if (that.data.username == '叮咚的雨' || that.data.username == 'Waldosia' || that.data.username == '何炳昌') {
+          console.log('欢迎管理员')
+          that.setData({
+            isadmin: true
+          })
+          wx.setStorage({
+            key: 'isAdmin',
+            data: true,
+          })
+        }
+      },
+    })
   },
 
   /**
@@ -353,7 +366,6 @@ Page({
               requestUtil.getViewmycoursesUserInfo(result.data.entities[0].id, function(result){
                 console.log(result)
               })
-
             })
           },
           fail: function(res){
@@ -367,6 +379,13 @@ Page({
                   //console.log(result);
                   that.setData({
                     username: res.userInfo.nickName
+                  })
+                  wx.setStorage({
+                    key: 'username',
+                    data: res.userInfo.nickName,
+                    success: function (res){
+                      that.onLoad();
+                    }
                   })
                   app.globalData.userInfo = res
                   //console.log(app.globalData)
@@ -483,14 +502,6 @@ Page({
 
       }
     })
-
-    if (that.data.username == '叮咚的雨' || that.data.username == 'Waldosia' || that.data.username == '何炳昌') {
-      console.log('欢迎管理员')
-      that.setData({
-        isadmin: true
-      })
-    }
-
   },
 
   // 警告用户网络环境差

@@ -1,3 +1,9 @@
 /* pages/courses/newPro/newPro.wxss */
 @import '../../importwxss/weui.wxss';
 @import '../../importwxss/form.wxss';
+.weui-cell__bd{
+  max-height: 2.58823529em;
+}
+.weui-select{
+  max-height: 1em;
+}

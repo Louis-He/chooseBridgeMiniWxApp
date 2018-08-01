@@ -308,6 +308,82 @@ function getProfessorByCondition(professorName, _callback) {
   })
 }
 
+/**
+ * 数据库中根据国家搜索学校组名称
+ * 返回所有的国家中所有的学校
+ * 传入数据：无需
+ * 函数类型：回掉函数
+ */
+function getSchoolGroupByCountry(_callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/get-school-group-by-country',
+          header: requestedData,
+          method: 'GET',
+          success: function (res) {
+            _callback(res.data.data);
+          }
+        })
+      })
+    },
+  })
+}
+
+/**
+ * 数据库中根据学校获得所有部门名称
+ * 返回某个学校所有的学术部门
+ * 传入数据：学校ID
+ * 返回数据：一个array
+ * 函数类型：回掉函数
+ */
+function getCollegeBySchool(schoolId, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/get-college-by-school',
+          header: requestedData,
+          method: 'POST',
+          data: {school_id: schoolId},
+          success: function (res) {
+            var departmentArray = [];
+            var departmentIndices = [];
+            var count =  0;
+
+            for(count = 0; count < res.data.data.length; count++){
+              departmentArray[count] = res.data.data[count].college_name;
+              departmentIndices[count] = res.data.data[count].college_id;
+            }
+
+            _callback([departmentIndices, departmentArray]);
+          }
+        })
+      })
+    },
+  })
+}
+
 // 以下为辅助函数
 /**
  * 加密工具函数
@@ -333,6 +409,8 @@ module.exports = {
   getSchoolInfo: getSchoolInfo,
   getSchoolByCondition: getSchoolByCondition,
   getProfessorByCondition: getProfessorByCondition,
+  getSchoolGroupByCountry: getSchoolGroupByCountry,
+  getCollegeBySchool: getCollegeBySchool,
   getSign: getSign
 }
 
