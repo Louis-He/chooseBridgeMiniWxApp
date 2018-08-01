@@ -108,30 +108,30 @@ Page({
 
           console.log(that.data.requestConfirmData)
 
-          /*
+          
           wx.request({
-            url: 'https://api.viewmycourses.com//api/school/create',
+            url: 'https://api.viewmycourses.com//api/professor/create',
             method: 'POST',
             header: requestedData,
             data: {
-              "school_name": that.data.requestConfirmData.Name,
-              "school_nick_name": that.data.requestConfirmData.abbr,
-              "country_id": that.data.requestConfirmData.country_id,
-              "province_id": that.data.requestConfirmData.province_id,
-              "city_id": that.data.requestConfirmData.city_id,
-              "website_url": that.data.requestConfirmData.homePage,
+              "professor_fisrt_name": that.data.requestConfirmData.lastName,
+              "professor_second_name": that.data.requestConfirmData.firstName,
+              "school_id": that.data.requestConfirmData.university_id,
+              "_college_id": that.data.requestConfirmData.departmen,
+              "college_id": that.data.requestConfirmData.department_id,
+              "professor_web_site": that.data.requestConfirmData.homePage,
               "agreement": true
             },
             success: function (res) {
-              wx.navigateTo({
+              wx.setStorage({
+                key: 'tmpProfId',
+                data: res.data.data.id,
+              })
+              wx.redirectTo({
                 url: 'success',
               })
             }
-          })
-          */
-          wx.redirectTo({
-            url: 'success',
-          })
+          })          
         })
       },
     })
