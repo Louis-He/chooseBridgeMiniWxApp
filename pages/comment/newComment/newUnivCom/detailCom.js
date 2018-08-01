@@ -115,9 +115,9 @@ Page({
               "school_students_relations": that.data.tmpUnivComment.relationship,
               "comment": that.data.commentDetail,
             }
-            console.log(sendData)
-            console.log(that.data.tmpUnivComment)
-            
+            // console.log(sendData)
+            // console.log(that.data.tmpUnivComment)
+
             wx.request({
               url: 'https://api.viewmycourses.com//api/school-rate/create',
               method: 'POST',
@@ -131,6 +131,12 @@ Page({
               }
             })
             
+            wx.removeStorage({
+              key: 'tmpUnivComment',
+              success: function (res) {
+                console.log("onHide: 用户离开确认页面, tmpUnivComment缓存变量清除")
+              },
+            })
           })
         },
       })

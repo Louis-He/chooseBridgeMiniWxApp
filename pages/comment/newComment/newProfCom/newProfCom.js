@@ -81,6 +81,48 @@ Page({
     });
   },
 
+  codeInput: function (e) {
+    this.setData({
+      courseId: e.detail.value
+    })
+  },
+
+  courseInput: function (e) {
+    this.setData({
+      course: e.detail.value
+    })
+  },
+
+  courseDifficultyChange: function (e) {
+    this.setData({
+      courseDiff: e.detail.value
+    })
+  },
+
+  homeworkChange: function (e){
+    this.setData({
+      homework: e.detail.value
+    })
+  },
+
+  relevanceChange: function (e){
+    this.setData({
+      relevance: e.detail.value
+    })
+  },
+
+  monthlyTestChange: function (e){
+    this.setData({
+      monthlyTest: e.detail.value
+    })
+  },
+
+  extraTimeChange: function (e){
+    this.setData({
+      extraTime: e.detail.value
+    })
+  },
+
   bindGradeChange: function (e) {
     var that = this;
     console.log('picker country 发生选择改变，携带值为', this.data.grades[e.detail.value]);
@@ -92,6 +134,24 @@ Page({
   },
 
   nextStep: function (){
+    var summaryData = {
+      courseId: this.data.courseId,
+      course: this.data.course,
+      courseDiff: this.data.courseDiff,
+      homework: this.data.homework,
+      relevance: this.data.relevance,
+      monthlyTest: this.data.monthlyTest,
+      extraTime: this.data.extraTime,
+      grade: this.data.grade
+    }
+
+    wx.setStorage({
+      key: 'tmpProfCom',
+      data: summaryData,
+    })
+
+    //console.log(summaryData)
+
     wx.navigateTo({
       url: 'detailCom',
     })
