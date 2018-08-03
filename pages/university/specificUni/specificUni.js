@@ -1,4 +1,5 @@
 // pages/university/specificUni/specificUni.js
+var requestUtil = require('../../../utils/requestUtil.js');
 Page({
 
   /**
@@ -8,9 +9,6 @@ Page({
     inputShowed: false,
     inputVal: "",
     arrowTouched: false,
-    uniName: "University of Illinois Urbana Champaign",
-    location: "Urbana-Champaign, Illinois 美国",
-    campusName: "Atlanta Campus",
     detailCmtLeft: [
       { category:'社会声誉: 3'},
       { category:'学术水平: 3'},
@@ -27,7 +25,6 @@ Page({
     ],
     swiperIdx: '0',
     schoolData: {},
-    three: 2
   },
   /**
   * 生命周期函数--监听页面加载
@@ -38,7 +35,18 @@ Page({
     wx.getStorage({
       key: 'tempSchoolData',
       success: function(res) {
-        console.log(res);
+        var tempArray = res.data.ratesInfo;
+        var tempScore = new Array();
+        var tempCreatedTime = new Array();
+        for (var i = 0; i < tempArray.length; i++) {
+          tempScore[i] = tempArray[i].score.toString();
+          tempScore[i] = parseFloat(tempScore[i]).toFixed(1);
+          tempCreatedTime[i] = tempArray[i].created_at.substring(0, 10);
+          that.setData({
+            districtScore: tempScore,
+            cmtCreatedTime: tempCreatedTime
+          });
+        }
         that.setData({
           schoolData: {
             schoolName: res.data.schoolName,
@@ -52,10 +60,17 @@ Page({
             likesNum: res.data.likesNum,
           }
         })
-        console.log(that.data.schoolData);
       },
     })
   },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -93,11 +108,44 @@ Page({
       swiperIdx: e.detail.current
     })
   },
-  showCmtDetail: function () {
-    wx.navigateTo({
-      url: 'cmtDetail/cmtDetail',
+  showCmtDetail: function (e) {
+    var that = this;
+    var index = parseInt(e.currentTarget.dataset.index);
+    var studentID;
+    var graduateYear;
+    var highSchool;
+    var createTime;
+    wx.getStorage({
+      key: 'tempSchoolData',
+      success: function(res) {
+        studentID = res.data.ratesInfo[index].create_student_id;
+        createTime = res.data.ratesInfo[index].created_at.substring(0, 10);
+        requestUtil.getStudentByID(studentID, function (result) {
+          console.log(result);
+          graduateYear = result.student.graduate_year;
+          highSchool = result.student.exam_province;
+
+          var cmtDetail = {
+            university: res.data.schoolName,
+            cmtData: res.data.ratesInfo[index],
+            graduate: graduateYear,
+            high: highSchool,
+            time: createTime,
+          }
+          wx.setStorage({
+            key: 'cmtDetail',
+            data: cmtDetail,
+            success: function () {
+              wx.navigateTo({
+                url: 'cmtDetail/cmtDetail',
+              });
+            }
+          })
+        });
+      },
     })
   },
+
   setScrollHeight: function () {
     var that = this;
     wx.getSystemInfo({
