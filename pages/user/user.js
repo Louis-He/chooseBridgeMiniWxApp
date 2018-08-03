@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isUsernameStorage: true,
     firstViewFlag: true,
     isadmin: false,
     debug: true,
@@ -49,6 +50,11 @@ Page({
           })
         }
       },
+      fail: function(res){
+        that.setData({
+          isUsernameStorage: false
+        })
+      }
     })
   },
 
@@ -99,7 +105,7 @@ Page({
                 })
                 that.setData({
                   "firstView": true,
-                  "firstViewmsg": "请重新基于权限"
+                  "firstViewmsg": "请重新给予权限"
                 })
               }
             }
@@ -275,7 +281,24 @@ Page({
           code: inputCode,
           sign: getSign
         }
-        
+
+        // 补充用户名
+        if(!that.data.isUsernameStorage){
+          wx.getUserInfo({
+
+            success: function (res) {
+              // console.log(res.userInfo)
+              wx.setStorage({
+                key: 'username',
+                data: res.userInfo.nickName,
+              })
+              that.setData({
+                username: res.userInfo.nickName
+              })
+            }
+          })
+        }
+
         // 检查是否已经储存unionId，若已经储存那么直接使用，否则前往请求unionId
         wx.getStorage({
           key: 'unionId',
