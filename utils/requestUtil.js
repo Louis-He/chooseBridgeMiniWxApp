@@ -402,6 +402,54 @@ function getSchoolDetail(schoolId, _callback) {
   })
 }
 
+/**
+ * 数据库中根据教授ID
+ * 返回所有教授相关信息
+ * 传入数据： 教授ID
+ * 函数类型： 回掉函数
+ */
+function getProfessorDetail(professorID, _callback) {
+  wx.request({
+    url: 'http://api.viewmycourses.com/open-api/get-professor-detail',
+    method: 'GET',
+    data: {professor_id: professorID},
+    success: function(res) {
+      var professorData = res.data.data;
+      _callback(professorData);
+    }
+  })
+}
+
+/**
+ * 
+ */
+function getStudentByID(studentID, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/get-student-by-id',
+          method: 'GET',
+          header: requestedData,
+          data: { student_id: studentID },
+          success: function (res) {
+            console.log(res);
+            _callback(res.data.data);
+          }
+        })
+      })
+    },
+  })
+}
+
 // 以下为辅助函数
 /**
  * 加密工具函数
@@ -430,6 +478,8 @@ module.exports = {
   getSchoolGroupByCountry: getSchoolGroupByCountry,
   getCollegeBySchool: getCollegeBySchool,
   getSchoolDetail: getSchoolDetail,
+  getProfessorDetail: getProfessorDetail,
+  getStudentByID: getStudentByID,
   getSign: getSign
 }
 

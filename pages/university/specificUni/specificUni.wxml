@@ -98,15 +98,37 @@
               <text class='big-num-view'>{{schoolData.schoolDistrictInfo[index].school_district_score}}</text>
             </view>
             <view class='swiper-ctt-right'>
-              <view class='sub-text cmt-detail' 
-              wx:for="{{detailCmtLeft}}">
-                {{item.category}} 
+              <view class='sub-text cmt-detail'>
+                社会声誉: {{schoolData.schoolDistrictInfo[index].social_reputation}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                学术水平: {{schoolData.schoolDistrictInfo[index].academic_level}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                网络服务: {{schoolData.schoolDistrictInfo[index].network_services}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                住宿条件: {{schoolData.schoolDistrictInfo[index].accommodation}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                餐饮质量: {{schoolData.schoolDistrictInfo[index].food_quality}}
               </view>
             </view>
             <view class='swiper-ctt-right'>
-              <view class='sub-text cmt-detail' 
-              wx:for="{{detailCmtRight}}">
-                {{item.category}}
+              <view class='sub-text cmt-detail'>
+                校园地理位置: {{schoolData.schoolDistrictInfo[index].campus_location}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                校园课外活动: {{schoolData.schoolDistrictInfo[index].extracurricular_activities}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                校园基础设施: {{schoolData.schoolDistrictInfo[index].campus_infrastructure}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                生活幸福指数: {{schoolData.schoolDistrictInfo[index].life_happiness_index}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                校方与学生群体关系: {{schoolData.schoolDistrictInfo[index].school_students_relations}}
               </view>
             </view> 
           </view>
@@ -146,11 +168,11 @@
   </view>
 
   <view class='basic-school-view bottom-view' bindtap='showCmtDetail'
-  wx:for="two" data-index='index'>
+  wx:for="{{schoolData.ratesInfo.length}}" data-index='index'>
     <view class='bottom-right-part-display'>
       <view class='up-cmt-overall-view'>
         <view class='sub-text cmt-text'>{{cmtCreatedTime[index]}}</view>
-        <view class='sub-text cmt-text'>{{schoolData.ratesInfo[index].school_district_name}}</view>
+        <view class='sub-text cmt-text'>{{schoolData.ratesInfo[index].school_district_name}}</view> 
       </view>
       <view class='up-cmt-overall-view'>
         <view class='image-center-view' style='margin-right:40rpx;'>

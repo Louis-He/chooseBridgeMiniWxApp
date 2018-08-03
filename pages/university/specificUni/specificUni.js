@@ -1,4 +1,5 @@
 // pages/university/specificUni/specificUni.js
+var requestUtil = require('../../../utils/requestUtil.js');
 Page({
 
   /**
@@ -8,9 +9,6 @@ Page({
     inputShowed: false,
     inputVal: "",
     arrowTouched: false,
-    uniName: "University of Illinois Urbana Champaign",
-    location: "Urbana-Champaign, Illinois 美国",
-    campusName: "Atlanta Campus",
     detailCmtLeft: [
       { category:'社会声誉: 3'},
       { category:'学术水平: 3'},
@@ -49,6 +47,29 @@ Page({
             cmtCreatedTime: tempCreatedTime
           });
         }
+        // var tempDistrictInfo = res.data.schoolDistrictInfo;
+        // var socialReputation = new Array();
+        // var academic = new Array();
+        // var network = new Array();
+        // var dorm = new Array();
+        // var food = new Array();
+        // var location = new Array();
+        // var acticities = new Array();
+        // var infra = new Array();
+        // var happiness = new Array();
+        // var relation = new Array();
+        // for (var i = 0; i < tempDistrictInfo.length; i++) {
+        //     socialReputation[i] = tempDistrictInfo[index].social_reputation,
+        //     academic[i] = tempDistrictInfo[index].academic_level,
+        //     network[i] = tempDistrictInfo[index].network_services,
+        //     dorm[i] = tempDistrictInfo[index].accommodation,
+        //     food[i] = tempDistrictInfo[index].food_quality,
+        //     location[i] = tempDistrictInfo[index].campus_location,
+        //     acticities[i] = tempDistrictInfo[index].extracurricular_activities,
+        //     infra[i] = tempDistrictInfo[index].campus_infrastructure,
+        //     happiness[i] = tempDistrictInfo[index].life_happiness_index,
+        //     relation[i] = tempDistrictInfo[index].school_students_relations
+        // }
         that.setData({
           schoolData: {
             schoolName: res.data.schoolName,
@@ -60,6 +81,16 @@ Page({
             schoolDistrictInfo: res.data.schoolDistrictInfo,
             ratesInfo: res.data.ratesInfo,
             likesNum: res.data.likesNum,
+            // socialReputation: socialReputation,
+            // academic: academic,
+            // network: network,
+            // dorm: dorm,
+            // food: food,
+            // location: location,
+            // acticities: acticities,
+            // infra: infra,
+            // happiness: happiness,
+            // relation: relation,
           }
         })
       },
@@ -110,11 +141,45 @@ Page({
       swiperIdx: e.detail.current
     })
   },
-  showCmtDetail: function () {
-    wx.navigateTo({
-      url: 'cmtDetail/cmtDetail',
+  showCmtDetail: function (e) {
+    var that = this;
+    var index = parseInt(e.currentTarget.dataset.index);
+    var studentID;
+    var graduateYear;
+    var highSchool;
+    var createTime;
+    //console.log(index);
+    wx.getStorage({
+      key: 'tempSchoolData',
+      success: function(res) {
+        studentID = res.data.ratesInfo[0].create_student_id;
+        createTime = res.data.ratesInfo[0].created_at.substring(0, 10);
+        requestUtil.getStudentByID(studentID, function (result) {
+          console.log(result);
+          graduateYear = result.student.graduate_year;
+          highSchool = result.student.exam_province;
+
+          var cmtDetail = {
+            university: res.data.schoolName,
+            cmtData: res.data.ratesInfo[0],
+            graduate: graduateYear,
+            high: highSchool,
+            time: createTime,
+          }
+          wx.setStorage({
+            key: 'cmtDetail',
+            data: cmtDetail,
+            success: function () {
+              wx.navigateTo({
+                url: 'cmtDetail/cmtDetail',
+              });
+            }
+          })
+        });
+      },
     })
   },
+
   setScrollHeight: function () {
     var that = this;
     wx.getSystemInfo({
