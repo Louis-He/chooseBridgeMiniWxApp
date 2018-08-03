@@ -15,16 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    wx.getStorage({
-      key: 'tmpUnivComment',
-      success: function(res) {
-        that.setData({
-          "isLoad": true,
-          tmpUnivComment: res.data
-        })
-      },
-    })
+    
   },
 
   /**
@@ -38,7 +29,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      "isLoad": false
+    })
+    var that = this;
+    wx.getStorage({
+      key: 'tmpUnivComment',
+      success: function (res) {
+        that.setData({
+          "isLoad": true,
+          tmpUnivComment: res.data
+        })
+      },
+    })
   },
 
   /**
@@ -131,6 +134,10 @@ Page({
               }
             })
             
+            that.setData({
+              tmpUnivComment: null
+            })
+
             wx.removeStorage({
               key: 'tmpUnivComment',
               success: function (res) {

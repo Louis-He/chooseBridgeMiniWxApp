@@ -10,7 +10,8 @@ Page({
     is_modal_Title: '提示',
     "grades": ["请选择", "A", "B", "C","D","F","Dropped the course"],
     "gradeIndex": 0,
-    "grade": null
+    "grade": null,
+    "isAttend": true
   },
 
   /**
@@ -123,6 +124,12 @@ Page({
     })
   },
 
+  isAttendChange: function (e){
+    this.setData({
+      isAttend: e.detail.value
+    })
+  },
+
   bindGradeChange: function (e) {
     var that = this;
     console.log('picker country 发生选择改变，携带值为', this.data.grades[e.detail.value]);
@@ -135,6 +142,7 @@ Page({
 
   nextStep: function (){
     var summaryData = {
+      isAttend: this.data.isAttend,
       courseId: this.data.courseId,
       course: this.data.course,
       courseDiff: this.data.courseDiff,

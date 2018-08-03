@@ -27,7 +27,7 @@
             <view class="weui-label">*是否记录出勤</view>
           </view>
           <view class="weui-cell__ft marginRight">
-              <switch class="radio" color='#359ACA' checked />
+              <switch class="radio" bindchange='isAttendChange' color='#359ACA' checked />
           </view>
         </view>
 
