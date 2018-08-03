@@ -405,8 +405,8 @@ function getSchoolDetail(schoolId, _callback) {
 /**
  * 数据库中根据教授ID
  * 返回所有教授相关信息
- * 传入数据： 教授ID
- * 函数类型： 回掉函数
+ * 传入数据：教授ID
+ * 函数类型：回掉函数
  */
 function getProfessorDetail(professorID, _callback) {
   wx.request({
@@ -421,7 +421,10 @@ function getProfessorDetail(professorID, _callback) {
 }
 
 /**
- * 
+ * 数据库中搜索学生
+ * 返回该学生相关信息
+ * 传入数据：学生ID
+ * 函数类型：回掉函数
  */
 function getStudentByID(studentID, _callback) {
   var that = this;
@@ -448,6 +451,13 @@ function getStudentByID(studentID, _callback) {
       })
     },
   })
+}
+
+/**
+ * 
+ */
+function getSchoolByLocation(countryID, provinceID, mode) {
+
 }
 
 // 以下为辅助函数
@@ -480,6 +490,7 @@ module.exports = {
   getSchoolDetail: getSchoolDetail,
   getProfessorDetail: getProfessorDetail,
   getStudentByID: getStudentByID,
+  getSchoolByLocation: getSchoolByLocation,
   getSign: getSign
 }
 
