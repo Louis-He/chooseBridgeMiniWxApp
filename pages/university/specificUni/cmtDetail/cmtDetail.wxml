@@ -3,7 +3,7 @@
   <view class='overall-tag-view cmt-overall-view'>
     <view class='image-part'>
       <view class='image-display'>
-        <image class='cmt-user-logo' src='../../../../images/user.png'
+        <image class='cmt-user-logo' src='/images/user.png'
         style='height:auto' mode='widthFix'></image>
       </view>
       <view class='normal-text text-part left-text-part'>
@@ -21,7 +21,7 @@
         <text>{{cmtData.commentTime}}\n</text>
       </view>
       <view class='text-2 campus-name-display' style='white-space:nowrap;'>
-        <image class='happyface-view' src='../../../../images/smileFace.png'
+        <image class='happyface-view' src='/images/smileface.png'
         style='height:auto' mode='widthFix'></image>
         <text>{{cmtData.score}}\n</text>
         <view class='normal-text' style='line-height:1.4em;'>
@@ -74,21 +74,21 @@
   <view class='bottom-view'>
     <view class='btn-view like-btn-view'>
       <view class='circle-view'>
-        <image class='share-view' src='../../../../images/like.png' 
+        <image class='share-view' src='/images/like.png' 
         style='height:auto' mode='widthFix'></image>
         <text class='normal-text'>{{cmtData.likes}}</text>
       </view>
     </view>
     <view class='btn-view wshare-btn-view'>
       <view class='circle-view'>
-        <image class='share-view' src='../../../../images/share.png'
+        <image class='share-view' src='/images/share.png'
         style='height:auto' mode='widthFix'></image>
         <text class='normal-text'>分享</text>
       </view>
     </view>
     <view class='btn-view dislike-btn-view'>
       <view class='circle-view'>
-        <image class='share-view' src='../../../../../images/dislike.png' 
+        <image class='share-view' src='/images/dislike.png' 
         style='height:auto' mode='widthFix'></image>
         <text class='normal-text'>{{cmtData.dislikes}}</text>
       </view>

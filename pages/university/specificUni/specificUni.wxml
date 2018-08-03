@@ -44,7 +44,7 @@
       <swiper indicator-dots='true' indicator-active-color='white' circular='true' 
         current="{{swiperIdx}}" bindchange='onSlideChangeEnd' style='height: 160rpx;'
         bindtap='showMore'>
-        <swiper-item wx:for="{{schoolData.schoolDistrictInfo.length}}" data-index="{{index}}">
+        <swiper-item wx:for="{{schoolData.schoolDistrictInfo.length}}">
           <view class='swiper-hide-ctt-view'>
             <view class='bold-uni-text swiper-title hide'>
               {{schoolData.schoolDistrictInfo[index].school_district_name}}
@@ -88,7 +88,7 @@
       <swiper class='swiper-view' indicator-dots='true' circular='true'
       current='{{swiperIdx}}' bindchange='onSlideChangeEnd' 
       indicator-active-color='white' bindtap='hide'>
-        <swiper-item wx:for="{{schoolData.schoolDistrictInfo.length}}" data-index="{{index}}">
+        <swiper-item wx:for="{{schoolData.schoolDistrictInfo.length}}">
           <view class='bold-uni-text swiper-title'>
             {{schoolData.schoolDistrictInfo[index].school_district_name}}
           </view>
@@ -168,7 +168,7 @@
   </view>
 
   <view class='basic-school-view bottom-view' bindtap='showCmtDetail'
-  wx:for="{{schoolData.ratesInfo.length}}" data-index='index'>
+  wx:for="{{schoolData.ratesInfo.length}}" data-index="{{index}}">
     <view class='bottom-right-part-display'>
       <view class='up-cmt-overall-view'>
         <view class='sub-text cmt-text'>{{cmtCreatedTime[index]}}</view>
