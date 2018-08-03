@@ -44,7 +44,7 @@
       <swiper indicator-dots='true' indicator-active-color='white' circular='true' 
         current="{{swiperIdx}}" bindchange='onSlideChangeEnd' style='height: 160rpx;'
         bindtap='showMore'>
-        <swiper-item wx:for="{{schoolData.schoolDistrictInfo.length}}" data-index="{{index}}">
+        <swiper-item wx:for="{{schoolData.schoolDistrictInfo.length}}">
           <view class='swiper-hide-ctt-view'>
             <view class='bold-uni-text swiper-title hide'>
               {{schoolData.schoolDistrictInfo[index].school_district_name}}
@@ -88,7 +88,7 @@
       <swiper class='swiper-view' indicator-dots='true' circular='true'
       current='{{swiperIdx}}' bindchange='onSlideChangeEnd' 
       indicator-active-color='white' bindtap='hide'>
-        <swiper-item wx:for="{{schoolData.schoolDistrictInfo.length}}" data-index="{{index}}">
+        <swiper-item wx:for="{{schoolData.schoolDistrictInfo.length}}">
           <view class='bold-uni-text swiper-title'>
             {{schoolData.schoolDistrictInfo[index].school_district_name}}
           </view>
@@ -98,15 +98,37 @@
               <text class='big-num-view'>{{schoolData.schoolDistrictInfo[index].school_district_score}}</text>
             </view>
             <view class='swiper-ctt-right'>
-              <view class='sub-text cmt-detail' 
-              wx:for="{{detailCmtLeft}}">
-                {{item.category}} 
+              <view class='sub-text cmt-detail'>
+                社会声誉: {{schoolData.schoolDistrictInfo[index].social_reputation}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                学术水平: {{schoolData.schoolDistrictInfo[index].academic_level}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                网络服务: {{schoolData.schoolDistrictInfo[index].network_services}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                住宿条件: {{schoolData.schoolDistrictInfo[index].accommodation}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                餐饮质量: {{schoolData.schoolDistrictInfo[index].food_quality}}
               </view>
             </view>
             <view class='swiper-ctt-right'>
-              <view class='sub-text cmt-detail' 
-              wx:for="{{detailCmtRight}}">
-                {{item.category}}
+              <view class='sub-text cmt-detail'>
+                校园地理位置: {{schoolData.schoolDistrictInfo[index].campus_location}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                校园课外活动: {{schoolData.schoolDistrictInfo[index].extracurricular_activities}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                校园基础设施: {{schoolData.schoolDistrictInfo[index].campus_infrastructure}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                生活幸福指数: {{schoolData.schoolDistrictInfo[index].life_happiness_index}}
+              </view>
+              <view class='sub-text cmt-detail'>
+                校方与学生群体关系: {{schoolData.schoolDistrictInfo[index].school_students_relations}}
               </view>
             </view> 
           </view>
@@ -146,11 +168,11 @@
   </view>
 
   <view class='basic-school-view bottom-view' bindtap='showCmtDetail'
-  wx:for="three" data-index='index'>
+  wx:for="{{schoolData.ratesInfo.length}}" data-index="{{index}}">
     <view class='bottom-right-part-display'>
       <view class='up-cmt-overall-view'>
-        <view class='sub-text cmt-text'>2018-06-06</view>
-        <view class='sub-text cmt-text'>{{schoolData.ratesInfo[index].school_district_name}}</view>
+        <view class='sub-text cmt-text'>{{cmtCreatedTime[index]}}</view>
+        <view class='sub-text cmt-text'>{{schoolData.ratesInfo[index].school_district_name}}</view> 
       </view>
       <view class='up-cmt-overall-view'>
         <view class='image-center-view' style='margin-right:40rpx;'>
@@ -158,7 +180,7 @@
             <image class='face-view' src='../../../images/smileface.png' 
             style='height:auto' mode='widthFix'></image>
           </view>
-          <view class='big-num-view'>{{schoolData.ratesInfo[index].score}}</view>
+          <view class='big-num-view'>{{districtScore[index]}}</view>
         </view>
           <view class='cmt-like-view'>
             <image class='like-view' src='../../../images/like.png' 

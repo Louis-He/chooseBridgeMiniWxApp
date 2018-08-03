@@ -126,9 +126,6 @@ Page({
   },
 
   toUniversity: function(e) {
-    wx.navigateTo({
-      url: 'specificUni/specificUni'
-    });
     var that = this;
     var index = parseInt(e.currentTarget.dataset.index);
     var pushTmpUniv = {
@@ -157,8 +154,14 @@ Page({
       wx.setStorage({
         key: 'tempSchoolData',
         data: tempSchoolData,
+        success: function() {
+          wx.navigateTo({
+            url: 'specificUni/specificUni'
+          });
+        }
       })
     });
+    
   },
 
   setScrollHeight: function () {

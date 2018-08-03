@@ -3,7 +3,7 @@
   <view class='overall-tag-view cmt-overall-view'>
     <view class='image-part'>
       <view class='image-display'>
-        <image class='cmt-user-logo' src='../../../../images/user.png'
+        <image class='cmt-user-logo' src='/images/user.png'
         style='height:auto' mode='widthFix'></image>
       </view>
       <view class='normal-text text-part left-text-part'>
@@ -11,87 +11,86 @@
       </view>
     </view>
     <view class='normal-text text-part right-text-part'>
-      <text>{{school}}\n {{major}}\n {{state}}\n {{graduateYear}}</text>
+      <text>{{cmtData.university}}\n {{cmtData.major}}\n {{cmtData.province}}\n {{cmtData.graduateYear}}</text>
     </view>
   </view>
 
-  <view class='avg-work-view'>
+  <view class='avg-work-view swpier-ctt-view'>
     <view class='course-left-part'>
       <view class='normal-text course-left-up-view'>
-        <text>{{cmtDate}}\n</text>
+        <text>{{cmtData.commentTime}}\n</text>
       </view>
-      <view class='text-2' style='white-space:nowrap;'>
-        <image class='happyface-view' src='../../../../images/smileFace.png'
+      <view class='text-2 campus-name-display' style='white-space:nowrap;'>
+        <image class='happyface-view' src='/images/smileface.png'
         style='height:auto' mode='widthFix'></image>
-        <text>{{workingIdx}}\n</text>
+        <text>{{cmtData.score}}\n</text>
         <view class='normal-text' style='line-height:1.4em;'>
-          <text>Oxford\n Campus</text>
+          <text>{{cmtData.district}}</text>
         </view>
       </view>
     </view>
-    <view class='course-right-part' style='line-height:1em;'>
-      <image class='book-view' src='../../../../images/book.png'
-        style='height:auto' mode='widthFix'></image>
-      <text class='class-name'>HIST170QW\n</text>
-      <text class='normal-text bold'>课程名: </text>
-      <text class='normal-text'>{{courseName}}\n</text>
-      <view class='course-cmt-view'>
-        <view class='cmt-view'>
-          <view>
-            <text class='normal-text bold'>是否记出勤: </text>
-            <text class='normal-text'>否</text>
-          </view>
-          <view class='cmt-right'>
-            <text class='normal-text bold'>书面作业量: </text>
-            <text class='normal-text'>适中</text>
-          </view>
-        </view>
-        <view class='cmt-view'>
-          <view>
-            <text class='normal-text bold'>课程难度: </text>
-            <text class='normal-text'>较易</text>
-          </view>
-          <view class='cmt-right'>
-            <text class='normal-text bold'>我的成绩: </text>
-            <text class='normal-text'>A\n</text>
-          </view>
-        </view>
+    <view class='swiper-ctt-right'>
+      <view class='sub-text cmt-detail'>
+        社会声誉: {{cmtData.socialReputation}}
       </view>
-      <view class='course-cmt-view'></view>
-      <view class='tags-view lower-tag'>
-        <view class='tag-array-view lowest-tag' wx:for="{{tagsUp}}">
-          {{item.tag}}
-        </view>
+      <view class='sub-text cmt-detail'>
+        学术水平: {{cmtData.academic}}
+      </view>
+      <view class='sub-text cmt-detail'>
+        网络服务: {{cmtData.network}}
+      </view>
+      <view class='sub-text cmt-detail'>
+        住宿条件: {{cmtData.dorm}}
+      </view>
+      <view class='sub-text cmt-detail'>
+        餐饮质量: {{cmtData.food}}
       </view>
     </view>
+    <view class='swiper-ctt-right'>
+      <view class='sub-text cmt-detail'>
+         校园地理位置: {{cmtData.location}}
+      </view>
+      <view class='sub-text cmt-detail'>
+         校园课外活动: {{cmtData.acticities}}
+      </view>
+      <view class='sub-text cmt-detail'>
+         校园基础设施: {{cmtData.infra}}
+      </view>
+      <view class='sub-text cmt-detail'>
+         生活幸福指数: {{cmtData.happiness}}
+      </view>
+      <view class='sub-text cmt-detail'>
+         校方与学生群体关系: {{cmtData.relation}}
+      </view>
+    </view> 
   </view>
 
   <view class='avg-work-view'>
     <view class='normal-text cmt-detail-text-view'>
-      <text class='normal-text'>{{cmtDetail}}</text>
+      <text class='normal-text'>{{cmtData.comment}}</text>
     </view>
   </view>
 
   <view class='bottom-view'>
     <view class='btn-view like-btn-view'>
       <view class='circle-view'>
-        <image class='share-view' src='../../../../images/like.png' 
+        <image class='share-view' src='/images/like.png' 
         style='height:auto' mode='widthFix'></image>
-        <text class='normal-text'>999+</text>
+        <text class='normal-text'>{{cmtData.likes}}</text>
       </view>
     </view>
     <view class='btn-view wshare-btn-view'>
       <view class='circle-view'>
-        <image class='share-view' src='../../../../images/share.png'
+        <image class='share-view' src='/images/share.png'
         style='height:auto' mode='widthFix'></image>
         <text class='normal-text'>分享</text>
       </view>
     </view>
     <view class='btn-view dislike-btn-view'>
       <view class='circle-view'>
-        <image class='share-view' src='../../../../../images/dislike.png' 
+        <image class='share-view' src='/images/dislike.png' 
         style='height:auto' mode='widthFix'></image>
-        <text class='normal-text'>999+</text>
+        <text class='normal-text'>{{cmtData.dislikes}}</text>
       </view>
     </view>
   </view>
