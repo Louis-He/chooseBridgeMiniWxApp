@@ -27,7 +27,6 @@ Page({
     ],
     swiperIdx: '0',
     schoolData: {},
-    three: 2
   },
   /**
   * 生命周期函数--监听页面加载
@@ -38,7 +37,18 @@ Page({
     wx.getStorage({
       key: 'tempSchoolData',
       success: function(res) {
-        console.log(res);
+        var tempArray = res.data.ratesInfo;
+        var tempScore = new Array();
+        var tempCreatedTime = new Array();
+        for (var i = 0; i < tempArray.length; i++) {
+          tempScore[i] = tempArray[i].score.toString();
+          tempScore[i] = parseFloat(tempScore[i]).toFixed(1);
+          tempCreatedTime[i] = tempArray[i].created_at.substring(0, 10);
+          that.setData({
+            districtScore: tempScore,
+            cmtCreatedTime: tempCreatedTime
+          });
+        }
         that.setData({
           schoolData: {
             schoolName: res.data.schoolName,
@@ -52,10 +62,17 @@ Page({
             likesNum: res.data.likesNum,
           }
         })
-        console.log(that.data.schoolData);
       },
     })
   },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
   showInput: function () {
     this.setData({
       inputShowed: true

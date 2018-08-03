@@ -146,10 +146,10 @@
   </view>
 
   <view class='basic-school-view bottom-view' bindtap='showCmtDetail'
-  wx:for="three" data-index='index'>
+  wx:for="two" data-index='index'>
     <view class='bottom-right-part-display'>
       <view class='up-cmt-overall-view'>
-        <view class='sub-text cmt-text'>2018-06-06</view>
+        <view class='sub-text cmt-text'>{{cmtCreatedTime[index]}}</view>
         <view class='sub-text cmt-text'>{{schoolData.ratesInfo[index].school_district_name}}</view>
       </view>
       <view class='up-cmt-overall-view'>
@@ -158,7 +158,7 @@
             <image class='face-view' src='../../../images/smileface.png' 
             style='height:auto' mode='widthFix'></image>
           </view>
-          <view class='big-num-view'>{{schoolData.ratesInfo[index].score}}</view>
+          <view class='big-num-view'>{{districtScore[index]}}</view>
         </view>
           <view class='cmt-like-view'>
             <image class='like-view' src='../../../images/like.png' 
