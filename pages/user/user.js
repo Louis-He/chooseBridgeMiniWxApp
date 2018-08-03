@@ -31,30 +31,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    var that = this
-    wx.getStorage({
-      key: 'username',
-      success: function(res) {
-        console.log(res.data)
-        that.setData({
-          username: res.data
-        })
-        if (that.data.username == '叮咚的雨' || that.data.username == 'Waldosia' || that.data.username == '何炳昌') {
-          console.log('欢迎管理员')
-          that.setData({
-            isadmin: true
-          })
-          wx.setStorage({
-            key: 'isAdmin',
-            data: true,
-          })
-        }
-      },
-      fail: function(res){
-        that.setData({
-          isUsernameStorage: false
-        })
-      }
+    var that = this;
+    that.setData({
+      isUsernameStorage: false,
+      isAdmin: false
+    })
+    wx.setStorage({
+      key: 'isAdmin',
+      data: false,
     })
   },
 
@@ -285,7 +269,6 @@ Page({
         // 补充用户名
         if(!that.data.isUsernameStorage){
           wx.getUserInfo({
-
             success: function (res) {
               // console.log(res.userInfo)
               wx.setStorage({
@@ -295,6 +278,16 @@ Page({
               that.setData({
                 username: res.userInfo.nickName
               })
+              if (res.userInfo.nickName == '叮咚的雨' || res.userInfo.nickName == 'Waldosia' || res.userInfo.nickName == '何炳昌') {
+                console.log('欢迎管理员')
+                that.setData({
+                  isadmin: true
+                })
+                wx.setStorage({
+                  key: 'isAdmin',
+                  data: true,
+                })
+              }
             }
           })
         }
