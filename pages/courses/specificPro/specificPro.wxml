@@ -40,8 +40,8 @@
         {{item.tag}} {{item.num}}
       </view>
     </view>
-    <view class='tags-view'>
-      <view class='tag-array-view' wx:for="{{tagsDown}}" data-index="{{index}}">
+    <view class='real-tags-view'>
+      <view class='real-tag-array-view' wx:for="{{tagsDown}}" data-index="{{index}}">
         {{item.tag}} {{item.num}}
       </view>
     </view>

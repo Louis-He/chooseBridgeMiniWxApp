@@ -56,14 +56,14 @@ Page({
           var tempTagsDown = new Array();
           var i = 0;
           for (var key in result.tagsInfo) {
-            if (i < 4) break;
-            tempTagsDown.push({ tag: key, num: '(' + result.tagsInfo[key] + ')' });
+            if (i < 4) i++;
+            else tempTagsDown.push({ tag: key, num: '(' + result.tagsInfo[key] + ')' });
           }
-          i++;
           that.setData({
             tagsUp: tempTags,
             tagsDown: tempTagsDown
           })
+          console.log(that.data.tagsDown);
 
           //转换用户点评数字成文字含义
           var temprate = result.rateInfo;
@@ -160,9 +160,30 @@ Page({
       url: '../../comment/newComment/newProfCom/newProfCom',
     })
   },
-  showCmtDetail: function () {
-    wx.navigateTo({
-      url: 'commentDetail/commentDetail',
+  showCmtDetail: function (e) {
+    var that = this;
+    var index = parseInt(e.currentTarget.dataset.index);
+    var profCmtDetail = {
+      tags: that.data.info.rates[index].tag,
+      btmRates: that.data.btmRates[index],
+      grade: that.data.info.rates[index].grade,
+      courseCode: that.data.info.rates[index].course_code,
+      courseName: that.data.info.rates[index].course_name,
+      comment: that.data.info.rates[index].comment,
+      effort: that.data.info.rates[index].effort,
+      date: that.data.commentTime[index],
+      likes: that.data.info.rates[index].thumbs_up_percent,
+      dislikes: that.data.info.rates[index].thumbs_down_percent,
+      studentID: that.data.info.rates[index].create_student_id,
+    }
+    wx.setStorage({
+      key: 'profCmtDetail',
+      data: profCmtDetail,
+      success: function() {
+        wx.navigateTo({
+          url: 'commentDetail/commentDetail',
+        })
+      }
     })
   },
   setScrollHeight: function () {

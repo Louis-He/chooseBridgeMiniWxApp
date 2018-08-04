@@ -10,52 +10,52 @@
         <text>ta的大学\n ta的专业\n 高中所在省/州\n 毕业年份</text>
       </view>
     </view>
-    <view class='normal-text text-part right-text-part'>
-      <text>{{school}}\n {{major}}\n {{state}}\n {{graduateYear}}</text>
+    <view class='normal-text text-part right-text-part' style="white-space:nowrap">
+      <text>{{university}}\n {{major}}\n {{province}}\n {{graduate}}</text>
     </view>
   </view>
 
   <view class='avg-work-view'>
     <view class='course-left-part'>
       <view class='normal-text course-left-up-view'>
-        <text>{{cmtDate}}\n努力指数</text>
+        <text>{{date}}\n努力指数</text>
       </view>
       <view class='text-2' style='line-height: 3em;'>
-        <text>{{workingIdx}}</text>
+        <text>{{effort}}</text>
       </view>
     </view>
     <view class='course-right-part' style='line-height:1em;'>
       <image class='book-view' src='/images/book.png'
         style='height:auto' mode='widthFix'></image>
-      <text class='class-name'>HIST170QW\n</text>
+      <text class='class-name'>{{courseCode}}\n</text>
       <text class='normal-text bold'>课程名: </text>
       <text class='normal-text'>{{courseName}}\n</text>
       <view class='course-cmt-view'>
         <view class='cmt-view'>
           <view>
             <text class='normal-text bold'>是否记出勤: </text>
-            <text class='normal-text'>否</text>
+            <text class='normal-text'>{{attendence}}</text>
           </view>
           <view class='cmt-right'>
             <text class='normal-text bold'>书面作业量: </text>
-            <text class='normal-text'>适中</text>
+            <text class='normal-text'>{{homework}}</text>
           </view>
         </view>
         <view class='cmt-view'>
           <view>
             <text class='normal-text bold'>课程难度: </text>
-            <text class='normal-text'>较易</text>
+            <text class='normal-text'>{{difficult}}</text>
           </view>
           <view class='cmt-right'>
             <text class='normal-text bold'>我的成绩: </text>
-            <text class='normal-text'>A\n</text>
+            <text class='normal-text'>{{grade}}\n</text>
           </view>
         </view>
       </view>
       <view class='course-cmt-view'></view>
       <view class='tags-view lower-tag'>
-        <view class='tag-array-view lowest-tag' wx:for="{{tagsUp}}">
-          {{item.tag}}
+        <view class='tag-array-view lowest-tag' wx:for="{{tags}}">
+          {{tags[index]}}
         </view>
       </view>
     </view>
@@ -63,7 +63,7 @@
 
   <view class='avg-work-view'>
     <view class='normal-text cmt-detail-text-view'>
-      <text class='normal-text'>{{cmtDetail}}</text>
+      <text class='normal-text'>{{comment}}</text>
     </view>
   </view>
 
@@ -72,7 +72,7 @@
       <view class='circle-view'>
         <image class='share-view' src='../../../../images/like.png' 
         style='height:auto' mode='widthFix'></image>
-        <text class='normal-text'>999+</text>
+        <text class='normal-text'>{{likes}}</text>
       </view>
     </view>
     <view class='btn-view wshare-btn-view'>
@@ -86,7 +86,7 @@
       <view class='circle-view'>
         <image class='share-view' src='../../../../../images/dislike.png' 
         style='height:auto' mode='widthFix'></image>
-        <text class='normal-text'>999+</text>
+        <text class='normal-text'>{{dislikes}}</text>
       </view>
     </view>
   </view>
