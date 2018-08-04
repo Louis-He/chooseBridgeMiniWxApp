@@ -40,9 +40,18 @@ Page({
       key: 'isAdmin',
       data: false,
     })
-    wx.setStorage({
-      key: 'isAdmin',
-      data: false,
+
+    wx.removeStorage({
+      key: 'professorID',
+      success: function (res) {
+
+      },
+    })
+    wx.removeStorage({
+      key: 'professor_name_cmt',
+      success: function (res) {
+
+      },
     })
   },
 
