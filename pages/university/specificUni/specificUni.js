@@ -161,5 +161,17 @@ Page({
     wx.navigateTo({
       url: '../../comment/newComment/newUnivCom/newUnivCom',
     })
-  }
+  },
+  toResult: function () {
+    var that = this;
+    wx.setStorage({
+      key: 'uniName',
+      data: that.data.inputVal,
+      success: function () {
+        wx.switchTab({
+          url: '../university',
+        })
+      }
+    });
+  },
 })
