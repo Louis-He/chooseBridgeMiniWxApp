@@ -96,6 +96,7 @@ Page({
     var that = this;
     var index = parseInt(e.currentTarget.dataset.index);
     var professorID = that.data.professors[index].professor_id;
+    var professor_name_cmt = that.data.professors[index].professor_full_name;
     wx.setStorage({
       key: 'professorID',
       data: professorID,
@@ -104,6 +105,10 @@ Page({
           url: 'specificPro/specificPro',
         })
       }
+    });
+    wx.setStorage({
+      key: 'professor_name_cmt',
+      data: professor_name_cmt,
     })
   },
   showInput: function () {
