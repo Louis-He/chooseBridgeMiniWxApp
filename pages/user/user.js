@@ -40,6 +40,10 @@ Page({
       key: 'isAdmin',
       data: false,
     })
+    wx.setStorage({
+      key: 'isAdmin',
+      data: false,
+    })
   },
 
   /**
@@ -292,229 +296,135 @@ Page({
           })
         }
 
-        // 检查是否已经储存unionId，若已经储存那么直接使用，否则前往请求unionId
-        wx.getStorage({
-          key: 'unionId',
-          success: function(res) {
-            // 如果存在，直接请求
-            requestUtil.getChooseBridgeUserInfo(res.data, function (result) {
-              //console.log(result.data.entities[0].academic)
-              var academicInfo = result.data.entities[0].academic
-              // 设置大学、专业、毕业年份、高中地区和邮箱状态
-              
-              if (academicInfo.school_name) {
-                that.setData({
-                  university: academicInfo.school_name
-                })
-              } else {
-                that.setData({
-                  university: '未登记'
-                })
-              }
-
-              if (academicInfo.major) {
-                that.setData({
-                  discipline: academicInfo.major
-                })
-              } else {
-                that.setData({
-                  discipline: '未登记'
-                })
-              }
-
-              if (academicInfo.graduate_year) {
-                that.setData({
-                  graduateYear: academicInfo.graduate_year
-                })
-              } else {
-                that.setData({
-                  graduateYear: '未登记'
-                })
-              }
-
-              if (academicInfo.exam_province) {
-                that.setData({
-                  highSchoolAddress: academicInfo.exam_province
-                })
-              } else {
-                that.setData({
-                  highSchoolAddress: '未登记'
-                })
-              }
-
-              if (result.data.entities[0].profile.email_verified) {
-                that.setData({
-                  emailFlag: true
-                })
-              } else {
-                that.setData({
-                  emailFlag: false
-                })
-              }
-
-              if (result.data.entities[0].points) {
-                that.setData({
-                  rp: result.data.entities[0].points
-                })
-              } else {
-                that.setData({
-                  rp: "0"
-                })
-              }
-
-              if (result.data.entities[0].is_vip) {
-                that.setData({
-                  expireDay: result.data.entities[0].vip_expire_day
-                })
-              } else {
-                that.setData({
-                  expireDay: false
-                })
-              }
-
-              // 存储user唯一id
+        // 前往请求unionId
+        wx.getUserInfo({
+          withCredentials: true,
+          success: function (res) {
+            // 获取用户unionID数据
+            requestUtil.getUserUnionID(firstRequestedData, res, function (result) {
+              //console.log(res);
+              //console.log(result);
+              that.setData({
+                username: res.userInfo.nickName
+              })
               wx.setStorage({
-                key: 'user_id',
-                data: result.data.entities[0].id,
+                key: 'username',
+                data: res.userInfo.nickName,
+                success: function (res){
+                  that.onLoad();
+                }
+              })
+              app.globalData.userInfo = res
+              //console.log(app.globalData)
+              wx.setStorage({
+                key: 'unionId',
+                data: result.data.data.unionId,
               })
 
-              // 请求viewmycourses系统中的用户的信息, 没有在fail中编译
-              requestUtil.getViewmycoursesUserInfo(result.data.entities[0].id, function(result){
-                console.log(result)
+              // 获取用户unionId后得到用户choosebridge个人信息
+              requestUtil.getChooseBridgeUserInfo(result.data.data.unionId, function (res) {
+                var academicInfo = res.data.entities[0].academic;
+                // 设置大学、专业、毕业年份、高中地区和邮箱状态
+                //console.log(res)
+                if (academicInfo.school_name) {
+                  that.setData({
+                    university: academicInfo.school_name
+                  })
+                } else {
+                  that.setData({
+                    university: '未登记'
+                  })
+                }
+
+                if (academicInfo.major) {
+                  that.setData({
+                    discipline: academicInfo.major
+                  })
+                } else {
+                  that.setData({
+                    discipline: '未登记'
+                  })
+                }
+
+                if (academicInfo.graduate_year) {
+                  that.setData({
+                    graduateYear: academicInfo.graduate_year
+                  })
+                } else {
+                  that.setData({
+                    graduateYear: '未登记'
+                  })
+                }
+
+                if (academicInfo.exam_province) {
+                  that.setData({
+                    highSchoolAddress: academicInfo.exam_province
+                  })
+                } else {
+                  that.setData({
+                    highSchoolAddress: '未登记'
+                  })
+                }
+
+                if (res.data.entities[0].profile.email_verified) {
+                  that.setData({
+                    emailFlag: true
+                  })
+                } else {
+                  that.setData({
+                    emailFlag: false
+                  })
+                }
+
+                if (res.data.entities[0].points) {
+                  that.setData({
+                    rp: res.data.entities[0].points
+                  })
+                } else {
+                  that.setData({
+                    rp: "0"
+                  })
+                }
+
+                if (res.data.entities[0].is_vip) {
+                  that.setData({
+                    expireDay: res.data.entities[0].vip_expire_day
+                  })
+                } else {
+                  that.setData({
+                    expireDay: false
+                  })
+                }
+
+                // 存储user唯一id
+                wx.setStorage({
+                  key: 'user_id',
+                  data: res.data.entities[0].id,
+                })
+
               })
             })
+
           },
-          fail: function(res){
-            // 否则先取得unionId
-            wx.getUserInfo({
-              withCredentials: true,
+          fail: function (res) {
+            console.log("fail")
+            wx.showModal({
+              content: '授权状态发生更改，请重新给予我们获取基本信息的权限以保证正常使用',
+              showCancel: false,
               success: function (res) {
-                // 获取用户unionID数据
-                requestUtil.getUserUnionID(firstRequestedData, res, function (result) {
-                  //console.log(res);
-                  //console.log(result);
-                  that.setData({
-                    username: res.userInfo.nickName
-                  })
-                  wx.setStorage({
-                    key: 'username',
-                    data: res.userInfo.nickName,
-                    success: function (res){
-                      that.onLoad();
-                    }
-                  })
-                  app.globalData.userInfo = res
-                  //console.log(app.globalData)
-                  wx.setStorage({
-                    key: 'unionId',
-                    data: result.data.data.unionId,
-                  })
-
-                  // 获取用户unionId后得到用户choosebridge个人信息
-                  requestUtil.getChooseBridgeUserInfo(result.data.data.unionId, function (res) {
-                    var academicInfo = res.data.entities[0].academic;
-                    // 设置大学、专业、毕业年份、高中地区和邮箱状态
-                    //console.log(res)
-                    if (academicInfo.school_name) {
-                      that.setData({
-                        university: academicInfo.school_name
-                      })
-                    } else {
-                      that.setData({
-                        university: '未登记'
-                      })
-                    }
-
-                    if (academicInfo.major) {
-                      that.setData({
-                        discipline: academicInfo.major
-                      })
-                    } else {
-                      that.setData({
-                        discipline: '未登记'
-                      })
-                    }
-
-                    if (academicInfo.graduate_year) {
-                      that.setData({
-                        graduateYear: academicInfo.graduate_year
-                      })
-                    } else {
-                      that.setData({
-                        graduateYear: '未登记'
-                      })
-                    }
-
-                    if (academicInfo.exam_province) {
-                      that.setData({
-                        highSchoolAddress: academicInfo.exam_province
-                      })
-                    } else {
-                      that.setData({
-                        highSchoolAddress: '未登记'
-                      })
-                    }
-
-                    if (res.data.entities[0].profile.email_verified) {
-                      that.setData({
-                        emailFlag: true
-                      })
-                    } else {
-                      that.setData({
-                        emailFlag: false
-                      })
-                    }
-
-                    if (res.data.entities[0].points) {
-                      that.setData({
-                        rp: res.data.entities[0].points
-                      })
-                    } else {
-                      that.setData({
-                        rp: "0"
-                      })
-                    }
-
-                    if (res.data.entities[0].is_vip) {
-                      that.setData({
-                        expireDay: res.data.entities[0].vip_expire_day
-                      })
-                    } else {
-                      that.setData({
-                        expireDay: false
-                      })
-                    }
-
-                    // 存储user唯一id
-                    wx.setStorage({
-                      key: 'user_id',
-                      data: res.data.entities[0].id,
-                    })
-
-                  })
-                })
-
-              },
-              fail: function (res) {
-                console.log("fail")
-                wx.showModal({
-                  content: '授权状态发生更改，请重新给予我们获取基本信息的权限以保证正常使用',
-                  showCancel: false,
-                  success: function (res) {
-                    if (res.confirm) {
-                      console.log('用户确认返回首页重新确认权限')
-                    }
-                  }
-                });
-                that.setData({
-                  "firstView": true,
-                  "isAgree": false,
-                  "firstViewmsg": "继续使用巧选校园"
-                })
+                if (res.confirm) {
+                  console.log('用户确认返回首页重新确认权限')
+                }
               }
+            });
+            that.setData({
+              "firstView": true,
+              "isAgree": false,
+              "firstViewmsg": "继续使用巧选校园"
             })
           }
         })
+        
 
       }
     })
