@@ -104,7 +104,7 @@ Page({
             }
 
             var sendData = {
-              "professor_id": 1,
+              "professor_id": that.data.tmpProfCom.professorID,
               "course_code": that.data.tmpProfCom.courseId,
               "course_name": that.data.tmpProfCom.course,
               "is_attend": that.data.tmpProfCom.isAttend,

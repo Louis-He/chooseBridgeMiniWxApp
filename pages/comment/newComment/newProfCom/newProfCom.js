@@ -22,6 +22,23 @@ Page({
    */
   onLoad: function (options) {
     this.setScrollHeight();
+    var that = this;
+    wx.getStorage({
+      key: 'professor_name_cmt',
+      success: function(res) {
+        that.setData({
+          profName: res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'professorID',
+      success: function (res) {
+        that.setData({
+          professorID: res.data
+        })
+      },
+    })
   },
 
   /**
@@ -194,6 +211,7 @@ Page({
     }
 
     var summaryData = {
+      professorID: this.data.professorID,
       isAttend: this.data.isAttend,
       courseId: this.data.courseId,
       course: this.data.course,
