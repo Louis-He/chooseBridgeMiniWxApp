@@ -70,21 +70,21 @@
   <view class='bottom-view'>
     <view class='btn-view like-btn-view'>
       <view class='circle-view'>
-        <image class='share-view' src='../../../../images/like.png' 
+        <image class='share-view' src='/images/like.png' 
         style='height:auto' mode='widthFix'></image>
         <text class='normal-text'>{{likes}}</text>
       </view>
     </view>
     <view class='btn-view wshare-btn-view'>
       <view class='circle-view'>
-        <image class='share-view' src='../../../../images/share.png'
+        <image class='share-view' src='/images/share.png'
         style='height:auto' mode='widthFix'></image>
         <text class='normal-text'>分享</text>
       </view>
     </view>
     <view class='btn-view dislike-btn-view'>
       <view class='circle-view'>
-        <image class='share-view' src='../../../../../images/dislike.png' 
+        <image class='share-view' src='/images/dislike.png' 
         style='height:auto' mode='widthFix'></image>
         <text class='normal-text'>{{dislikes}}</text>
       </view>
