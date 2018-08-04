@@ -4,7 +4,8 @@
               <view class="weui-search-bar__form">
                   <view class="weui-search-bar__box">
                       <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                      <input type="text" class="weui-search-bar__input" placeholder="请输入教授名" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                      <input type="text" class="weui-search-bar__input" placeholder="请输入教授名" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" 
+                      bindconfirm='toResult' confirm-type='search'/>
                       <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                           <icon type="clear" size="14"></icon>
                       </view>
@@ -32,11 +33,11 @@
     <button class='right-button'>已有{{info.likes}}人点赞</button>
   </view>
 
-  <view class='overall-tag-view'>
+  <view class='real-overall-tag-view'>
     <text class='tag-text-view'>ta的标签</text>
-    <view class='tags-view'>
-      <view class='tag-array-view' wx:for="{{tagsUp}}" data-index="{{index}}">
-        {{tagsUp[index].tag}} {{item.num}}
+    <view class='real-tags-view'>
+      <view class='real-tag-array-view' wx:for="{{tagsUp}}" data-index="{{index}}">
+        {{item.tag}} {{item.num}}
       </view>
     </view>
     <view class='tags-view'>
@@ -74,10 +75,10 @@
       <view class='work-right-view'>
         <text class='big-text'>所授课程\n</text>
         <text class='normal-text'>看看同学们在这些课程上的努力程度\n</text>
-        <text class='class-name'>HIST170QW 3.2</text>
-        <text class='class-name right'>HIST270QW 3.2\n</text>
-        <text class='class-name'>HIST170QW 3.2</text>
-        <text class='class-name right'>HIST270QW 3.2\n</text>
+        <view wx:for="{{info.courses.length}}">
+          <text class='class-name'>{{info.courses[index].course_code}} {{info.courses[index].effort}}</text>
+        <text class='class-name right'>{{info.courses[index+1].course_code}} {{info.courses[index+1].effort}}\n</text>
+        </view>
         <view class='button-view'>
           <image class='arrow-view' src='/images/arrowUp.png'   
           style='width:80%height:20%' mode='widthFix'>
@@ -94,10 +95,11 @@
     </button>
   </view>
 
-  <view class='avg-work-view lowest' bindtap='showCmtDetail'>
+  <view class='avg-work-view lowest' bindtap='showCmtDetail' wx:for="{{info.rates}}" 
+  data-index="{{index}}">
       <view class='comment-left-view'>
-        <text class='normal-text' style='white-space:nowrap'>{{commentTime}}\n 努力指数\n</text>
-        <view class='text-2 down-part'>{{info.rates[0].effort}}\n</view>
+        <text class='normal-text' style='white-space:nowrap'>{{commentTime[index]}}\n 努力指数\n</text>
+        <view class='text-2 down-part'>{{info.rates[index].effort}}\n</view>
         <view>
           <image class='like-view' src='/images/like.png' 
             style='height:auto' mode='widthFix'></image>
@@ -105,42 +107,42 @@
           style='height:auto' mode='widthFix'></image>
           <view class='bottom-num'>
             <view class='normal-text num-view'>
-              {{info.rates[0].thumbs_up_percent}}</view>
+              {{info.rates[index].thumbs_up_percent}}</view>
             <view class='normal-text num-view'>
-              {{info.rates[0].thumbs_down_percent}}</view>
+              {{info.rates[index].thumbs_down_percent}}</view>
           </view>
         </view>
       </view>
       <view class='comment-right-view'>
         <image class='book-view' src='/images/book.png'
           style='height:auto' mode='widthFix'></image>
-        <text class='class-name'>{{info.rates[0].course_code}}\n</text>
+        <text class='class-name'>{{info.rates[index].course_code}}\n</text>
         <text class='normal-text bold'>课程名: </text>
-        <text class='normal-text'>{{info.rates[0].course_name}}\n</text>
+        <text class='normal-text'>{{info.rates[index].course_name}}\n</text>
         <view class='course-cmt-view' style='white-space: nowrap'>
           <view class='cmt-view'>
             <view>
               <text class='normal-text bold'>是否记出勤: </text>
-              <text class='normal-text'>否</text>
+              <text class='normal-text'>{{btmRates[index].attendence}}</text>
             </view>
             <view class='cmt-right'>
               <text class='normal-text bold'>书面作业量: </text>
-              <text class='normal-text'>适中</text>
+              <text class='normal-text'>{{btmRates[index].homework}}</text>
             </view>
           </view>
           <view class='cmt-view'>
             <view>
               <text class='normal-text bold'>课程难度: </text>
-              <text class='normal-text'>较易</text>
+              <text class='normal-text'>{{btmRates[index].difficult}}</text>
             </view>
             <view class='cmt-right'>
               <text class='normal-text bold'>我的成绩: </text>
-              <text class='normal-text'>A\n</text>
+              <text class='normal-text'>{{info.rates[index].grade}}\n</text>
             </view>
           </view>
         </view>
         <view class='course-cmt-view'></view>
-        <view class='tags-view lower-tag'>
+        <view class='real-tags-view lower-tag'>
           <view class='tag-array-view lowest-tag' wx:for="{{tagsUp}}">
             {{item.tag}}
           </view>
