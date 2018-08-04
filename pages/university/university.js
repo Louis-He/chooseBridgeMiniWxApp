@@ -16,7 +16,6 @@ Page({
     professor: "Dietrich Burbulla\n",
     school: "University of Toronto",
     college: "Department of mathematics",
-    schoolData: {},
   },
 
   /**
@@ -37,7 +36,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    wx.getStorage({
+      key: 'uniName',
+      success: function (res) {
+        requestUtil.getSchoolByCondition(res.data, function (result) {
+          that.setData({
+            universities: result
+          })
+        });
+      },
+    })
   },
 
   /**
@@ -117,12 +126,15 @@ Page({
     this.setData({
       firstView: false
     });
+    //按名称搜索学校部分
     requestUtil.getSchoolByCondition(that.data.inputVal, function(result) {
       //console.log(result);
       that.setData({
         universities: result
       })
     });
+    //按地区搜索学校部分
+    
   },
 
   toUniversity: function(e) {
