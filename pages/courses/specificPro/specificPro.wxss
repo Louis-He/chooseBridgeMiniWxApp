@@ -226,6 +226,7 @@ page {
 .bottom-num {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 .cmt-view {
    display: flex;
@@ -242,9 +243,6 @@ page {
 .num-view {
   font-size: 22rpx;
 }
-.right-num-btm {
-   padding-left: 15rpx; 
-}
 .book-view {
   width: 28rpx;
   margin: 15rpx 10rpx 0rpx 0rpx;
@@ -257,5 +255,5 @@ page {
   flex-direction: column;
   justify-content: center;
   position: relative;
-  width: 12%;
+  width: 10%;
 }

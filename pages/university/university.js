@@ -117,12 +117,15 @@ Page({
     this.setData({
       firstView: false
     });
+    //按名称搜索学校部分
     requestUtil.getSchoolByCondition(that.data.inputVal, function(result) {
       //console.log(result);
       that.setData({
         universities: result
       })
     });
+    //按地区搜索学校部分
+    
   },
 
   toUniversity: function(e) {

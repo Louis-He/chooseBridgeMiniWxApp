@@ -21,26 +21,26 @@
     <image class='user-logo' src='/images/user.png'                  
       style='height:auto' mode='widthFix'></image>
     <view class='text-view top-right-text-view'>
-      <text class='name'>{{proName}} \n</text>
-      <text class='school'>{{uniName}} \n {{schoolName}}</text>
+      <text class='name'>{{info.name}} \n</text>
+      <text class='school'>{{info.university}} \n {{info.college}}</text>
     </view>
   </view>
 
   <view class='button-view'>
     <button class='left-button' bindtap='toPersonalPage'>教授个人主页</button>
     <button class='left-button' bindtap='share'>分享ta给好友</button>
-    <button class='right-button'>已有{{numOfLikes}}人点赞</button>
+    <button class='right-button'>已有{{info.likes}}人点赞</button>
   </view>
 
   <view class='overall-tag-view'>
     <text class='tag-text-view'>ta的标签</text>
     <view class='tags-view'>
-      <view class='tag-array-view' wx:for="{{tagsUp}}">
-        {{item.tag}} {{item.num}}
+      <view class='tag-array-view' wx:for="{{tagsUp}}" data-index="{{index}}">
+        {{tagsUp[index].tag}} {{item.num}}
       </view>
     </view>
     <view class='tags-view'>
-      <view class='tag-array-view' wx:for="{{tagsDown}}">
+      <view class='tag-array-view' wx:for="{{tagsDown}}" data-index="{{index}}">
         {{item.tag}} {{item.num}}
       </view>
     </view>
@@ -50,13 +50,13 @@
     <view class='avg-work-view' bindtap='showMore'>
       <view class='work-left-view'>
         <text class='normal-text'>平均努力指数\n</text>
-        <text class='text-2'>{{workingIndex}}</text>
+        <text class='text-2'>{{avgEffort}}</text>
       </view>
       <view class='work-right-view'>
         <text class='big-text'>所授课程\n</text>
         <text class='normal-text'>看看同学们在这些课程上的努力程度\n</text>
-        <text class='class-name'>HIST170QW 3.2</text>
-        <text class='class-name right'>HIST270QW 3.2\n</text>
+        <text class='class-name'>{{info.courses[0].course_code}} {{info.courses[0].effort}}</text>
+        <text class='class-name right'>{{info.courses[1].course_code}} {{info.courses[1].effort}}\n</text>
         <view class='button-view'>
           <image class='arrow-view' src='/images/arrowDown.png'   
           mode='widthFix'>
@@ -69,7 +69,7 @@
     <view class='avg-work-view' bindtap='hide'>
       <view class='work-left-view'>
         <text class='normal-text'>平均努力指数\n</text>
-        <text class='text-2'>{{workingIndex}}</text>
+        <text class='text-2'>{{avgEffort}}</text>
       </view>
       <view class='work-right-view'>
         <text class='big-text'>所授课程\n</text>
@@ -96,26 +96,28 @@
 
   <view class='avg-work-view lowest' bindtap='showCmtDetail'>
       <view class='comment-left-view'>
-        <text class='normal-text'>{{commentTime}}\n 努力指数\n</text>
-        <view class='text-2 down-part'>{{workingIndex}}\n</view>
+        <text class='normal-text' style='white-space:nowrap'>{{commentTime}}\n 努力指数\n</text>
+        <view class='text-2 down-part'>{{info.rates[0].effort}}\n</view>
         <view>
           <image class='like-view' src='/images/like.png' 
             style='height:auto' mode='widthFix'></image>
           <image class='like-view right-like' src='/images/dislike.png'
           style='height:auto' mode='widthFix'></image>
           <view class='bottom-num'>
-            <view class='normal-text num-view'>999+</view>
-            <view class='normal-text num-view right-num-btm'>999+</view>
+            <view class='normal-text num-view'>
+              {{info.rates[0].thumbs_up_percent}}</view>
+            <view class='normal-text num-view'>
+              {{info.rates[0].thumbs_down_percent}}</view>
           </view>
         </view>
       </view>
       <view class='comment-right-view'>
         <image class='book-view' src='/images/book.png'
           style='height:auto' mode='widthFix'></image>
-        <text class='class-name'>HIST170QW\n</text>
+        <text class='class-name'>{{info.rates[0].course_code}}\n</text>
         <text class='normal-text bold'>课程名: </text>
-        <text class='normal-text'>Intro to Computer Science & test\n</text>
-        <view class='course-cmt-view'>
+        <text class='normal-text'>{{info.rates[0].course_name}}\n</text>
+        <view class='course-cmt-view' style='white-space: nowrap'>
           <view class='cmt-view'>
             <view>
               <text class='normal-text bold'>是否记出勤: </text>

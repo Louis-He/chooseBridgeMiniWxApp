@@ -410,7 +410,7 @@ function getSchoolDetail(schoolId, _callback) {
  */
 function getProfessorDetail(professorID, _callback) {
   wx.request({
-    url: 'http://api.viewmycourses.com/open-api/get-professor-detail',
+    url: 'https://api.viewmycourses.com/open-api/get-professor-detail',
     method: 'GET',
     data: {professor_id: professorID},
     success: function(res) {
@@ -444,7 +444,7 @@ function getStudentByID(studentID, _callback) {
           header: requestedData,
           data: { student_id: studentID },
           success: function (res) {
-            console.log(res);
+            //console.log(res);
             _callback(res.data.data);
           }
         })
@@ -454,10 +454,27 @@ function getStudentByID(studentID, _callback) {
 }
 
 /**
- * 
+ * 数据库中按地区搜索学校
+ * 返回学校列表
+ * 传入数据：国家ID，省份ID，列表显示个数，第几个列表
+ * 函数类型：回掉函数
  */
-function getSchoolByLocation(countryID, provinceID, mode) {
-
+function getSchoolByLocation(countryID, provinceID, pageSize, page, _callback) {
+  wx.request({
+    url: 'https://api.viewmycourses.com//api/get-school-by-condition',
+    method: 'GET',
+    data: {
+      country_id: countryID,
+      province_id: provinceID,
+      pageSize: pagesize,
+      page: page,
+      mode: 'school'
+    },
+    success: function(res) {
+      console.log(res);
+      _callback(res.data.data);
+    }
+  })
 }
 
 // 以下为辅助函数
