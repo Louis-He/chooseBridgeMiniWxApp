@@ -19,17 +19,6 @@ Page({
    */
   onLoad: function (options) {
     this.setScrollHeight();
-    var that = this;
-    wx.getStorage({
-      key: 'professorName',
-      success: function(res) {
-        requestUtil.getProfessorByCondition(res.data, function (result) {
-          that.setData({
-            professors: result
-          })
-        });
-      },
-    })
   },
 
   /**
@@ -43,7 +32,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    wx.getStorage({
+      key: 'professorName',
+      success: function (res) {
+        requestUtil.getProfessorByCondition(res.data, function (result) {
+          console.log(result);
+          that.setData({
+            professors: result
+          })
+        });
+      },
+    })
   },
 
   /**
