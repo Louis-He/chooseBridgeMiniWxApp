@@ -20,6 +20,16 @@ Page({
   onLoad: function (options) {
     this.setScrollHeight();
     var that = this;
+    wx.getStorage({
+      key: 'professorName',
+      success: function(res) {
+        requestUtil.getProfessorByCondition(res.data, function (result) {
+          that.setData({
+            professors: result
+          })
+        });
+      },
+    })
   },
 
   /**
