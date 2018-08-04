@@ -8,10 +8,6 @@ Page({
   data: {
     firstView: true,
     inputShowed: false,
-    inputVal: "",
-    professor: "Federico Mandelman",
-    school: "Emory University",
-    college: "Emory College of Arts and Science",
     blankUni: "学校",
     blankPro: "教授",
     inputVal: "",
@@ -87,20 +83,18 @@ Page({
     });
   },
   toProfessor: function(e) {
-    wx.navigateTo({
-      url: 'specificPro/specificPro',
+    var that = this;
+    var index = parseInt(e.currentTarget.dataset.index);
+    var professorID = that.data.professors[index].professor_id;
+    wx.setStorage({
+      key: 'professorID',
+      data: professorID,
+      success: function() {
+        wx.navigateTo({
+          url: 'specificPro/specificPro',
+        })
+      }
     })
-    // var that = this;
-    // var index = parseInt(e.currentTarget.dataset.index);
-    // var pushTmpProf = {
-    //   professor_full_name: that.data.professors[index].professor_full_name,
-    //   professor_id: that.data.professors[index].professor_id
-    // }
-    // console.log(pushTmpProf);
-    // wx.setStorage({
-    //   key: 'pushTmpProf',
-    //   data: pushTmpProf,
-    // })
   },
   showInput: function () {
     this.setData({
