@@ -8,10 +8,13 @@ Page({
     is_modal_Hidden: true,
     is_modal_Msg: '我是一个自定义组件',
     is_modal_Title: '提示',
-    "grades": ["请选择", "A", "B", "C","D","F","Dropped the course"],
+    "profName": "TEST",
+    "grades": ["请选择", "A", "B", "C","D","F","未完成"],
     "gradeIndex": 0,
     "grade": null,
-    "isAttend": true
+    "isAttend": true,
+    "tagsUp": [{ tags: "风趣幽默", selected: false }, { tags: "和蔼可亲", selected: false }, { tags: "严谨认真", selected: false }, { tags: "反馈及时", selected: false }, { tags: "学识渊博", selected: false }],
+    "tagsDown": [{ tags: "超赞讲师", selected: false }, { tags: "课后沟通多", selected: false }, { tags: "公平公正", selected: false }],
   },
 
   /**
@@ -19,6 +22,23 @@ Page({
    */
   onLoad: function (options) {
     this.setScrollHeight();
+    var that = this;
+    wx.getStorage({
+      key: 'professor_name_cmt',
+      success: function(res) {
+        that.setData({
+          profName: res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'professorID',
+      success: function (res) {
+        that.setData({
+          professorID: res.data
+        })
+      },
+    })
   },
 
   /**
@@ -140,8 +160,58 @@ Page({
     })
   },
 
+  chooseUpTag: function (e) {
+    // console.log(e.currentTarget.dataset.index);
+    var currentData = this.data.tagsUp
+    if (!currentData[e.currentTarget.dataset.index].selected){
+      currentData[e.currentTarget.dataset.index].selected = true;
+    }else{
+      currentData[e.currentTarget.dataset.index].selected = false;
+    }
+    // console.log(currentData)
+    this.setData({
+      tagsUp: currentData
+    })
+  },
+
+  chooseDownTag: function (e) {
+    // console.log(e.currentTarget.dataset.index);
+    var currentData = this.data.tagsDown
+    if (!currentData[e.currentTarget.dataset.index].selected) {
+      currentData[e.currentTarget.dataset.index].selected = true;
+    } else {
+      currentData[e.currentTarget.dataset.index].selected = false;
+    }
+    // console.log(currentData)
+    this.setData({
+      tagsDown: currentData
+    })
+  },
+
   nextStep: function (){
+    // 统计 tags，并写入一个字符串
+    var tags = "";
+    for (var i = 0; i < this.data.tagsUp.length; i++){
+      // console.log(this.data.tagsUp[i])
+      if (tags != "" && this.data.tagsUp[i].selected) {
+        tags += ',' + this.data.tagsUp[i].tags
+      }
+      if(tags == "" && this.data.tagsUp[i].selected){
+        tags += this.data.tagsUp[i].tags
+      }
+    }
+    for (var i = 0; i < this.data.tagsDown.length; i++) {
+      // console.log(this.data.tagsDown[i])
+      if (tags != "" && this.data.tagsDown[i].selected) {
+        tags += ',' + this.data.tagsDown[i].tags
+      }
+      if (tags == "" && this.data.tagsDown[i].selected) {
+        tags += this.data.tagsDown[i].tags
+      }
+    }
+
     var summaryData = {
+      professorID: this.data.professorID,
       isAttend: this.data.isAttend,
       courseId: this.data.courseId,
       course: this.data.course,
@@ -150,18 +220,19 @@ Page({
       relevance: this.data.relevance,
       monthlyTest: this.data.monthlyTest,
       extraTime: this.data.extraTime,
-      grade: this.data.grade
-    }
+      grade: this.data.grade,
+      tags: tags
+    };
 
     wx.setStorage({
       key: 'tmpProfCom',
       data: summaryData,
-    })
+    });
 
     //console.log(summaryData)
 
     wx.navigateTo({
       url: 'detailCom',
-    })
+    });
   }
 })

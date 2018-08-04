@@ -6,6 +6,15 @@
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
+          <view class="weui-label">*课程教授</view>
+        </view>
+        <view class="weui-cell__bd-disabled">
+          <input disabled="disabled" class="weui-input"value="{{profName}}" placeholder="课程编号"/>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
           <view class="weui-label">*官方课程编号</view>
         </view>
         <view class="weui-cell__bd-disabled">
@@ -90,6 +99,31 @@
           </view>
       </view>
       
+    </view>
+
+    <view class='real-overall-tag-view'>
+      <text class='tag-text-view weui-label'>ta的标签</text>
+      <view class='real-tags-view'>
+        <view wx:for="{{tagsUp}}" data-index="{{index}}" bindtap='chooseUpTag'>
+          <view class='real-tag-array-view' wx:if = "{{item.selected}}">
+            {{item.tags}} 
+          </view>
+          <view wx:if = "{{!item.selected}}">
+            <view class='real-tag-array-view not-selected'>{{item.tags}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class='tags-view'>
+        <view wx:for="{{tagsDown}}" data-index="{{index}}" bindtap='chooseDownTag'>
+          <view class='real-tag-array-view' wx:if = "{{item.selected}}">
+            {{item.tags}} 
+          </view>
+          <view wx:if = "{{!item.selected}}">
+            <view class='real-tag-array-view not-selected'>{{item.tags}}</view>
+          </view>
+        </view>
+      </view>
     </view>
     
     <view class="weui-btn-area">
