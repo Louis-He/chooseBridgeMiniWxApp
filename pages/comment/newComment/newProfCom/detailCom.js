@@ -104,7 +104,7 @@ Page({
             }
 
             var sendData = {
-              "professor_id": 1,
+              "professor_id": that.data.tmpProfCom.professorID,
               "course_code": that.data.tmpProfCom.courseId,
               "course_name": that.data.tmpProfCom.course,
               "is_attend": that.data.tmpProfCom.isAttend,
@@ -115,7 +115,7 @@ Page({
               "spend_course_time_at_week": that.data.tmpProfCom.extraTime,
               "grade": that.data.tmpProfCom.grade,
               "comment": that.data.comment,
-              "tag": "开发中.."
+              "tag": that.data.tags
             }
             // console.log(sendData)
             // console.log(that.data.tmpUnivComment)

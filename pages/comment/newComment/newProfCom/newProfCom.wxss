@@ -20,3 +20,42 @@
 .weui-label{
   width: 130px;
 }
+
+.real-overall-tag-view {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30rpx;
+  margin: 20rpx 10rpx 0rpx 10rpx;
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+.tag-text-view {
+  white-space: nowrap;
+  color: white;
+  font-size: 35rpx;
+  margin-left: 20rpx;
+  margin-bottom: 15rpx;
+}
+.real-tags-view {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+}
+.real-tag-array-view {
+  background-color: #359ACA;
+  color: white;
+  border-radius: 100rpx;
+  font-size: 22rpx;
+  font-weight: lighter;
+  margin: 0rpx 10rpx 15rpx 10rpx;
+  padding: 5rpx 10rpx 5rpx 10rpx;
+  /* margin: 0rpx 10rpx 15rpx 10rpx;
+  padding: 5rpx 10rpx 5rpx 10rpx; */
+}
+.not-selected{
+  background-color: #AAAAAA;
+}
+.tags-view {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+}
