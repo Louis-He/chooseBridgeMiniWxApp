@@ -69,21 +69,21 @@
 
   <view class='bottom-view'>
     <view class='btn-view like-btn-view'>
-      <view class='circle-view'>
+      <view class='circle-view' bindtap='addLike'>
         <image class='share-view' src='/images/like.png' 
         style='height:auto' mode='widthFix'></image>
         <text class='normal-text'>{{likes}}</text>
       </view>
     </view>
-    <view class='btn-view wshare-btn-view'>
+    <button class='btn-view wshare-btn-view' open-type='share'>
       <view class='circle-view'>
         <image class='share-view' src='/images/share.png'
         style='height:auto' mode='widthFix'></image>
         <text class='normal-text'>分享</text>
       </view>
-    </view>
+    </button>
     <view class='btn-view dislike-btn-view'>
-      <view class='circle-view'>
+      <view class='circle-view' bindtap='addDislike'>
         <image class='share-view' src='/images/dislike.png' 
         style='height:auto' mode='widthFix'></image>
         <text class='normal-text'>{{dislikes}}</text>
