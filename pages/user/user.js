@@ -31,6 +31,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    wx.showShareMenu({
+      withShareTicket: true,
+      success: function(res){
+        console.log(res)
+      }
+    })
+    
     var that = this;
     that.setData({
       isUsernameStorage: false,
@@ -189,7 +196,24 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '邀请您加入桥选学生社群！',
+      success: function (res) {
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (res) {
+            console.log(res)
+          }
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   },
 
   /**
