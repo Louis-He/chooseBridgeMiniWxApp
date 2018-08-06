@@ -99,6 +99,7 @@ Page({
               tags: result.tagsInfo,
               courses: result.coursesInfo,
               rates: result.rateInfo,
+              professorID: res.data,
             }
           })
           console.log(that.data.info);
@@ -188,6 +189,7 @@ Page({
       likes: that.data.info.rates[index].thumbs_up_percent,
       dislikes: that.data.info.rates[index].thumbs_down_percent,
       studentID: that.data.info.rates[index].create_student_id,
+      index: index,
     }
     wx.setStorage({
       key: 'profCmtDetail',
@@ -201,7 +203,21 @@ Page({
   },
 
   addLike: function() {
-
+    var that = this;
+    requestUtil.getProfessorDetail(that.data.info.professorID,
+      function (result) {
+        if (!result.professorInfo.is_thumbs_up) {
+          requestUtil.thumbsUpProfessor(that.data.info.professorID,
+            function (result) {
+            })
+          that.onLoad();
+        } else {
+          requestUtil.thumbsUpProfessor(that.data.info.professorID,
+            function (result) {
+            })
+          that.onLoad();
+        }
+      })
   },
 
   toPersonalPage:function() {

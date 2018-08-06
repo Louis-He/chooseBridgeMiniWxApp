@@ -431,15 +431,31 @@ function getCollegeBySchool(schoolId, _callback) {
  * 函数类型：回掉函数
  */
 function getSchoolDetail(schoolId, _callback) {
-  wx.request({
-    url: 'https://api.viewmycourses.com/open-api/get-school-detail',
-    method: 'GET',
-    data: {school_id: schoolId},
-    success: function(res) {
-      console.log(res);
-      var schoolData = res.data.data;
-      _callback(schoolData);
-    }
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+
+        wx.request({
+          url: 'https://api.viewmycourses.com/open-api/get-school-detail',
+          method: 'GET',
+          data: { school_id: schoolId },
+          header: requestedData,
+          success: function (res) {
+            console.log(res);
+            var schoolData = res.data.data;
+            _callback(schoolData);
+          }
+        })
+      })
+    },
   })
 }
 
@@ -450,15 +466,32 @@ function getSchoolDetail(schoolId, _callback) {
  * 函数类型：回掉函数
  */
 function getProfessorDetail(professorID, _callback) {
-  wx.request({
-    url: 'https://api.viewmycourses.com/open-api/get-professor-detail',
-    method: 'GET',
-    data: {professor_id: professorID},
-    success: function(res) {
-      var professorData = res.data.data;
-      _callback(professorData);
-    }
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+
+        wx.request({
+          url: 'https://api.viewmycourses.com/open-api/get-professor-detail',
+          method: 'GET',
+          header: requestedData,
+          data: { professor_id: professorID },
+          success: function (res) {
+            var professorData = res.data.data;
+            _callback(professorData);
+          }
+        })
+      })
+    },
   })
+  
 }
 
 /**
@@ -518,6 +551,192 @@ function getSchoolByLocation(countryID, provinceID, pageSize, page, _callback) {
   })
 }
 
+/**
+ * 用户为学校点赞
+ * 传入数据：学校id
+ * 函数类型：回掉函数
+ */
+function thumbsUpSchool(schoolID, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/thumbs-up-school',
+          method: 'GET',
+          header: requestedData,
+          data: { school_id: schoolID },
+          success: function (res) {
+            _callback(res.data.data);
+          }
+        })
+      })
+    },
+  })
+}
+
+/**
+ * 用户为教授点赞
+ * 传入数据：教授id
+ * 函数类型：回掉函数
+ */
+function thumbsUpProfessor(professorID, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/thumbs-up-professor',
+          method: 'GET',
+          header: requestedData,
+          data: { professor_id: professorID },
+          success: function (res) {
+            _callback(res.data.data);
+          }
+        })
+      })
+    },
+  })
+}
+
+/**
+ * 用户为学校评论点赞
+ * 传入数据：学校点评id
+ * 函数类型：回掉函数
+ */
+function thumbsUpSchoolRate(schoolRateID, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/thumbs-up-school-rate',
+          method: 'GET',
+          header: requestedData,
+          data: { school_rate_id: schoolRateID },
+          success: function (res) {
+            _callback(res.data.data);
+          }
+        })
+      })
+    },
+  })
+}
+
+/**
+ * 用户踩学校评论
+ * 传入数据：学校点评id
+ * 函数类型：回掉函数
+ */
+function thumbsDownSchoolRate(schoolRateID, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/thumbs-down-school-rate',
+          method: 'GET',
+          header: requestedData,
+          data: { school_rate_id: schoolRateID },
+          success: function (res) {
+            _callback(res.data.data);
+          }
+        })
+      })
+    },
+  })
+}
+
+/**
+ * 用户为教授点评点赞
+ * 传入数据：教授点评id
+ * 函数类型：回掉函数
+ */
+function thumbsUpProfessorRate(professorRateID, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/thumbs-up-professor-rate',
+          method: 'GET',
+          header: requestedData,
+          data: { professor_rate_id: professorRateID },
+          success: function (res) {
+            _callback(res.data.data);
+          }
+        })
+      })
+    },
+  })
+}
+
+/**
+ * 用户为教授点评点赞
+ * 传入数据：教授点评id
+ * 函数类型：回掉函数
+ */
+function thumbsDownProfessorRate(professorRateID, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/thumbs-down-professor-rate',
+          method: 'GET',
+          header: requestedData,
+          data: { professor_rate_id: professorRateID },
+          success: function (res) {
+            _callback(res.data.data);
+          }
+        })
+      })
+    },
+  })
+}
+
 // 以下为辅助函数
 /**
  * 加密工具函数
@@ -551,6 +770,12 @@ module.exports = {
   getProfessorDetail: getProfessorDetail,
   getStudentByID: getStudentByID,
   getSchoolByLocation: getSchoolByLocation,
+  thumbsUpSchool: thumbsUpSchool,
+  thumbsUpProfessor: thumbsUpProfessor,
+  thumbsUpSchoolRate: thumbsUpSchoolRate,
+  thumbsDownSchoolRate: thumbsDownSchoolRate,
+  thumbsUpProfessorRate: thumbsUpProfessorRate,
+  thumbsDownProfessorRate: thumbsDownProfessorRate,
   getSign: getSign
 }
 
