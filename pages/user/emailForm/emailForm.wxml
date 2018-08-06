@@ -4,7 +4,7 @@
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">我的邮箱</view>
+        <view class="weui-label">我的原邮箱</view>
       </view>
       <view class="weui-cell__bd-disabled">
         <input class="weui-input" disabled="disabled" value="{{email}}" placeholder=""/>
@@ -16,7 +16,7 @@
         <view class="weui-label">我的新邮箱</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" value="{{newEmail}}" placeholder=""/>
+        <input class="weui-input" value="{{newEmail}}" bindinput="emailInput" placeholder=""/>
       </view>
     </view>
   </view>

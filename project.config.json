@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 13,
 			"list": [
 				{
 					"id": -1,
@@ -108,6 +108,12 @@
 					"id": -1,
 					"name": "添加高校评价",
 					"pathName": "pages/comment/newComment/newUnivCom/newUnivCom",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tokenConfirm",
+					"pathName": "pages/user/emailForm/tokenConfirm",
 					"query": ""
 				}
 			]

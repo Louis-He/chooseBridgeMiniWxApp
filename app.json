@@ -34,7 +34,8 @@
     "pages/comment/newComment/newUnivCom/success",
     "pages/courses/newPro/success",
     "pages/courses/newPro/confirmAdd",
-    "pages/comment/newComment/newProfCom/success"
+    "pages/comment/newComment/newProfCom/success",
+    "pages/user/emailForm/tokenConfirm"
   ],
   "window": {
     "backgroundTextStyle": "light",

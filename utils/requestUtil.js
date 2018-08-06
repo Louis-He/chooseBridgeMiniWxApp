@@ -64,7 +64,7 @@ function getChooseBridgeUserInfo(unionID, _callback){
     method: 'POST',
     data: requestData,
     success: function (res){
-      //console.log(res)
+      // console.log(res)
       _callback(res);
     }
   })
@@ -117,12 +117,53 @@ function getViewmycoursesToken(userid, _callback) {
     method: 'POST',
     data: requestData,
     success: function (res) {
+      console.log(res)
       _callback(res.data.token);
     }
   })
 }
 
-// 以下为非用户信息请求很熟
+/**
+ * 传入用户unionid, email, 修改email
+ * 传入数据：unionid, email
+ * 函数类型：回调函数
+ */
+function changeEmail(email, unionid, _callback) {
+  var that = this;
+  var explicitData = { "email": email, "union_id": unionid, is_wechat: 1 };
+  var requestData = { "email": email, "union_id": unionid, is_wechat: 1, "sign": that.getSign(explicitData) };
+
+  wx.request({
+    url: 'https://i.choosebridge.com/api/wechat/email/update',
+    method: 'POST',
+    data: requestData,
+    success: function (res) {
+      _callback(res);
+    }
+  })
+}
+
+/**
+ * 传入用户unionid, token, 验证email
+ * 传入数据：unionid, token
+ * 函数类型：回调函数
+ */
+function verifyEmail(token, unionid, _callback) {
+  var that = this;
+  var explicitData = { "token": token, "union_id": unionid, is_wechat: 1 };
+  var requestData = { "token": token, "union_id": unionid, is_wechat: 1, "sign": that.getSign(explicitData) };
+
+  wx.request({
+    url: 'https://i.choosebridge.com/api/wechat/email/verify',
+    method: 'POST',
+    data: requestData,
+    success: function (res) {
+      _callback(res);
+    }
+  })
+}
+
+// 以下为非用户信息请求部分
 /**
  * 得到支持的所有国家地区列表
  * 传入数据：无需
@@ -496,6 +537,8 @@ module.exports = {
   getUserUnionID: getUserUnionID,
   getViewmycoursesUserInfo: getViewmycoursesUserInfo,
   getViewmycoursesToken: getViewmycoursesToken,
+  changeEmail: changeEmail,
+  verifyEmail: verifyEmail,
   getCountries: getCountries,
   getProvinceByCountry: getProvinceByCountry,
   getCityByProvince: getCityByProvince,
