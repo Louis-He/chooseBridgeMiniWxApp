@@ -117,4 +117,13 @@ Page({
       }
     });
   },
+  addLike: function() {
+
+  },
+  share: function() {
+
+  },
+  addDislike: function() {
+
+  },
 })

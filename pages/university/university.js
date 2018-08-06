@@ -40,11 +40,16 @@ Page({
     wx.getStorage({
       key: 'uniName',
       success: function (res) {
-        requestUtil.getSchoolByCondition(res.data, function (result) {
+        requestUtil.getSchoolByCondition(res.data.uniName, function (result) {
           that.setData({
             universities: result
           })
         });
+        if (res.data.fromNextSearchFlag) {
+          that.setData({
+            firstView: false,
+          })
+        }
       },
     })
   },
@@ -56,7 +61,10 @@ Page({
     wx.removeStorage({
       key: 'uniName',
       success: function (res) { },
-    })
+    });
+    this.setData({
+      firstView: true,
+    });
   },
 
   /**
