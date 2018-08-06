@@ -1,4 +1,6 @@
-// pages/user/emailForm/success.js
+// pages/user/emailForm/tokenConfirm.js
+var requestUtil = require('../../../utils/requestUtil.js'); 
+
 Page({
 
   /**
@@ -12,7 +14,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    wx.getStorage({
+      key: 'unionId',
+      success: function (res) {
+        that.setData({
+          unionId: res.data
+        })
+      },
+    })
   },
 
   /**
@@ -64,9 +74,23 @@ Page({
   
   },
 
-  confirm: function() {
-    wx.navigateBack({
-      delta: 3,
+  tokenInput: function (e) {
+    this.setData({
+      token: e.detail.value
+    })
+  },
+
+  requestConfirm: function () {
+    requestUtil.verifyEmail(this.data.token, this.data.unionId, function(result){
+      if(result.data.success){
+        wx.navigateTo({
+          url: 'success',
+        })
+      }else{
+        wx.redirectTo({
+          url: 'fail',
+        })
+      }
     })
   }
 })

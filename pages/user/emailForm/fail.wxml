@@ -6,7 +6,7 @@
         </view>
         <view class="weui-msg__text-area">
             <view class="weui-msg__title">请求失败</view>
-            <view class="weui-msg__desc">由于网络原因，无法更改您的绑定邮箱，请稍后重试</view>
+            <view class="weui-msg__desc">由于某些原因，无法更改您的绑定邮箱，请稍后重试</view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">

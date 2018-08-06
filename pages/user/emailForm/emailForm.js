@@ -1,4 +1,6 @@
 // pages/user/emailForm/emailForm.js
+var requestUtil = require('../../../utils/requestUtil.js'); 
+
 Page({
 
   /**
@@ -6,14 +8,31 @@ Page({
    */
   data: {
     "email": "example1@mail.example.com",
-    "newEmail": "example2@mail.example.com"
+    "newEmail": ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    wx.getStorage({
+      key: 'unionId',
+      success: function(res) {
+        that.setData({
+          unionId: res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'email',
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          email: res.data
+        })
+      },
+    })
   },
 
   /**
@@ -65,19 +84,24 @@ Page({
   
   },
 
+  emailInput: function (e) {
+    this.setData({
+      newEmail: e.detail.value
+    })
+  },
+
   requestConfirm: function(){
-    wx.request({
-      url: '',
-      success: function (res) {
-        wx.navigateTo({
-          url: 'success',
-        })
-      },
-      fail: function (res) {
+    requestUtil.changeEmail(this.data.newEmail, this.data.unionId, function(result){
+      console.log(result)
+      if(!result.data.success){
         wx.navigateTo({
           url: 'fail',
         })
+      }else{
+        wx.navigateTo({
+          url: 'tokenConfirm',
+        })
       }
-    })
+    });
   }
 })

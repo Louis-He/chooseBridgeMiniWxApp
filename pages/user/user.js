@@ -332,6 +332,7 @@ Page({
 
               // 获取用户unionId后得到用户choosebridge个人信息
               requestUtil.getChooseBridgeUserInfo(result.data.data.unionId, function (res) {
+                
                 var academicInfo = res.data.entities[0].academic;
                 // 设置大学、专业、毕业年份、高中地区和邮箱状态
                 //console.log(res)
@@ -405,12 +406,25 @@ Page({
                   })
                 }
 
+                console.log(res.data)
+
                 // 存储user唯一id
                 wx.setStorage({
                   key: 'user_id',
                   data: res.data.entities[0].id,
                 })
 
+                //存储user邮箱
+                wx.setStorage({
+                  key: 'email',
+                  data: res.data.entities[0].email,
+                })
+
+                /*
+                requestUtil.getViewmycoursesUserInfo(res.data.entities[0].id, function(result){
+                  console.log(res)
+                })
+                */
               })
             })
 

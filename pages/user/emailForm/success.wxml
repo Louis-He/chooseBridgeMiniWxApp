@@ -6,7 +6,7 @@
         </view>
         <view class="weui-msg__text-area">
             <view class="weui-msg__title">修改成功</view>
-            <view class="weui-msg__desc">修改验证信息已经发送至您的旧邮箱，请注意查收</view>
+            <view class="weui-msg__desc">您的邮箱已经成功修改!</view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
