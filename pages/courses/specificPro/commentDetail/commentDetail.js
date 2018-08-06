@@ -110,5 +110,14 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+  addLike: function () {
+
+  },
+  share: function () {
+
+  },
+  addDislike: function () {
+
+  },
 })

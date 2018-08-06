@@ -36,12 +36,17 @@ Page({
     wx.getStorage({
       key: 'professorName',
       success: function (res) {
-        requestUtil.getProfessorByCondition(res.data, function (result) {
+        requestUtil.getProfessorByCondition(res.data.profName, function (result) {
           console.log(result);
           that.setData({
             professors: result
           })
         });
+        if (res.data.fromNextSearchFlag) {
+          that.setData({
+            firstView: false,
+          })
+        }
       },
     })
   },
@@ -54,6 +59,9 @@ Page({
       key: 'professorName',
       success: function(res) {},
     })
+    this.setData({
+      firstView: true,
+    });
   },
 
   /**
