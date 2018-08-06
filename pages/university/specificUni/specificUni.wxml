@@ -33,8 +33,9 @@
             </view>
           </view>
           <view class='btn-display'>
-            <button class='share-btn-view'>分享给好友</button>
-            <button class='like-btn-view'>已有{{schoolData.likesNum}}人点赞</button>
+            <button class='share-btn-view' open-type='share'>分享给好友</button>
+            <button class='like-btn-view' bindtap='addLike'>
+            已有{{schoolData.likesNum}}人点赞</button>
           </view>
         </view>
       </view>
@@ -79,8 +80,9 @@
             </view>
           </view>
           <view class='btn-display'>
-            <button class='share-btn-view'>分享给好友</button>
-            <button class='like-btn-view'>已有{{schoolData.likesNum}}人点赞</button>
+            <button class='share-btn-view' bindtap='share'>分享给好友</button>
+            <button class='like-btn-view' bindtap='addLike'>
+            已有{{schoolData.likesNum}}人点赞</button>
           </view>
         </view>
       </view>
@@ -141,7 +143,7 @@
     </view>
   </block>
 
-  <view class='basic-school-view rcmd-view'>
+  <view class='basic-school-view rcmd-view' bindtap='toRandomProf'>
     <view class='big-bold-text'>
       <view class='rcmd-left-view'>
         <image src='/images/recommand.png' style='height:auto; width:30rpx;' 

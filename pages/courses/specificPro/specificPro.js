@@ -8,12 +8,6 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    tagsDown: [
-      { tag: '和蔼可亲', num: '(99+)' },
-      { tag: '公平公正', num: '(99+)' },
-      { tag: '反馈及时', num: '(99+)' },
-      { tag: '课后沟通多', num: '(99+)'}
-    ],
     arrowTouched: false,
     hide: true,
     btmRates: [],
@@ -112,6 +106,21 @@ Page({
       },
     })
   },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -145,9 +154,13 @@ Page({
   },
   toResult: function () {
     var that = this;
+    var infoForSearch = {
+      profName: that.data.inputVal,
+      fromNextSearchFlag: true,
+    }
     wx.setStorage({
       key: 'professorName',
-      data: that.data.inputVal,
+      data: infoForSearch,
       success: function() {
         wx.switchTab({
           url: '../courses',
@@ -186,6 +199,15 @@ Page({
       }
     })
   },
+
+  addLike: function() {
+
+  },
+
+  toPersonalPage:function() {
+
+  },
+
   setScrollHeight: function () {
     var that = this;
     wx.getSystemInfo({

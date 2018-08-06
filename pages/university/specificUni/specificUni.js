@@ -54,6 +54,7 @@ Page({
             province: res.data.province,
             country: res.data.country,
             rcmdProfessorName: res.data.rcmdProfessor.professor_full_name,
+            rcmdProfessorID: res.data.rcmdProfessor.professor_id,
             overallScore: res.data.overallScore,
             schoolDistrictInfo: res.data.schoolDistrictInfo,
             ratesInfo: res.data.ratesInfo,
@@ -69,6 +70,13 @@ Page({
    */
   onHide: function () {
     
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   },
 
   showInput: function () {
@@ -157,21 +165,43 @@ Page({
       }
     });
   },
+
   commentCourse: function() {
     wx.navigateTo({
       url: '../../comment/newComment/newUnivCom/newUnivCom',
     })
   },
+
   toResult: function () {
     var that = this;
+    var infoForSearch = {
+      uniName: that.data.inputVal,
+      fromNextSearchFlag: true,
+    }
     wx.setStorage({
       key: 'uniName',
-      data: that.data.inputVal,
+      data: infoForSearch,
       success: function () {
         wx.switchTab({
           url: '../university',
         })
       }
     });
+  },
+
+  toRandomProf:function() {
+    wx.setStorage({
+      key: 'professorID',
+      data: this.data.schoolData.rcmdProfessorID,
+      success: function() {
+        wx.navigateTo({
+          url: '../../courses/specificPro/specificPro',
+        })
+      }
+    })
+  },
+
+  addLike: function() {
+
   },
 })
