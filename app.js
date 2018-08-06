@@ -2,7 +2,8 @@
 var requestUtil = require('utils/requestUtil.js'); 
 
 App({
-  onLaunch: function () {
+  onLaunch: function (opt) {
+    
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -36,6 +37,21 @@ App({
         }
       }
     })
+  },
+  onShow: function (opt) {
+    console.log("[onShow] 场景值:", opt.scene)
+    /** 判断场景值，1044 为转发场景，包含shareTicket 参数 */
+    if (opt.scene == 1044) {
+      wx.getShareInfo({
+        shareTicket: opt.shareTicket,
+        success: function (res) {
+          console.log(res)
+        },
+        fail: function (res){
+          console.log('获取shareTicket失败')
+        }
+      })
+    }
   },
   globalData: {
     userInfo: null
