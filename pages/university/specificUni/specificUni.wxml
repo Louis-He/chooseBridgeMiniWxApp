@@ -35,7 +35,7 @@
           <view class='btn-display'>
             <button class='share-btn-view' open-type='share'>分享给好友</button>
             <button class='like-btn-view' bindtap='addLike'>
-            已有{{schoolData.likesNum}}人点赞</button>
+            已有{{likesNum}}人点赞</button>
           </view>
         </view>
       </view>
@@ -187,12 +187,12 @@
           <view class='cmt-like-view'>
             <image class='like-view' src='../../../images/like.png' 
             style='height:auto' mode='widthFix'></image>
-            <view class='small-num'>{{schoolData.ratesInfo[index].thumbs_up_percent}}</view>
+            <view class='small-num'>{{schoolData.ratesInfo[index].thumbs_up_percent}}%</view>
           </view>
           <view class='cmt-like-view'>
             <image class='like-view' src='../../../images/dislike.png' 
             style='height:auto' mode='widthFix'></image>
-            <view class='small-num'>{{schoolData.ratesInfo[index].thumbs_down_percent}}</view>
+            <view class='small-num'>{{schoolData.ratesInfo[index].thumbs_down_percent}}%</view>
           </view>
         </view>
       </view>

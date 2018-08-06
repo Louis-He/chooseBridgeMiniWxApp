@@ -58,11 +58,24 @@ Page({
             overallScore: res.data.overallScore,
             schoolDistrictInfo: res.data.schoolDistrictInfo,
             ratesInfo: res.data.ratesInfo,
-            likesNum: res.data.likesNum,
+            schoolID: res.data.schoolID,
           }
         })
+        requestUtil.getSchoolDetail(res.data.schoolID,
+          function (result) {
+            that.setData({
+              likesNum: result.schoolInfo.thumbs_up_num,
+            })
+          })
       },
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+      
   },
 
   /**
@@ -139,6 +152,7 @@ Page({
             graduate: graduateYear,
             high: highSchool,
             time: createTime,
+            index: index,
           }
           wx.setStorage({
             key: 'cmtDetail',
@@ -202,6 +216,20 @@ Page({
   },
 
   addLike: function() {
-
+    var that = this;
+    requestUtil.getSchoolDetail(that.data.schoolData.schoolID,
+      function (result) {
+        if (!result.schoolInfo.is_thumbs_up) {
+          requestUtil.thumbsUpSchool(that.data.schoolData.schoolID,
+            function (result) {
+            })
+            that.onLoad();
+        } else {
+          requestUtil.thumbsUpSchool(that.data.schoolData.schoolID,
+            function (result) {
+            })
+          that.onLoad();
+        }
+      })
   },
 })

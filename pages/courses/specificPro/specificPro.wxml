@@ -107,9 +107,9 @@
           style='height:auto' mode='widthFix'></image>
           <view class='bottom-num'>
             <view class='normal-text num-view'>
-              {{info.rates[index].thumbs_up_percent}}</view>
+              {{info.rates[index].thumbs_up_percent}}%</view>
             <view class='normal-text num-view'>
-              {{info.rates[index].thumbs_down_percent}}</view>
+              {{info.rates[index].thumbs_down_percent}}%</view>
           </view>
         </view>
       </view>

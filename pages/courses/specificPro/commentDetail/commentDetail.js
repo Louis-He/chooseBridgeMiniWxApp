@@ -45,9 +45,21 @@ Page({
           difficult: res.data.btmRates.difficult,
           homework: res.data.btmRates.homework,
           comment: res.data.comment,
-          likes: res.data.likes,
-          dislikes: res.data.dislikes,
+          index: res.data.index,
         })
+      },
+    })
+    wx.getStorage({
+      key: 'professorID',
+      success: function (res) {
+        console.log(res);
+        requestUtil.getProfessorDetail(res.data,
+          function (result) {
+            that.setData({
+              likes: result.rateInfo[that.data.index].thumbs_up_percent,
+              dislikes: result.rateInfo[that.data.index].thumbs_down_percent,
+            })
+          })
       },
     })
   },
@@ -112,12 +124,63 @@ Page({
   
   },
   addLike: function () {
-
+    var that = this;
+    wx.getStorage({
+      key: 'professorID',
+      success: function (res) {
+        requestUtil.getProfessorDetail(res.data,
+          function (result) {
+            console.log(result);
+            if (!result.rateInfo[that.data.index].is_thumbs_up) {
+              requestUtil.thumbsUpProfessorRate
+              (result.rateInfo[that.data.index].professor_rate_id,
+                function (result) {
+                  console.log(result);
+                })
+              that.onLoad();
+              console.log("我是已经点赞了" + result.rateInfo[that.data.index].is_thumbs_up)
+              console.log("我是已经踩了" + result.rateInfo[that.data.index].is_thumbs_down)
+            } else {
+              requestUtil.thumbsUpProfessorRate
+              (result.rateInfo[that.data.index].professor_rate_id,
+                function (result) {
+                  console.log(result);
+                })
+              that.onLoad();
+              console.log("我是已经点赞了" + result.rateInfo[that.data.index].is_thumbs_up)
+              console.log("我是已经踩了" + result.rateInfo[that.data.index].is_thumbs_down)
+            }
+          })
+      },
+    })
   },
   share: function () {
 
   },
   addDislike: function () {
-
+    var that = this;
+    wx.getStorage({
+      key: 'professorID',
+      success: function (res) {
+        requestUtil.getProfessorDetail(res.data,
+          function (result) {
+            if (!result.rateInfo[that.data.index].is_thumbs_down) {
+              requestUtil.thumbsDownProfessorRate
+                (result.rateInfo[that.data.index].professor_rate_id,
+                function (result) {
+                  console.log(result);
+                })
+              that.onLoad();
+            } else {
+              requestUtil.thumbsDownProfessorRate
+                (result.rateInfo[that.data.index].professor_rate_id,
+                function (result) {
+                  console.log(result);
+                })
+              that.onLoad();
+            }
+          })
+      },
+    })
   },
 })
