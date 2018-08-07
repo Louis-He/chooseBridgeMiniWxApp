@@ -65,6 +65,7 @@ Page({
           function (result) {
             that.setData({
               likesNum: result.schoolInfo.thumbs_up_num,
+              thumbsSync: result,
             })
           })
       },
@@ -75,7 +76,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      
+    this.onLoad();
   },
 
   /**

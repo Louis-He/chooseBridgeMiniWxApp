@@ -102,7 +102,9 @@ Page({
               professorID: res.data,
             }
           })
-          console.log(that.data.info);
+          that.setData({
+            thumbsSync: result.rateInfo,
+          })
         });
       },
     })
@@ -112,7 +114,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad();
   },
 
   /**
