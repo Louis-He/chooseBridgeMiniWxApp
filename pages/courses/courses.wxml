@@ -8,13 +8,21 @@
   <view class='border'>
   <view class = "input-bar">
     <text class = "guide">我想查找</text>
-      <view class="input-up"> 
+      <!-- <view class="input-up"> 
         <input class="input-view"  placeholder-style=
         'color:rgba(255,255,255,0.5);font-weight:lighter'
         placeholder = "{{blankUni}}" 
          adjust-position = 'true' bindinput='inputTyping' confirm-type='search'
          style='background-color:transparent'/>
-      </view>
+      </view> -->
+
+<!-- picker测试 -->
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+      {{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+    </view>
+  </picker>
+<!-- picker测试完 -->
       <text class='guide-right'>的</text> 
     </view>
     <view class='input-bar'>
