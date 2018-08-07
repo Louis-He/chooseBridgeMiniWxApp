@@ -76,8 +76,10 @@
         <text class='big-text'>所授课程\n</text>
         <text class='normal-text'>看看同学们在这些课程上的努力程度\n</text>
         <view wx:for="{{info.courses.length}}">
-          <text class='class-name'>{{info.courses[index].course_code}} {{info.courses[index].effort}}</text>
-        <text class='class-name right'>{{info.courses[index+1].course_code}} {{info.courses[index+1].effort}}\n</text>
+          <block wx:if="{{index%2 == 0}}">
+            <text class='class-name'>{{info.courses[index].course_code}} {{info.courses[index].effort}}</text>
+            <text class='class-name right'>{{info.courses[index+1].course_code}} {{info.courses[index+1].effort}}\n</text>
+          </block>
         </view>
         <view class='button-view'>
           <image class='arrow-view' src='/images/arrowUp.png'   
