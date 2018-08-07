@@ -35,7 +35,8 @@
     "pages/courses/newPro/success",
     "pages/courses/newPro/confirmAdd",
     "pages/comment/newComment/newProfCom/success",
-    "pages/user/emailForm/tokenConfirm"
+    "pages/user/emailForm/tokenConfirm",
+    "pages/user/privilegeForm/errorEmail"
   ],
   "window": {
     "backgroundTextStyle": "light",

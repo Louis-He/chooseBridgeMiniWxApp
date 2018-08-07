@@ -336,7 +336,7 @@ Page({
             // 获取用户unionID数据
             requestUtil.getUserUnionID(firstRequestedData, res, function (result) {
               //console.log(res);
-              //console.log(result);
+              console.log(result);
               that.setData({
                 username: res.userInfo.nickName
               })
@@ -430,7 +430,7 @@ Page({
                   })
                 }
 
-                console.log(res.data)
+                // console.log(res.data)
 
                 // 存储user唯一id
                 wx.setStorage({
@@ -444,11 +444,15 @@ Page({
                   data: res.data.entities[0].email,
                 })
 
-                /*
+                
                 requestUtil.getViewmycoursesUserInfo(res.data.entities[0].id, function(result){
-                  console.log(res)
+                  wx.setStorage({
+                    key: 'isEmailEdu',
+                    data: res.data.entities[0].profile.is_email_edu,
+                  })
+                 
                 })
-                */
+                
               })
             })
 
