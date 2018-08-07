@@ -534,20 +534,35 @@ function getStudentByID(studentID, _callback) {
  * 函数类型：回掉函数
  */
 function getSchoolByLocation(countryID, provinceID, pageSize, page, _callback) {
-  wx.request({
-    url: 'https://api.viewmycourses.com//api/get-school-by-condition',
-    method: 'GET',
-    data: {
-      country_id: countryID,
-      province_id: provinceID,
-      pageSize: pagesize,
-      page: page,
-      mode: 'school'
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/get-school-by-condition',
+          method: 'GET',
+          data: {
+            country_id: countryID,
+            province_id: provinceID,
+            pageSize: pageSize,
+            page: page,
+            mode: 'school'
+          },
+          header: requestedData,
+          success: function (res) {
+            console.log(res);
+            _callback(res.data.data);
+          }
+        })
+      })
     },
-    success: function(res) {
-      console.log(res);
-      _callback(res.data.data);
-    }
   })
 }
 
@@ -736,6 +751,7 @@ function thumbsDownProfessorRate(professorRateID, _callback) {
     },
   })
 }
+
 
 // 以下为辅助函数
 /**
