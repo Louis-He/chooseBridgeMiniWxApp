@@ -172,7 +172,8 @@ Page({
         overallScore: result.schoolInfo.school_score,
         likesNum: result.schoolInfo.thumbs_up_num,
         schoolDistrictInfo: result.schoolDistrictInfo,
-        ratesInfo: result.ratesInfo
+        ratesInfo: result.ratesInfo,
+        schoolID: that.data.universities[index].school_id,
       };
       wx.setStorage({
         key: 'tempSchoolData',
