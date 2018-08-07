@@ -76,7 +76,7 @@
       <view class='circle-view' bindtap='addLike'>
         <image class='share-view' src='/images/like.png' 
         style='height:auto' mode='widthFix'></image>
-        <text class='normal-text'>{{cmtData.likes}}</text>
+        <text class='normal-text'>{{likes}}%</text>
       </view>
     </view>
     <button class='btn-view wshare-btn-view' open-type='share'>
@@ -90,7 +90,7 @@
       <view class='circle-view' bindtap='addDislike'>
         <image class='share-view' src='/images/dislike.png' 
         style='height:auto' mode='widthFix'></image>
-        <text class='normal-text'>{{cmtData.dislikes}}</text>
+        <text class='normal-text'>{{dislikes}}%</text>
       </view>
     </view>
   </view>

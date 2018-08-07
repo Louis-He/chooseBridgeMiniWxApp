@@ -20,7 +20,7 @@
       <view class='normal-text course-left-up-view'>
         <text>{{date}}\n努力指数</text>
       </view>
-      <view class='text-2' style='line-height: 3em;'>
+      <view class='text-2' style='line-height: 2.5em;'>
         <text>{{effort}}</text>
       </view>
     </view>
@@ -53,8 +53,8 @@
         </view>
       </view>
       <view class='course-cmt-view'></view>
-      <view class='tags-view lower-tag'>
-        <view class='tag-array-view lowest-tag' wx:for="{{tags}}">
+      <view class='real-tags-view lower-tag'>
+        <view class='real-tag-array-view lowest-tag' wx:for="{{tags}}">
           {{tags[index]}}
         </view>
       </view>
@@ -72,7 +72,7 @@
       <view class='circle-view' bindtap='addLike'>
         <image class='share-view' src='/images/like.png' 
         style='height:auto' mode='widthFix'></image>
-        <text class='normal-text'>{{likes}}</text>
+        <text class='normal-text'>{{likes}}%</text>
       </view>
     </view>
     <button class='btn-view wshare-btn-view' open-type='share'>
@@ -86,7 +86,7 @@
       <view class='circle-view' bindtap='addDislike'>
         <image class='share-view' src='/images/dislike.png' 
         style='height:auto' mode='widthFix'></image>
-        <text class='normal-text'>{{dislikes}}</text>
+        <text class='normal-text'>{{dislikes}}%</text>
       </view>
     </view>
   </view>
