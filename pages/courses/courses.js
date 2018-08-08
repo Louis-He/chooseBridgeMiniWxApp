@@ -143,8 +143,21 @@ Page({
             for (var j = 0; j < schoolResult[key].length; j++) {
               tempArray.push(schoolResult[key][j].school_name);
             }
-            console.log(tempArray);
+            //console.log(tempArray);
             data.multiArray[1] = tempArray;
+            //截取省份前十个字符
+            var multiArrayDisplay = new Array();
+            multiArrayDisplay = that.data.multiArray[1];
+            var pattern = new RegExp("[\u4E00-\u9FA5]+");
+            for (var i = 0; i < that.data.multiArray[1].length; i++) {
+              if (pattern.test(that.data.multiArray[1][i]) && that.data.multiArray[1][i].length > 6) {
+                multiArrayDisplay[i] = that.data.multiArray[1][i].substring(0, 6) + "...";
+              } else if (!pattern.test(that.data.multiArray[1][i]) &&
+                that.data.multiArray[1][i].length > 20) {
+                multiArrayDisplay[i] = that.data.multiArray[1][i].substring(0, 20) + "...";
+              }
+            }
+            
             that.setData(data);
             //console.log(data.multiArray[1]);
           })

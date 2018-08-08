@@ -24,15 +24,22 @@ page{
     padding-right: 5px; 
     padding-top: 20px;
   }
+  .picker-display {
+    position: relative;
+    
+  }
   .picker {
     color:rgba(255,255,255,0.5);
     font-weight: lighter;
-    font-size: 28rpx;
-    margin-top: 28rpx;
+    font-size: 30rpx;
+    margin-top: 20rpx;
     padding: 20rpx 5rpx 0rpx 5rpx;
     border-bottom: 0.5rpx solid;
     border-bottom-color: white;
     white-space: nowrap;
+    width: 330rpx;
+    text-align: center;
+    letter-spacing: 0.05em;
   }
   .guide-right {
     font-size: 17px;
