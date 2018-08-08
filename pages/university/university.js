@@ -13,9 +13,8 @@ Page({
     nameBase: true,
     blankVal: "高校",
     inputVal: "",
-    professor: "Dietrich Burbulla\n",
-    school: "University of Toronto",
-    college: "Department of mathematics",
+    multiIndex: [0,0],
+    multiArray: [[], [] ],
   },
 
   /**
@@ -23,6 +22,24 @@ Page({
    */
   onLoad: function (options) {
     this.setScrollHeight();
+    var that = this;
+    // 初始化multiArray
+    requestUtil.getCountries(function (result) {
+      console.log(result);
+      var tempLocationArray = new Array();
+      tempLocationArray[0] = result;
+
+
+      requestUtil.getProvinceByCountry(1, function (provincesResult) {
+        console.log(provincesResult)
+        var data = {
+          multiArray: that.data.multiArray,
+        }
+        data.multiArray[0] = tempLocationArray[0];
+        data.multiArray[1] = provincesResult[1];
+        that.setData(data);
+      })
+    })
   },
 
   /**
@@ -94,6 +111,55 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  /**
+   * 两个picker处理函数
+   */
+  bindMultiPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      multiIndex: e.detail.value
+    })
+  },
+
+  bindMultiPickerColumnChange: function(e) {
+    var that = this;
+    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex,
+      provinceIndex: [],
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+     for (var i = 0; i < data.multiArray[0].length; i++) {
+       switch (data.multiIndex[0]) {
+        case i:
+          requestUtil.getProvinceByCountry(i + 1, function (provincesResult) {
+          console.log(provincesResult);
+          data.multiArray[1] = provincesResult[1];
+          data.provinceIndex = provincesResult[0];
+          //截取省份前十个字符
+          var multiArrayDisplay = new Array();
+          multiArrayDisplay = that.data.multiArray[1];
+          var pattern = new RegExp("[\u4E00-\u9FA5]+");
+          for (var i = 0; i < that.data.multiArray[1].length; i++) {
+            if (pattern.test(that.data.multiArray[1][i]) && that.data.multiArray[1][i].length > 5) {
+              multiArrayDisplay[i] = that.data.multiArray[1][i].substring(0, 5) + "...";
+            } else if (!pattern.test(that.data.multiArray[1][i]) &&
+            that.data.multiArray[1][i].length > 9) {                
+              multiArrayDisplay[i] = that.data.multiArray[1][i].substring(0, 9) + "...";
+            }
+          }
+          //data.multiArray[1] = provincesResult[1];
+          that.setData(data);
+          console.log(provincesResult[1]);
+        })
+        break;
+      }
+      //console.log(data.multiArray[1]);
+    }
+  },
+
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -138,13 +204,35 @@ Page({
       firstView: false
     });
     //按名称搜索学校部分
-    requestUtil.getSchoolByCondition(that.data.inputVal, function(result) {
-      //console.log(result);
-      that.setData({
-        universities: result
-      })
-    });
+    if (that.data.nameBase) {
+      requestUtil.getSchoolByCondition(that.data.inputVal, function (result) {
+        //console.log(result);
+        that.setData({
+          universities: result
+        })
+      });
     //按地区搜索学校部分
+    } else {
+      requestUtil.getCountries(function (result) {
+        var countryID = 0;
+        for (var i = 0; i < result.length; i++) {
+          if (result[i] == that.data.multiArray[0][that.data.multiIndex[0]]) {
+            countryID = i + 1;
+            break;
+          }
+        }
+        var provinceID = that.data.provinceIndex[that.data.multiIndex[1]];
+        var pageSize = 10;
+        var page = 1;
+        console.log(countryID, provinceID);
+        requestUtil.getSchoolByLocation(countryID, provinceID, pageSize, page, function (result) {
+          console.log(result);
+          that.setData({
+            universities: result.schools,
+          })
+        })
+      })
+    }
     
   },
 

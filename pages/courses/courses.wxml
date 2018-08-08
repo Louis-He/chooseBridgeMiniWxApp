@@ -7,27 +7,26 @@
 </view> 
   <view class='border'>
   <view class = "input-bar">
-    <text class = "guide">我想查找</text>
-      <view class="input-up"> 
-        <input class="input-view"  placeholder-style=
-        'color:rgba(255,255,255,0.5);font-weight:lighter'
-        placeholder = "{{blankUni}}" 
-         adjust-position = 'true' bindinput='inputTyping' confirm-type='search'
-         style='background-color:transparent'/>
-      </view>
-      <text class='guide-right'>的</text> 
+    <text class = "guide" style='font-size:32rpx;'>我想查找</text>
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+      <text>{{multiArray[1][multiIndex[1]]}}</text>
+    </view>
+  </picker>
+      <text class='guide-right' style='font-size:32rpx;'>的</text> 
     </view>
     <view class='input-bar'>
       <view class="input-down"> 
         <input class="input-view"  placeholder-style=
-        'color:rgba(255,255,255,0.5);font-weight:lighter' 
+        'color:rgba(255,255,255,0.5);font-weight:lighter;font-size:30rpx;' 
         placeholder = "{{blankPro}}" 
         adjust-position = 'true' bindinput='inputTyping'confirm-type='search'/>
       </view>
-      <text class='guide-right'>教授所授课程</text>
+      <text class='guide-right' style='font-size:32rpx;'>教授所授课程</text>
     </view>
     <view class='input-bar'>
-      <button class='search-btn' bindtap='toResult'>搜索</button>
+      <button class='search-btn' bindtap='toResult' style='font-size:32rpx;'>
+      搜索</button>
     </view>
   </view>
   <text class='tips'>小贴士：只输入高校名可查看该学校所有课程哦！</text>
