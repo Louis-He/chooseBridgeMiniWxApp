@@ -5,10 +5,11 @@ App({
   onLaunch: function (opt) {
     
     // 展示本地存储能力
+    /*
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    */
     // 登录
     wx.login({
       success: res => {
@@ -40,16 +41,13 @@ App({
   },
   onShow: function (opt) {
     console.log("[onShow] 场景值:", opt.scene)
+    console.log(opt)
     /** 判断场景值，1044 为转发场景，包含shareTicket 参数 */
     if (opt.scene == 1044) {
-      wx.getShareInfo({
-        shareTicket: opt.shareTicket,
-        success: function (res) {
-          console.log(res)
-        },
-        fail: function (res){
-          console.log('获取shareTicket失败')
-        }
+      console.log(opt.query.unionid)
+      wx.setStorage({
+        key: 'share_user',
+        data: opt.query.unionid,
       })
     }
   },

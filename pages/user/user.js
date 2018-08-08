@@ -35,6 +35,7 @@ Page({
       withShareTicket: true,
       success: function(res){
         console.log(res)
+        
       }
     })
     
@@ -196,8 +197,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var unionId = '';
+    wx.getStorage({
+      key: 'unionId',
+      success: function(res) {
+        unionId = res.data
+      },
+    })
     return {
       title: '邀请您加入桥选学生社群！',
+      path: '/pages/user/user?unionid=' + unionId,
       success: function (res) {
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
@@ -207,6 +216,9 @@ Page({
           shareTicket: shareTickets[0],
           success: function (res) {
             console.log(res)
+            requestUtil.getShareTicket(res, function(res){
+                
+            })
           }
         })
       },
@@ -354,8 +366,9 @@ Page({
                 data: result.data.data.unionId,
               })
 
+              var localUnionId = result.data.data.unionId
               // 获取用户unionId后得到用户choosebridge个人信息
-              requestUtil.getChooseBridgeUserInfo(result.data.data.unionId, function (res) {
+              requestUtil.getChooseBridgeUserInfo(result.data.data.unionId, res.userInfo.nickName, function (res) {
                 
                 var academicInfo = res.data.entities[0].academic;
                 // 设置大学、专业、毕业年份、高中地区和邮箱状态
@@ -444,7 +457,27 @@ Page({
                   data: res.data.entities[0].email,
                 })
 
-                
+                // 如果是转发用户，请求加RP
+                if (res.data.entities[0].profile.is_email_edu){
+                  wx.getStorage({
+                    key: 'share_user',
+                    success: function(res) {
+                      requestUtil.pushShareInfoToServer(res.data, localUnionId, function(result){
+                        console.log(result)
+                        wx.removeStorage({
+                          key: 'share_user',
+                          success: function(res) {
+                            console.log('RP已经增加，share_user删除')
+                          },
+                        })
+                      })
+                    },
+                    fail: function(res){
+                      console.log('这个用户不是转发进来的')
+                    }
+                  })
+                }
+
                 requestUtil.getViewmycoursesUserInfo(res.data.entities[0].id, function(result){
                   wx.setStorage({
                     key: 'isEmailEdu',
