@@ -159,14 +159,41 @@ Page({
       })
     });
   },
-  commentUniversity: function () {
-    wx.navigateTo({
-      url: 'newComment/newUnivCom/newUnivCom',
-    })
+  commentUniversity: function (e) {
+    var that = this;
+    var index = parseInt(e.currentTarget.dataset.index);
+    var pushTmpUniv = {
+      school_name: that.data.universities[index].school_name,
+      school_nickname: that.data.universities[index].school_nick_name,
+      school_id: that.data.universities[index].school_id
+    }
+    wx.setStorage({
+      key: 'pushTmpUniv',
+      data: pushTmpUniv,
+      success: function () {
+        wx.navigateTo({
+          url: 'newComment/newUnivCom/newUnivCom',
+        })
+      }
+    });
   },
-  commentProfessor: function () {
-    wx.navigateTo({
-      url: 'newComment/newProfCom/newProfCom',
+  commentProfessor: function (e) {
+    var that = this;
+    var index = parseInt(e.currentTarget.dataset.index);
+    var professorID = that.data.professors[index].professor_id;
+    var professor_name_cmt = that.data.professors[index].professor_full_name;
+    wx.setStorage({
+      key: 'professorID',
+      data: professorID,
+    });
+    wx.setStorage({
+      key: 'professor_name_cmt',
+      data: professor_name_cmt,
+      success: function () {
+        wx.navigateTo({
+          url: 'newComment/newProfCom/newProfCom',
+        })
+      }
     })
   },
   createNew: function () {

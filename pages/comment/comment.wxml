@@ -86,7 +86,7 @@
 
         <view class="cards">
         <view class="universityCard" bindtap='commentUniversity' 
-        wx:for="{{universities.length}}">
+        wx:for="{{universities.length}}" data-index='{{index}}'>
           <view class="item item1">
             <image mode='widthFix' src='/images/institute.png' 
             style='width:120%;height:120%'></image>
@@ -141,7 +141,7 @@
 
         <view class="cards">
             <view class="universityCard" bindtap='commentProfessor'
-            wx:for="{{professors.length}}">
+            wx:for="{{professors.length}}" data-index='{{index}}'>
               <view class="item item1">
                 <image src='/images/user.png' style='width:100%;height:110%'></image>
               </view>
