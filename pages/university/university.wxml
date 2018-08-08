@@ -28,11 +28,12 @@
 <block wx:if="{{!nameBase}}">
   <view class="input-view"> 
     <text class='text-view'>我想查找</text>
-     <input class="input-text-area" placeholder-style=
-     'color:rgba(255,255,255,0.5);font-weight:lighter;font-size:30rpx;'
-     placeholder = "{{blankVal}}" 
-     bindinput='inputTyping' confirm-type='search'/>
-      <text class='text-view'>的高校</text>
+     <picker class='picker-display' mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+    <text>{{multiArray[0][multiIndex[0]]}} / {{multiArray[1][multiIndex[1]]}}</text>
+    </view>
+  </picker>
+    <text class='text-view'>的高校</text>
 </view> 
 </block>
    <button class = "searchBtn" bindtap='toResult'>搜索</button> 
