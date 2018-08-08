@@ -203,13 +203,13 @@ Page({
         var countryID = 0;
         for (var i = 0; i < result.length; i++) {
           if (result[i] == that.data.multiArray[0][that.data.multiIndex[0]]) {
-            countryID = i;
+            countryID = i + 1;
             break;
           }
         }
         var provinceID = that.data.multiArray[2][that.data.multiIndex[1]];
         var pageSize = 10;
-        var page = 0;
+        var page = 1;
         console.log(countryID, provinceID);
         requestUtil.getSchoolByLocation(countryID, provinceID, pageSize, page, function (result) {
           console.log(result);
