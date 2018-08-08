@@ -13,7 +13,7 @@ Page({
     inputVal: "",
     professors: [],
     multiIndex: [0, 0],
-    multiArray: [['中国', '美国'], ["复旦大学", "天津"]]
+    multiArray: [[], []]
   },
 
   /**
