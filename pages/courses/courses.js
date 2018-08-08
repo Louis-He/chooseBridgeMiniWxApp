@@ -11,7 +11,9 @@ Page({
     blankUni: "学校",
     blankPro: "教授",
     inputVal: "",
-    professors: []
+    professors: [],
+    multiIndex: [0, 0],
+    multiArray: [['中国', '美国'], ["复旦大学", "天津"]]
   },
 
   /**
@@ -19,6 +21,26 @@ Page({
    */
   onLoad: function (options) {
     this.setScrollHeight();
+    var that = this;
+    // 初始化multiArray
+      var tempLocationArray = new Array();
+      requestUtil.getSchoolGroupByCountry(function (schoolResult) {
+        console.log(schoolResult)
+        var data = {
+          multiArray: that.data.multiArray,
+        }
+        var tempArray = new Array();
+        for (var i = 0; i < schoolResult["美国"].length; i++) {
+          tempArray.push(schoolResult["美国"][i].school_name);
+        }
+        for (var key in schoolResult) {
+          tempLocationArray.push(key);
+        }
+        console.log(tempLocationArray);
+        data.multiArray[0] = tempLocationArray;
+        data.multiArray[1] = tempArray;
+        that.setData(data);
+      })
   },
 
   /**
@@ -91,17 +113,70 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  /**
+   * 两个picker处理函数
+   */
+  bindMultiPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      multiIndex: e.detail.value,
+      schoolBase: true
+    })
+  },
+
+  bindMultiPickerColumnChange: function (e) {
+    var that = this;
+    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+    for (var i = 0; i < data.multiArray[0].length; i++) {
+      switch (data.multiIndex[0]) {
+        case i:
+          requestUtil.getSchoolGroupByCountry(function (schoolResult) {
+            console.log(schoolResult);
+            var tempArray = new Array();
+            var key = data.multiArray[0][data.multiIndex[0]];
+            for (var j = 0; j < schoolResult[key].length; j++) {
+              tempArray.push(schoolResult[key][j].school_name);
+            }
+            console.log(tempArray);
+            data.multiArray[1] = tempArray;
+            that.setData(data);
+            //console.log(data.multiArray[1]);
+          })
+          break;
+      }
+      //console.log(data.multiArray[1]);
+    }
+  },
+
+
   toResult: function () {
     var that = this;
     this.setData({
       firstView: false
     });
-    requestUtil.getProfessorByCondition(that.data.inputVal, function (result) {
-      console.log(result);
-      that.setData({
-        professors: result
-      })
-    });
+    if (!that.data.schoolBase) {
+      requestUtil.getProfessorByCondition(that.data.inputVal, function (result) {
+        console.log(result);
+        that.setData({
+          professors: result
+        })
+      });
+    } else {
+      requestUtil.getProfessorBySchool(that.data.multiArray[1][that.data.multiIndex[1]],
+      that.data.inputVal, 10, 1, function (result) {
+        console.log(result);
+        that.setData({
+          professors: result.professors,
+        })
+      });
+    }
+    
   },
   toProfessor: function(e) {
     var that = this;

@@ -567,6 +567,45 @@ function getSchoolByLocation(countryID, provinceID, pageSize, page, _callback) {
 }
 
 /**
+ * 数据库中学校搜教授
+ * 返回教授列表
+ * 传入数据：学校名称，教授名称，列表显示个数，第几个列表
+ * 函数类型：回掉函数
+ */
+function getProfessorBySchool(school_name, professor_name, pageSize, page, _callback) {
+  var that = this;
+  wx.getStorage({
+    key: 'user_id',
+    success: function (res) {
+      that.getViewmycoursesToken(res.data, function (result) {
+        var explicitData = { "token": result };
+        var getSign = that.getSign(explicitData)
+        var requestedData = {
+          token: result,
+          sign: getSign
+        }
+        wx.request({
+          url: 'https://api.viewmycourses.com//api/get-professor-by-condition',
+          method: 'GET',
+          data: {
+            school_name: school_name,
+            professor_name: professor_name,
+            pageSize: pageSize,
+            page: page,
+            mode: 'professor'
+          },
+          header: requestedData,
+          success: function (res) {
+            console.log(res);
+            _callback(res.data.data);
+          }
+        })
+      })
+    },
+  })
+}
+
+/**
  * 用户为学校点赞
  * 传入数据：学校id
  * 函数类型：回掉函数
@@ -786,6 +825,7 @@ module.exports = {
   getProfessorDetail: getProfessorDetail,
   getStudentByID: getStudentByID,
   getSchoolByLocation: getSchoolByLocation,
+  getProfessorBySchool: getProfessorBySchool,
   thumbsUpSchool: thumbsUpSchool,
   thumbsUpProfessor: thumbsUpProfessor,
   thumbsUpSchoolRate: thumbsUpSchoolRate,

@@ -47,6 +47,14 @@ page{
   margin-left: 97rpx; 
   padding: 25rpx 0rpx 25rpx 0rpx;
 }
+.picker {
+  color:rgba(255,255,255,0.5);
+  font-weight: lighter;
+  font-size: 30rpx;
+  padding: 0rpx 15rpx 0rpx 15rpx;
+  border-bottom: 0.5rpx solid;
+  border-bottom-color: white;
+  }
 .searchBtn {
   font-weight: lighter;
   color: white;
