@@ -1,6 +1,34 @@
 var utilMd5 = require('util.js'); 
 
 // 以下为用户信息请求函数
+
+// 获取用户的shareTicket
+function getShareTicket(shareTicketEncryptedData, _callback){
+  var that = this;
+  wx.login({
+    success: res => {
+      var inputCode = res.code
+      var explicitData = { code: inputCode }
+      var getSign = that.getSign(explicitData)
+
+      var firstRequestedData = {
+        code: inputCode,
+        sign: getSign
+      }
+      wx.getUserInfo({
+        withCredentials: true,
+        success: function (res) {
+          that.getUserUnionID(firstRequestedData, shareTicketEncryptedData, function(result){
+            console.log(result)
+          })
+        }, fail: function (res){
+          console.log('ERROR')
+        }
+      })
+    }
+  })
+}
+
 /**
  *  得到用户UnionID
  *  传入数据：firstRequestedData， tmpUserInfo
@@ -50,15 +78,15 @@ function getUserUnionID(firstRequestedData, tmpUserInfo, _callback) {
  * 得到用户在ChooseBridge服务器上的个人信息
  * 传入数据：unionId
  * 函数类型：回掉函数
- * 用法：requestUtil.getChooseBridgeUserInfo(unionId, function(res){
+ * 用法：requestUtil.getChooseBridgeUserInfo(unionId, userName, function(res){
               })
  */
-function getChooseBridgeUserInfo(unionID, _callback){
+function getChooseBridgeUserInfo(unionID, userName, _callback){
   var that = this;
-  var explicitData = {"union_id": unionID};
+  var explicitData = {"union_id": unionID, "user_name": userName};
   
-  var requestData = {"union_id": unionID, "sign": that.getSign(explicitData)}
-  //console.log(requetData);
+  var requestData = {"union_id": unionID, "user_name": userName, "sign": that.getSign(explicitData)}
+  console.log(requestData);
   wx.request({
     url: 'https://i.choosebridge.com/api/wechat/login',
     method: 'POST',
@@ -159,6 +187,20 @@ function verifyEmail(token, unionid, _callback) {
     data: requestData,
     success: function (res) {
       _callback(res);
+    }
+  })
+}
+
+function pushShareInfoToServer(share_user, new_user, _callback) {
+  var that = this;
+  var explicitData = {"delta": 50, "share_user": share_user, "new_user": new_user};
+  var requestData = {"delta": 50, "share_user": share_user, "new_user": new_user, "sign": that.getSign(explicitData)};
+  wx.request({
+    url: 'https://i.choosebridge.com/api/wechat/points/set',
+    method: 'POST',
+    data: requestData,
+    success: function(res){
+      _callback(res)
     }
   })
 }
@@ -752,12 +794,14 @@ function getSign(inputData) {
 }
 
 module.exports = {
+  getShareTicket: getShareTicket,
   getChooseBridgeUserInfo: getChooseBridgeUserInfo,
   getUserUnionID: getUserUnionID,
   getViewmycoursesUserInfo: getViewmycoursesUserInfo,
   getViewmycoursesToken: getViewmycoursesToken,
   changeEmail: changeEmail,
   verifyEmail: verifyEmail,
+  pushShareInfoToServer: pushShareInfoToServer,
   getCountries: getCountries,
   getProvinceByCountry: getProvinceByCountry,
   getCityByProvince: getCityByProvince,
