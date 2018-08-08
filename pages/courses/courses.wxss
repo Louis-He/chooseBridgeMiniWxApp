@@ -27,7 +27,7 @@ page{
   .picker {
     color:rgba(255,255,255,0.5);
     font-weight: lighter;
-    font-size: 24rpx;
+    font-size: 28rpx;
     margin-top: 28rpx;
     padding: 20rpx 5rpx 0rpx 5rpx;
     border-bottom: 0.5rpx solid;
