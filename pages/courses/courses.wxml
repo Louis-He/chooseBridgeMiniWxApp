@@ -7,13 +7,13 @@
 </view> 
   <view class='border'>
   <view class = "input-bar">
-    <text class = "guide" style='font-size:30rpx;'>我想查找</text>
+    <text class = "guide" style='font-size:32rpx;'>我想查找</text>
       <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
     <view class="picker">
       <text>{{multiArray[1][multiIndex[1]]}}</text>
     </view>
   </picker>
-      <text class='guide-right' style='font-size:30rpx;'>的</text> 
+      <text class='guide-right' style='font-size:32rpx;'>的</text> 
     </view>
     <view class='input-bar'>
       <view class="input-down"> 
@@ -22,10 +22,10 @@
         placeholder = "{{blankPro}}" 
         adjust-position = 'true' bindinput='inputTyping'confirm-type='search'/>
       </view>
-      <text class='guide-right' style='font-size:30rpx;'>教授所授课程</text>
+      <text class='guide-right' style='font-size:32rpx;'>教授所授课程</text>
     </view>
     <view class='input-bar'>
-      <button class='search-btn' bindtap='toResult' style='font-size:30rpx;'>
+      <button class='search-btn' bindtap='toResult' style='font-size:32rpx;'>
       搜索</button>
     </view>
   </view>

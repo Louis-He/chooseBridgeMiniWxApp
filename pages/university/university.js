@@ -31,7 +31,7 @@ Page({
 
 
       requestUtil.getProvinceByCountry(1, function (provincesResult) {
-        //console.log(provincesResult)
+        console.log(provincesResult)
         var data = {
           multiArray: that.data.multiArray,
         }
@@ -127,7 +127,8 @@ Page({
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
+      multiIndex: this.data.multiIndex,
+      provinceIndex: [],
     };
     data.multiIndex[e.detail.column] = e.detail.value;
      for (var i = 0; i < data.multiArray[0].length; i++) {
@@ -136,9 +137,22 @@ Page({
           requestUtil.getProvinceByCountry(i + 1, function (provincesResult) {
           console.log(provincesResult);
           data.multiArray[1] = provincesResult[1];
-          data.multiArray[2] = provincesResult[0];
+          data.provinceIndex = provincesResult[0];
+          //截取省份前十个字符
+          var multiArrayDisplay = new Array();
+          multiArrayDisplay = that.data.multiArray[1];
+          var pattern = new RegExp("[\u4E00-\u9FA5]+");
+          for (var i = 0; i < that.data.multiArray[1].length; i++) {
+            if (pattern.test(that.data.multiArray[1][i]) && that.data.multiArray[1][i].length > 5) {
+              multiArrayDisplay[i] = that.data.multiArray[1][i].substring(0, 5) + "...";
+            } else if (!pattern.test(that.data.multiArray[1][i]) &&
+            that.data.multiArray[1][i].length > 9) {                
+              multiArrayDisplay[i] = that.data.multiArray[1][i].substring(0, 9) + "...";
+            }
+          }
+          //data.multiArray[1] = provincesResult[1];
           that.setData(data);
-          //console.log(data.multiArray[1]);
+          console.log(provincesResult[1]);
         })
         break;
       }
@@ -207,7 +221,7 @@ Page({
             break;
           }
         }
-        var provinceID = that.data.multiArray[2][that.data.multiIndex[1]];
+        var provinceID = that.data.provinceIndex[that.data.multiIndex[1]];
         var pageSize = 10;
         var page = 1;
         console.log(countryID, provinceID);
