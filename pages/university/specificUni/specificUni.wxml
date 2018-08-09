@@ -82,7 +82,7 @@
           <view class='btn-display'>
             <button class='share-btn-view' bindtap='share'>分享给好友</button>
             <button class='like-btn-view' bindtap='addLike'>
-            已有{{ikesNum}}人点赞</button>
+            已有{{likesNum}}人点赞</button>
           </view>
         </view>
       </view>
