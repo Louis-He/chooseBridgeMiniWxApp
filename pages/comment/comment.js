@@ -78,7 +78,33 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    var unionId = '';
+    wx.getStorage({
+      key: 'unionId',
+      success: function (res) {
+        unionId = res.data
+      },
+    })
+    return {
+      title: '邀请您加入桥选学生社群！',
+      path: '/pages/user/user?unionid=' + unionId,
+      success: function (res) {
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (res) {
+            console.log(res)
+
+          }
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   },
   showInput: function () {
     this.setData({
