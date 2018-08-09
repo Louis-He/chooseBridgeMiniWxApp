@@ -56,6 +56,16 @@ Page({
           })
       },
     })
+    wx.getStorage({
+      key: 'isEmailEdu',
+      success: function (res) {
+        if (!res.data) {
+          wx.navigateTo({
+            url: '../../user/privilegeForm/errorEmail',
+          })
+        }
+      },
+    })
   },
 
   /**

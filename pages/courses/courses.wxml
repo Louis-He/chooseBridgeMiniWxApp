@@ -10,9 +10,10 @@
     <text class = "guide" style='font-size:32rpx;'>我想查找</text>
       <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
     <view class="picker">
-      <text>{{multiArray[1][multiIndex[1]]}}</text>
+      <text wx:if="{{pickerChose}}">{{multiArray[1][multiIndex[1]]}}</text>
+      <view wx:if="{{!pickerChose}}" bindtap='usePicker'>高校</view>
     </view>
-  </picker>
+    </picker>
       <text class='guide-right' style='font-size:32rpx;'>的</text> 
     </view>
     <view class='input-bar'>

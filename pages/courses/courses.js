@@ -13,7 +13,8 @@ Page({
     inputVal: "",
     professors: [],
     multiIndex: [0, 0],
-    multiArray: [[], []]
+    multiArray: [[], []],
+    pickerChose: false,
   },
 
   /**
@@ -41,6 +42,16 @@ Page({
         data.multiArray[1] = tempArray;
         that.setData(data);
       })
+    wx.getStorage({
+      key: 'isEmailEdu',
+      success: function (res) {
+        if (!res.data) {
+          wx.navigateTo({
+            url: '../user/privilegeForm/errorEmail',
+          })
+        }
+      },
+    })
   },
 
   /**
@@ -122,7 +133,8 @@ Page({
     this.setData({
       multiIndex: e.detail.value,
       schoolBase: true
-    })
+    });
+    this.data.pickerChose = true;
   },
 
   bindMultiPickerColumnChange: function (e) {
@@ -247,4 +259,9 @@ Page({
       }
     });
   },
+  usePicker: function() {
+    this.setData({
+      pickerChose: true,
+    })
+  }
 })
