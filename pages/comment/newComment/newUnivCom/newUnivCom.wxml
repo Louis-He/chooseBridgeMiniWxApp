@@ -29,7 +29,7 @@
           <view class="weui-label">*社会声誉</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="socialReputationChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="socialReputationChange" show-value value="0" max="5" min="0" step="1" block-size='15' activeColor='#359ACA'/>
         </view>
       </view>
       
@@ -38,7 +38,7 @@
           <view class="weui-label">*学术水平</view>
         </view>
           <view class="weui-cell__bd">
-          <slider bindchange="academicLevelChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="academicLevelChange" show-value value="0" max="5" min="0" step="1" block-size='15' activeColor='#359ACA'/>
         </view>
       </view>
 
@@ -47,7 +47,7 @@
           <view class="weui-label">*网络服务</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="WebServiceChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="WebServiceChange" show-value value="0" max="5" min="0" step="1" block-size='15' activeColor='#359ACA'/>
         </view>
       </view>
 
@@ -56,7 +56,7 @@
           <view class="weui-label">*住宿条件</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="domConditionChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="domConditionChange" show-value value="0" max="5" min="0" step="1" block-size='15' activeColor='#359ACA'/>
         </view>
       </view>
 
@@ -65,7 +65,7 @@
           <view class="weui-label">*餐饮质量</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="foodQualityChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="foodQualityChange" show-value value="0" max="5" min="0" step="1" block-size='15' activeColor='#359ACA'/>
         </view>
       </view>
       
@@ -74,7 +74,7 @@
           <view class="weui-label">*校园地理位置</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="geoLocationChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="geoLocationChange" show-value value="0" max="5" min="0" step="1" block-size='15' activeColor='#359ACA'/>
         </view>
       </view> 
 
@@ -83,7 +83,7 @@
           <view class="weui-label">*校园课外活动</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="activityChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="activityChange" show-value value="0" max="5" min="0" step="1" block-size='15' activeColor='#359ACA'/>
         </view>
       </view>
 
@@ -92,7 +92,7 @@
           <view class="weui-label">*校园基础设施</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="infrastructureChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="infrastructureChange" show-value value="0" max="5" min="0" step="1" block-size='15' activeColor='#359ACA'/>
         </view>
       </view>
 
@@ -101,7 +101,7 @@
           <view class="weui-label">*生活幸福指数</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="happinessChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="happinessChange" show-value value="0" max="5" min="0" step="1" block-size='15' activeColor='#359ACA'/>
         </view>
       </view>
 
@@ -110,7 +110,7 @@
           <view class="weui-label">*校方与学生关系</view>
         </view>
         <view class="weui-cell__bd">
-          <slider bindchange="relationshipChange" show-value value="0" max="5" min="0" step="1" block-size='15' selectedColor='#70CEDC'/>
+          <slider bindchange="relationshipChange" show-value value="0" max="5" min="0" step="1" block-size='15' activeColor='#359ACA'/>
         </view>
       </view>
 
