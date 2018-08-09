@@ -70,6 +70,10 @@ page{
     width: 45%;
     padding-top: 10px;
   }
+  .input-upp {
+    padding-top: 10px;
+    text-align: center;
+  }
   .input-down {
     width: 45%;
     padding-top: 10px;
