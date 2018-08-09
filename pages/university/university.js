@@ -32,8 +32,6 @@ Page({
           console.log(result);
           var tempLocationArray = new Array();
           tempLocationArray[0] = result;
-
-
           requestUtil.getProvinceByCountry(1, function (provincesResult) {
             console.log(provincesResult)
             var data = {
@@ -44,16 +42,6 @@ Page({
             that.setData(data);
           })
         })
-        wx.getStorage({
-          key: 'isEmailEdu',
-          success: function (res) {
-            if (!res.data) {
-              wx.navigateTo({
-                url: '../user/privilegeForm/errorEmail',
-              })
-            }
-          },
-        })
       },
       fail: function(res){
         wx.switchTab({
@@ -61,7 +49,6 @@ Page({
         })
       }
     })
-    
   },
 
   /**
