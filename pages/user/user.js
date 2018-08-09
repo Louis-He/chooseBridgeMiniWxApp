@@ -440,6 +440,12 @@ Page({
                     expireDay: res.data.entities[0].vip_expire_day
                   })
                 } else {
+                  wx.removeStorage({
+                    key: 'is_vip',
+                    success: function(res) {
+                      console.log('不是VIP')
+                    },
+                  })
                   that.setData({
                     expireDay: false
                   })

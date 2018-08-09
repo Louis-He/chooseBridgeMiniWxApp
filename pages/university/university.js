@@ -24,33 +24,44 @@ Page({
   onLoad: function (options) {
     this.setScrollHeight();
     var that = this;
-    // 初始化multiArray
-    requestUtil.getCountries(function (result) {
-      console.log(result);
-      var tempLocationArray = new Array();
-      tempLocationArray[0] = result;
-
-
-      requestUtil.getProvinceByCountry(1, function (provincesResult) {
-        console.log(provincesResult)
-        var data = {
-          multiArray: that.data.multiArray,
-        }
-        data.multiArray[0] = tempLocationArray[0];
-        data.multiArray[1] = provincesResult[1];
-        that.setData(data);
-      })
-    })
     wx.getStorage({
-      key: 'isEmailEdu',
-      success: function (res) {
-        if (!res.data) {
-          wx.navigateTo({
-            url: '../user/privilegeForm/errorEmail',
+      key: 'unionId',
+      success: function(res) {
+        // 初始化multiArray
+        requestUtil.getCountries(function (result) {
+          console.log(result);
+          var tempLocationArray = new Array();
+          tempLocationArray[0] = result;
+
+
+          requestUtil.getProvinceByCountry(1, function (provincesResult) {
+            console.log(provincesResult)
+            var data = {
+              multiArray: that.data.multiArray,
+            }
+            data.multiArray[0] = tempLocationArray[0];
+            data.multiArray[1] = provincesResult[1];
+            that.setData(data);
           })
-        }
+        })
+        wx.getStorage({
+          key: 'isEmailEdu',
+          success: function (res) {
+            if (!res.data) {
+              wx.navigateTo({
+                url: '../user/privilegeForm/errorEmail',
+              })
+            }
+          },
+        })
       },
+      fail: function(res){
+        wx.switchTab({
+          url: '../user/user',
+        })
+      }
     })
+    
   },
 
   /**
@@ -129,7 +140,7 @@ Page({
     })
     return {
       title: '邀请您加入桥选学生社群！',
-      path: '/pages/user/user?unionid=' + unionId,
+      path: '/pages/university/university?unionid=' + unionId,
       success: function (res) {
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
