@@ -29,10 +29,12 @@
   <view class="input-view"> 
     <text class='text-view'>我想查找</text>
      <picker class='picker-display' mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-    <view class="picker">
-    <text>{{multiArray[0][multiIndex[0]]}} / {{multiArray[1][multiIndex[1]]}}</text>
-    </view>
-  </picker>
+      <view class="picker">
+      <text wx:if="{{pickerChose}}">{{multiArray[0][multiIndex[0]]}} / {{multiArray[1][multiIndex[1]]}}
+      </text>
+      <view wx:if="{{!pickerChose}}" bindtap='usePicker'>所在省份/state</view>
+      </view>
+    </picker>
     <text class='text-view'>的高校</text>
 </view> 
 </block>
