@@ -1,21 +1,24 @@
-// pages/user/AcedemicForm/acedemicForm.js
+// pages/user/privilegeForm/shareAPP.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    "university": " ",
-    "discipline": " ",
-    "graduateYear": " ",
-    "highSchoolCity": " "
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    wx.showShareMenu({
+      withShareTicket: true,
+      success: function (res) {
+        console.log(res)
+
+      }
+    })
   },
 
   /**
@@ -64,28 +67,32 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
-  },
-
-  bindDateChange: function (e) {
-    this.setData({
-      graduateYear: e.detail.value
+    var unionId = '';
+    wx.getStorage({
+      key: 'unionId',
+      success: function (res) {
+        unionId = res.data
+      },
     })
-  },
+    return {
+      title: '邀请您加入桥选学生社群！',
+      path: '/pages/user/user?unionid=' + unionId,
+      success: function (res) {
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (res) {
+            console.log(res)
 
-  confirm: function(){
-    wx.request({
-      url: '',
-      success: function(res){
-        wx.navigateTo({
-          url: 'success',
+          }
         })
       },
-      fail: function(res){
-        wx.navigateTo({
-          url: 'fail',
-        })
+      fail: function (res) {
+        // 转发失败
       }
-    })
+    }
   }
 })
