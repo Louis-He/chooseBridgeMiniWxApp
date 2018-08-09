@@ -114,7 +114,7 @@ Page({
       },
     })
     wx.getStorage({
-      key: 'isEmailEdu',
+      key: 'is_vip',
       success: function (res) {
         if (!res.data) {
           wx.navigateTo({
@@ -122,6 +122,11 @@ Page({
           })
         }
       },
+      fail: function() {
+        wx.navigateTo({
+          url: '../../user/privilegeForm/errorEmail',
+        })
+      }
     })
   },
 
