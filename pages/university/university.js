@@ -15,6 +15,7 @@ Page({
     inputVal: "",
     multiIndex: [0,0],
     multiArray: [[], [] ],
+    pickerChose: false,
   },
 
   /**
@@ -39,6 +40,16 @@ Page({
         data.multiArray[1] = provincesResult[1];
         that.setData(data);
       })
+    })
+    wx.getStorage({
+      key: 'isEmailEdu',
+      success: function (res) {
+        if (!res.data) {
+          wx.navigateTo({
+            url: '../user/privilegeForm/errorEmail',
+          })
+        }
+      },
     })
   },
 
@@ -287,4 +298,9 @@ Page({
       }
     });
   },
+  usePicker: function () {
+    this.setData({
+      pickerChose: true,
+    })
+  }
 })
