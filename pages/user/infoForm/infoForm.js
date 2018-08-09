@@ -8,11 +8,11 @@ Page({
     countryCodes: ["+86", "+80", "+84", "+87"],
     countryCodeIndex: 0,
 
-    "userName": "TestName",
-    "firstName": "FIRST",
-    "lastName": "LAST",
-    "lastName": "LAST",
-    "Signature": "神马都是浮云"
+    "userName": " ",
+    "firstName": " ",
+    "lastName": " ",
+    "lastName": " ",
+    "Signature": " "
 
   },
 

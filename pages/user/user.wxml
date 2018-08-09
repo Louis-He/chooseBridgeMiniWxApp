@@ -101,7 +101,7 @@
             <view class="weui-cell__bd">兑换更多特权</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
-        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <navigator url="privilegeForm/shareAPP" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
             <view class="weui-cell__bd">邀请好友</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>

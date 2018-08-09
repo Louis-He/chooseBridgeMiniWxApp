@@ -1,6 +1,6 @@
 <!--pages/user/infoForm/infoForm.wxml-->
 <view class="page">
-  <view class="weui-cells__title">修改个人信息</view>
+  <view class="weui-cells__title">修改个人信息[建设中]</view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
@@ -54,8 +54,9 @@
     </view>
 
   
-
+  <!--
   <view class="weui-btn-area">
     <button class="weui-btn" bindtap="submit">提交修改</button>
   </view>
+  -->
 </view>
