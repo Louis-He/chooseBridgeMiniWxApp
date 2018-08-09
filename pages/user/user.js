@@ -432,6 +432,10 @@ Page({
                 }
 
                 if (res.data.entities[0].is_vip) {
+                  wx.setStorage({
+                    key: 'is_vip',
+                    data: res.data.entities[0].is_vip,
+                  })
                   that.setData({
                     expireDay: res.data.entities[0].vip_expire_day
                   })
