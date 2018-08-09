@@ -1,4 +1,6 @@
 // pages/comment/newComment/newProfCom/newProfCom.js
+var requestUtil = require('../../../../utils/requestUtil.js'); 
+
 Page({
 
   /**
@@ -8,6 +10,8 @@ Page({
     is_modal_Hidden: true,
     is_modal_Msg: '我是一个自定义组件',
     is_modal_Title: '提示',
+    isCodeExist: false,
+    courseIndex: 0,
     "profName": "TEST",
     "grades": ["请选择", "A", "B", "C","D","F","未完成"],
     "gradeIndex": 0,
@@ -34,6 +38,18 @@ Page({
     wx.getStorage({
       key: 'professorID',
       success: function (res) {
+        
+        requestUtil.getProfessorDetail(res.data, function(result){
+          var courseList = [];
+
+          for(var i = 0;i < result.coursesInfo.length; i++){
+            courseList[i] = result.coursesInfo[i].course_code;
+          }
+          courseList[i] = '其他'
+          that.setData({
+            courses: courseList
+          })
+        })
         that.setData({
           professorID: res.data
         })
@@ -52,6 +68,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      isCodeExist: true
+    })
     wx.getStorage({
       key: 'isEmailEdu',
       success: function (res) {
@@ -157,6 +176,22 @@ Page({
     this.setData({
       isAttend: e.detail.value
     })
+  },
+
+  bindCourseSelect: function (e){
+    this.setData({
+      courseIndex: e.detail.value
+    })
+    if (this.data.courses[e.detail.value] == '其他'){
+      this.setData({
+        isCodeExist: false
+      })
+    }else{
+      this.setData({
+        isCodeExist: true,
+        courseId: this.data.courses[e.detail.value]
+      })
+    }
   },
 
   bindGradeChange: function (e) {
