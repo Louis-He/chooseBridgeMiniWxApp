@@ -20,4 +20,3 @@
 <view style='align-items:center;'>
   <button class='button-view'style='font-weight:bold;'>确认兑换</button>
 </view>
-
