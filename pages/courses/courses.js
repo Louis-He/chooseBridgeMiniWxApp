@@ -21,44 +21,55 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showShareMenu({
-      withShareTicket: true,
-      success: function (res) {
-      }
-    })
-    this.setScrollHeight();
     var that = this;
-    // 初始化multiArray
-      var tempLocationArray = new Array();
-      requestUtil.getSchoolGroupByCountry(function (schoolResult) {
-        console.log(schoolResult)
-        var data = {
-          multiArray: that.data.multiArray,
-        }
-        var tempArray = new Array();
-        for (var i = 0; i < schoolResult["美国"].length; i++) {
-          tempArray.push(schoolResult["美国"][i].school_name);
-        }
-        for (var key in schoolResult) {
-          tempLocationArray.push(key);
-        }
-        console.log(tempLocationArray);
-        data.multiArray[0] = tempLocationArray;
-        data.multiArray[1] = tempArray;
-        that.setData(data);
-      })
     wx.getStorage({
-      key: 'is_vip',
-      success: function (res) {
-        if (!res.data) {
-          wx.navigateTo({
-            url: '../user/privilegeForm/errorEmail',
-          })
-        }
+      key: 'unionId',
+      success: function(res) {
+        wx.showShareMenu({
+          withShareTicket: true,
+          success: function (res) {
+          }
+        })
+        that.setScrollHeight();
+        // 初始化multiArray
+        var tempLocationArray = new Array();
+        requestUtil.getSchoolGroupByCountry(function (schoolResult) {
+          console.log(schoolResult)
+          var data = {
+            multiArray: that.data.multiArray,
+          }
+          var tempArray = new Array();
+          for (var i = 0; i < schoolResult["美国"].length; i++) {
+            tempArray.push(schoolResult["美国"][i].school_name);
+          }
+          for (var key in schoolResult) {
+            tempLocationArray.push(key);
+          }
+          console.log(tempLocationArray);
+          data.multiArray[0] = tempLocationArray;
+          data.multiArray[1] = tempArray;
+          that.setData(data);
+        })
+        wx.getStorage({
+          key: 'is_vip',
+          success: function (res) {
+            if (!res.data) {
+              wx.navigateTo({
+                url: '../user/privilegeForm/errorEmail',
+              })
+            }
+          },
+          fail: function () {
+            wx.navigateTo({
+              url: '../../user/privilegeForm/errorEmail',
+            })
+          }
+        })
       },
-      fail: function () {
-        wx.navigateTo({
-          url: '../../user/privilegeForm/errorEmail',
+      fail: function(res){
+        console.log('fail')
+        wx.switchTab({
+          url: '../user/user',
         })
       }
     })
@@ -141,7 +152,7 @@ Page({
     })
     return {
       title: '邀请您加入桥选学生社群！',
-      path: '/pages/user/user?unionid=' + unionId,
+      path: '/pages/courses/courses?unionid=' + unionId,
       success: function (res) {
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
