@@ -239,7 +239,7 @@ Page({
             })
           that.onLoad();
           wx.showToast({
-            title: '已反对',
+            title: '已取消',
           })
         }
       })
