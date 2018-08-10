@@ -151,64 +151,15 @@ Page({
   showCmtDetail: function (e) {
     var that = this;
     var index = parseInt(e.currentTarget.dataset.index);
-    var studentID;
-    var graduateYear;
-    var highSchool;
-    var createTime;
-    // wx.getStorage({
-    //   key: 'tempSchoolData',
-    //   success: function(res) {
-    //     studentID = res.data.ratesInfo[index].create_student_id;
-    //     createTime = res.data.ratesInfo[index].created_at.substring(0, 10);
-    //     requestUtil.getStudentByID(studentID, function (result) {
-    //       console.log(result);
-    //       graduateYear = result.student.graduate_year;
-    //       highSchool = result.student.exam_province;
-
-    //       var cmtDetail = {
-    //         university: res.data.schoolName,
-    //         cmtData: res.data.ratesInfo[index],
-    //         graduate: graduateYear,
-    //         high: highSchool,
-    //         time: createTime,
-    //         index: index,
-    //       }
-    //       wx.setStorage({
-    //         key: 'cmtDetail',
-    //         data: cmtDetail,
-    //         success: function () {
-    //           wx.navigateTo({
-    //             url: 'cmtDetail/cmtDetail',
-    //           });
-    //         }
-    //       })
-    //     });
-    //   },
-    // })
     wx.getStorage({
       key: 'university_id',
       success: function(res) {
         requestUtil.getSchoolDetail(res.data,
           function (result) {
-            // studentID = result.ratesInfo[index].create_student_id;
             var cmtInfo = {
               university_id: res.data,
               index: index
             }
-            // createTime = result.ratesInfo[index].created_at.substring(0, 10);
-            // requestUtil.getStudentByID(studentID, function (studentResult) {
-            //   console.log(result);
-            //   graduateYear = studentResult.student.graduate_year;
-            //   highSchool = studentResult.student.exam_province;
-
-              // var cmtDetail = {
-              //   university: result.schoolInfo.school_name,
-              //   cmtData: result.ratesInfo[index],
-              //   graduate: graduateYear,
-              //   high: highSchool,
-              //   time: createTime,
-              //   index: index,
-              // }
               wx.setStorage({
                 key: 'cmtInfo',
                 data: cmtInfo,
@@ -218,7 +169,6 @@ Page({
                   });
                 }
               })
-            // });
           })
       },
     })
