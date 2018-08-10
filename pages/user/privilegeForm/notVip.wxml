@@ -1,0 +1,17 @@
+<!--pages/user/privilegeForm/notVip.wxml-->
+<view class = "top-image">
+    <image mode = "widthFix" style = "width:100%" 
+    src ='/images/default-user-bg.png'></image>
+  </view> 
+  <view class='central-text-view'>
+    <text class='big-title-text'>Oops...</text>
+    <text class='small-text'>
+      您貌似没有足够的权限使用该功能哦\n 
+      请绑定并验证高校邮箱后，通过点评或邀请好友获得权限\n
+      P.S.新用户可在绑定高校邮箱后直接获得权限
+    </text>
+  </view>
+  <view style='align-items:center;'>
+    <button class='block-button-view'>修改邮箱</button>
+    <button class='block-button-view'>邀请好友</button>
+  </view>
