@@ -24,36 +24,37 @@ Page({
     this.setScrollHeight();
     var that = this;
     wx.getStorage({
-      key: 'tempSchoolData',
+      key: 'university_id',
       success: function(res) {
-        var tempArray = res.data.ratesInfo;
-        var tempScore = new Array();
-        var tempCreatedTime = new Array();
-        for (var i = 0; i < tempArray.length; i++) {
-          tempScore[i] = tempArray[i].score.toString();
-          tempScore[i] = parseFloat(tempScore[i]).toFixed(1);
-          tempCreatedTime[i] = tempArray[i].created_at.substring(0, 10);
-          that.setData({
-            districtScore: tempScore,
-            cmtCreatedTime: tempCreatedTime
-          });
-        }
-        that.setData({
-          schoolData: {
-            schoolName: res.data.schoolName,
-            city: res.data.city,
-            province: res.data.province,
-            country: res.data.country,
-            rcmdProfessorName: res.data.rcmdProfessor.professor_full_name,
-            rcmdProfessorID: res.data.rcmdProfessor.professor_id,
-            overallScore: res.data.overallScore,
-            schoolDistrictInfo: res.data.schoolDistrictInfo,
-            ratesInfo: res.data.ratesInfo,
-            schoolID: res.data.schoolID,
-          }
-        })
-        requestUtil.getSchoolDetail(res.data.schoolID,
+        requestUtil.getSchoolDetail(res.data,
           function (result) {
+            console.log(result);
+            var tempArray = result.ratesInfo;
+            var tempScore = new Array();
+            var tempCreatedTime = new Array();
+            for (var i = 0; i < tempArray.length; i++) {
+              tempScore[i] = tempArray[i].score.toString();
+              tempScore[i] = parseFloat(tempScore[i]).toFixed(1);
+              tempCreatedTime[i] = tempArray[i].created_at.substring(0, 10);
+              that.setData({
+                districtScore: tempScore,
+                cmtCreatedTime: tempCreatedTime
+              });
+            }
+            that.setData({
+              schoolData: {
+                schoolName: result.schoolInfo.school_name,
+                city: result.schoolInfo.city,
+                province: res.data.province,
+                country: result.schoolInfo.country,
+                rcmdProfessorName: result.randomProfessor.professor_full_name,
+                rcmdProfessorID: result.randomProfessor.professor_id,
+                overallScore: result.schoolInfo.school_score,
+                schoolDistrictInfo: result.schoolDistrictInfo,
+                ratesInfo: result.ratesInfo,
+                schoolID: res.data,
+              }
+            })
             that.setData({
               likesNum: result.schoolInfo.thumbs_up_num,
               thumbsSync: result,
@@ -67,7 +68,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad();
+
   },
 
   /**
@@ -154,34 +155,71 @@ Page({
     var graduateYear;
     var highSchool;
     var createTime;
-    wx.getStorage({
-      key: 'tempSchoolData',
-      success: function(res) {
-        studentID = res.data.ratesInfo[index].create_student_id;
-        createTime = res.data.ratesInfo[index].created_at.substring(0, 10);
-        requestUtil.getStudentByID(studentID, function (result) {
-          console.log(result);
-          graduateYear = result.student.graduate_year;
-          highSchool = result.student.exam_province;
+    // wx.getStorage({
+    //   key: 'tempSchoolData',
+    //   success: function(res) {
+    //     studentID = res.data.ratesInfo[index].create_student_id;
+    //     createTime = res.data.ratesInfo[index].created_at.substring(0, 10);
+    //     requestUtil.getStudentByID(studentID, function (result) {
+    //       console.log(result);
+    //       graduateYear = result.student.graduate_year;
+    //       highSchool = result.student.exam_province;
 
-          var cmtDetail = {
-            university: res.data.schoolName,
-            cmtData: res.data.ratesInfo[index],
-            graduate: graduateYear,
-            high: highSchool,
-            time: createTime,
-            index: index,
-          }
-          wx.setStorage({
-            key: 'cmtDetail',
-            data: cmtDetail,
-            success: function () {
-              wx.navigateTo({
-                url: 'cmtDetail/cmtDetail',
-              });
+    //       var cmtDetail = {
+    //         university: res.data.schoolName,
+    //         cmtData: res.data.ratesInfo[index],
+    //         graduate: graduateYear,
+    //         high: highSchool,
+    //         time: createTime,
+    //         index: index,
+    //       }
+    //       wx.setStorage({
+    //         key: 'cmtDetail',
+    //         data: cmtDetail,
+    //         success: function () {
+    //           wx.navigateTo({
+    //             url: 'cmtDetail/cmtDetail',
+    //           });
+    //         }
+    //       })
+    //     });
+    //   },
+    // })
+    wx.getStorage({
+      key: 'university_id',
+      success: function(res) {
+        requestUtil.getSchoolDetail(res.data,
+          function (result) {
+            // studentID = result.ratesInfo[index].create_student_id;
+            var cmtInfo = {
+              university_id: res.data,
+              index: index
             }
+            // createTime = result.ratesInfo[index].created_at.substring(0, 10);
+            // requestUtil.getStudentByID(studentID, function (studentResult) {
+            //   console.log(result);
+            //   graduateYear = studentResult.student.graduate_year;
+            //   highSchool = studentResult.student.exam_province;
+
+              // var cmtDetail = {
+              //   university: result.schoolInfo.school_name,
+              //   cmtData: result.ratesInfo[index],
+              //   graduate: graduateYear,
+              //   high: highSchool,
+              //   time: createTime,
+              //   index: index,
+              // }
+              wx.setStorage({
+                key: 'cmtInfo',
+                data: cmtInfo,
+                success: function () {
+                  wx.navigateTo({
+                    url: 'cmtDetail/cmtDetail',
+                  });
+                }
+              })
+            // });
           })
-        });
       },
     })
   },
