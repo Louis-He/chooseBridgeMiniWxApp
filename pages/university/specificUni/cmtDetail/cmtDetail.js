@@ -22,31 +22,6 @@ Page({
     wx.getStorage({
       key: 'cmtInfo',
       success: function(res) {
-        // console.log(res);
-        // that.setData({
-        //   cmtData: {
-        //     university: res.data.university,
-        //     graduateYear: res.data.graduate,
-        //     province: res.data.high,
-        //     major: res.data.cmtData.major,
-        //     comment: res.data.cmtData.comment,
-        //     commentTime: res.data.time,
-        //     score: res.data.cmtData.score,
-        //     district: res.data.cmtData.school_district_name,
-        //     socialReputation: res.data.cmtData.social_reputation,
-        //     academic: res.data.cmtData.academic_level,
-        //     network: res.data.cmtData.network_services,
-        //     dorm: res.data.cmtData.accommodation,
-        //     food: res.data.cmtData.food_quality,
-        //     location: res.data.cmtData.campus_location,
-        //     acticities: res.data.cmtData.extracurricular_activities,
-        //     infra: res.data.cmtData.campus_infrastructure,
-        //     happiness: res.data.cmtData.life_happiness_index,
-        //     relation: res.data.cmtData.school_students_relations,
-        //     index: res.data.index,
-        //   }
-        // })
-        // dividing line
         requestUtil.getSchoolDetail(res.data.university_id,
           function (result) {
             var index = res.data.index;
@@ -55,15 +30,6 @@ Page({
             requestUtil.getStudentByID(studentID, function (studentResult) {
               var graduateYear = studentResult.student.graduate_year;
               var highSchool = studentResult.student.exam_province;
-
-              // var cmtDetail = {
-              //   university: result.schoolInfo.school_name,
-              //   cmtData: result.ratesInfo[index],
-              //   graduate: graduateYear,
-              //   high: highSchool,
-              //   time: createTime,
-              //   index: index,
-              // }
               that.setData({
                 cmtData: {
                   university: result.schoolInfo.school_name,
