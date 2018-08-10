@@ -230,11 +230,17 @@ Page({
             function (result) {
             })
             that.onLoad();
+            wx.showToast({
+              title: '已点赞',
+            })
         } else {
           requestUtil.thumbsUpSchool(that.data.schoolData.schoolID,
             function (result) {
             })
           that.onLoad();
+          wx.showToast({
+            title: '已反对',
+          })
         }
       })
   },
