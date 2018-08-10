@@ -1,0 +1,24 @@
+/* pages/user/privilegeForm/notVip.wxss */
+.central-text-view {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.big-title-text {
+  font-size: 50rpx;
+  color: white;
+  line-height: 1.2em;
+}
+.small-text {
+  font-size: 26rpx;
+  font-weight: lighter;
+  color: white;
+  line-height: 0.8em
+}
+.block-button-view {
+  width: 70%;
+  background-color: #359ACA;
+  margin-top: 40rpx;
+  color: white;
+  border-radius: 20rpx;
+}

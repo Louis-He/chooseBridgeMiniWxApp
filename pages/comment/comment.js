@@ -8,7 +8,6 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    accessible: true,
     courseBase: true,
     blankVal: "教授",
     showResults: false,

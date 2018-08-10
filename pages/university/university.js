@@ -288,6 +288,11 @@ Page({
       key: 'pushTmpUniv',
       data: pushTmpUniv,
     });
+    var university_id = that.data.universities[index].school_id;
+    wx.setStorage({
+      key: 'university_id',
+      data: university_id,
+    })
     requestUtil.getSchoolDetail(that.data.universities[index].school_id,
     function (result) {
       console.log(result);
