@@ -20,43 +20,52 @@ Page({
     this.setScrollHeight();
     var that = this;
     wx.getStorage({
-      key: 'cmtDetail',
+      key: 'cmtInfo',
       success: function(res) {
-        console.log(res);
-        that.setData({
-          cmtData: {
-            university: res.data.university,
-            graduateYear: res.data.graduate,
-            province: res.data.high,
-            major: res.data.cmtData.major,
-            comment: res.data.cmtData.comment,
-            commentTime: res.data.time,
-            score: res.data.cmtData.score,
-            district: res.data.cmtData.school_district_name,
-            socialReputation: res.data.cmtData.social_reputation,
-            academic: res.data.cmtData.academic_level,
-            network: res.data.cmtData.network_services,
-            dorm: res.data.cmtData.accommodation,
-            food: res.data.cmtData.food_quality,
-            location: res.data.cmtData.campus_location,
-            acticities: res.data.cmtData.extracurricular_activities,
-            infra: res.data.cmtData.campus_infrastructure,
-            happiness: res.data.cmtData.life_happiness_index,
-            relation: res.data.cmtData.school_students_relations,
-            index: res.data.index,
-          }
-        })
+        requestUtil.getSchoolDetail(res.data.university_id,
+          function (result) {
+            var index = res.data.index;
+            var studentID = result.ratesInfo[index].create_student_id;
+            var createTime = result.ratesInfo[index].created_at.substring(0, 10);
+            requestUtil.getStudentByID(studentID, function (studentResult) {
+              var graduateYear = studentResult.student.graduate_year;
+              var highSchool = studentResult.student.exam_province;
+              that.setData({
+                cmtData: {
+                  university: result.schoolInfo.school_name,
+                  graduateYear: graduateYear,
+                  province: highSchool,
+                  major: result.ratesInfo[index].major,
+                  comment: result.ratesInfo[index].comment,
+                  commentTime: createTime,
+                  score: result.ratesInfo[index].score,
+                  district: result.ratesInfo[index].school_district_name,
+                  socialReputation: result.ratesInfo[index].social_reputation,
+                  academic: result.ratesInfo[index].academic_level,
+                  network: result.ratesInfo[index].network_services,
+                  dorm: result.ratesInfo[index].accommodation,
+                  food: result.ratesInfo[index].food_quality,
+                  location: result.ratesInfo[index].campus_location,
+                  acticities: result.ratesInfo[index].extracurricular_activities,
+                  infra: result.ratesInfo[index].campus_infrastructure,
+                  happiness: result.ratesInfo[index].life_happiness_index,
+                  relation: result.ratesInfo[index].school_students_relations,
+                  index: index,
+                }
+              })
+            });
+          })
       },
     });
     wx.getStorage({
-      key: 'pushTmpUniv',
+      key: 'cmtInfo',
       success: function(res) {
         //console.log(res);
-        requestUtil.getSchoolDetail(res.data.school_id,
+        requestUtil.getSchoolDetail(res.data.university_id,
           function (result) {
             that.setData({
-              likes: result.ratesInfo[that.data.cmtData.index].thumbs_up_percent,
-              dislikes: result.ratesInfo[that.data.cmtData.index].thumbs_down_percent,
+              likes: result.ratesInfo[res.data.index].thumbs_up_percent,
+              dislikes: result.ratesInfo[res.data.index].thumbs_down_percent,
             })
           })
       },

@@ -51,19 +51,41 @@ Page({
           that.setData(data);
         })
         wx.getStorage({
-          key: 'is_vip',
-          success: function (res) {
-            if (!res.data) {
-              wx.navigateTo({
-                url: '../user/privilegeForm/errorEmail',
-              })
-            }
-          },
-          fail: function () {
-            wx.navigateTo({
-              url: '../../user/privilegeForm/errorEmail',
+          key: 'unionId',
+          success: function(res) {
+            wx.getStorage({
+              key: 'isEmailEdu',
+              success: function(res) {
+                if (!res.data) {
+                  wx.navigateTo({
+                    url: '../user/user',
+                  })
+                }
+                if (res.data) {
+                  wx.getStorage({
+                    key: 'is_vip',
+                    success: function(res) {
+                      if (!res.data) {
+                        wx.navigateTo({
+                          url: '../user/privilegeForm/notVip',
+                        })
+                      }
+                    },
+                    fail: function() {
+                      wx.navigateTo({
+                        url: '../user/privilegeForm/notVip',
+                      })
+                    }
+                  })
+                }
+              },
+              fail: function() {
+                wx.navigateTo({
+                  url: '../user/user',
+                })
+              }
             })
-          }
+          },
         })
       },
       fail: function(res){
