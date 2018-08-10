@@ -16,6 +16,13 @@ Page({
   * 生命周期函数--监听页面加载
   */
   onLoad: function (options) {
+    // TODO
+    console.log(typeof (options))
+    /*
+    if (typeof (options) != undefined){
+      wx.setStorageSync('professorID', options.professorID)
+    }
+    */
     wx.showShareMenu({
       withShareTicket: true,
       success: function (res) {
@@ -141,6 +148,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var that = this;
     var unionId = '';
     wx.getStorage({
       key: 'unionId',
@@ -149,8 +157,8 @@ Page({
       },
     })
     return {
-      title: '邀请您加入桥选学生社群！',
-      path: '/pages/user/user?unionid=' + unionId,
+      title: '查看' + this.data.info.name + '名片',
+      path: '/pages/courses/specificPro/specificPro?unionid=' + unionId + '&professorID=' + that.data.info.professorID,
       success: function (res) {
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
