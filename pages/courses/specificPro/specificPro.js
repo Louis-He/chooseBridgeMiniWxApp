@@ -289,11 +289,17 @@ Page({
             function (result) {
             })
           that.onLoad();
+          wx.showToast({
+            title: '已点赞',
+          })
         } else {
           requestUtil.thumbsUpProfessor(that.data.info.professorID,
             function (result) {
             })
           that.onLoad();
+          wx.showToast({
+            title: '已取消',
+          })
         }
       })
   },
