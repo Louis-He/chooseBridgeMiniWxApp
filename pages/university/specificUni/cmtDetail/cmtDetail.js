@@ -164,16 +164,23 @@ Page({
       success: function(res) {
         requestUtil.getSchoolDetail(res.data.school_id,
           function (result) {
-            if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_up) {
+            if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_up 
+            && !result.ratesInfo[that.data.cmtData.index].is_thumbs_down) {
               requestUtil.thumbsUpSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
                 function (result) {
                 })
               that.onLoad();
-            } else {
+              wx.showToast({
+                title: '已点赞',
+              })
+            } else if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_down) {
               requestUtil.thumbsUpSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
                 function (result) {
                 })
               that.onLoad();
+              wx.showToast({
+                title: '已取消',
+              })
             }
           })
       },
@@ -189,17 +196,24 @@ Page({
       success: function (res) {
         requestUtil.getSchoolDetail(res.data.school_id,
           function (result) {
-            if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_down) {
+            if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_down
+              && result.ratesInfo[that.data.cmtData.index].is_thumbs_up) {
               requestUtil.thumbsDownSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
                 function (result) {
                   console.log(result);
                 })
               that.onLoad();
-            } else {
+              wx.showToast({
+                title: '已赞同',
+              })
+            } else if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_up) {
               requestUtil.thumbsDownSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
                 function (result) {
                 })
               that.onLoad();
+              wx.showToast({
+                title: '已取消',
+              })
             }
           })
       },
