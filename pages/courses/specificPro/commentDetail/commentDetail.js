@@ -161,12 +161,6 @@ Page({
       success: function (res) {
         requestUtil.getProfessorDetail(res.data,
           function (result) {
-            // requestUtil.thumbsUpProfessorRate
-            //   (result.rateInfo[that.data.index].professor_rate_id,
-            //     function (result) {
-            //       //console.log(result);
-            //     })
-            //   that.onLoad();
             //用户未点赞也未踩，直接反馈已点赞
             if (!result.rateInfo[that.data.index].is_thumbs_up
               && !result.rateInfo[that.data.index].is_thumbs_down) {
@@ -215,12 +209,6 @@ Page({
       success: function (res) {
         requestUtil.getProfessorDetail(res.data,
           function (result) {
-            // requestUtil.thumbsDownProfessorRate
-            //     (result.rateInfo[that.data.index].professor_rate_id,
-            //     function (result) {
-            //       //console.log(result);
-            //     })
-            //   that.onLoad();
             //用户未踩未点赞，直接反馈已反对
             if (!result.rateInfo[that.data.index].is_thumbs_up
               && !result.rateInfo[that.data.index].is_thumbs_down) {
