@@ -84,14 +84,14 @@ Page({
   onShareAppMessage: function () {
     var unionId = '';
     wx.getStorage({
-      key: 'unionId',
+      key: 'unionId', 
       success: function (res) {
         unionId = res.data
       },
     })
     return {
-      title: '邀请您加入桥选学生社群！',
-      path: '/pages/user/user?unionid=' + unionId,
+      title: '查看' + this.data.schoolData.schoolName,
+      path: 'pages/university/specificUni/specificUni?unionid=' + unionId,
       success: function (res) {
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {

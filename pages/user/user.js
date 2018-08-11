@@ -74,6 +74,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    wx.getStorage({
+      key: 'firstView',
+      success: function(res) {
+        console.log(res.data)
+      },
+      fail: function(res){
+        console.log(res)
+      }
+    })
+
+
     var that = this
     wx.getStorage({
       key: 'firstView',
