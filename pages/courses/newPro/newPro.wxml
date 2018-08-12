@@ -8,7 +8,7 @@
         <view class="weui-label">*姓</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" bindinput="lastNameInput" value="{{lastName}}" placeholder="请输入官方教授姓"/>
+        <input class="weui-input" bindinput="lastNameInput" value="{{lastName}}" placeholder="以选课系统语言为准"/>
       </view>
     </view>
 
