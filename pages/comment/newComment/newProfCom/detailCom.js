@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    "popErrorMsg": '',
     "wordNumber": 0,
     "isLoad": false
   },
@@ -88,65 +89,77 @@ Page({
 
   nextStep: function () {
     var that = this
-    if (this.data.isLoad) {
-      wx.getStorage({
-        key: 'user_id',
-        success: function (res) {
-          requestUtil.getViewmycoursesToken(res.data, function (result) {
-            // console.log(result)
-            var explicitData = { "token": result };
-            // console.log(explicitData)
-            var getSign = requestUtil.getSign(explicitData)
-
-            var requestedData = {
-              token: result,
-              sign: getSign
-            }
-
-            var sendData = {
-              "professor_id": that.data.tmpProfCom.professorID,
-              "course_code": that.data.tmpProfCom.courseId,
-              "course_name": that.data.tmpProfCom.course,
-              "is_attend": that.data.tmpProfCom.isAttend,
-              "difficult_level": that.data.tmpProfCom.courseDiff,
-              "homework_num": that.data.tmpProfCom.homework,
-              "course_related_quiz": that.data.tmpProfCom.relevance,
-              "quiz_num": that.data.tmpProfCom.monthlyTest,
-              "spend_course_time_at_week": that.data.tmpProfCom.extraTime,
-              "grade": that.data.tmpProfCom.grade,
-              "comment": that.data.comment,
-              "tag": that.data.tags
-            }
-            // console.log(sendData)
-            // console.log(that.data.tmpUnivComment)
-
-            wx.request({
-              url: 'https://api.viewmycourses.com//api/professor-rate/create',
-              method: 'POST',
-              header: requestedData,
-              data: sendData,
-              success: function (res) {
-                console.log(res.data)
-                wx.navigateTo({
-                  url: 'success',
-                })
-              }
-            })
-
-            that.setData({
-              tmpProfCom: null
-            })
-            wx.removeStorage({
-              key: 'tmpProfCom',
-              success: function (res) {
-                console.log('用户离开界面，tmpProfComs删除');
-              },
-            })
-          })
-        },
+    if(this.data.wordNumber < 10){
+      this.setData({
+        popErrorMsg: '请对这个课程稍作评价吧～'
       })
-    } else {
-      console.log('用户点击过快, 需要重新尝试')
+    }else{
+      if (this.data.isLoad) {
+        this.setData({
+          popErrorMsg: ''
+        })
+        wx.getStorage({
+          key: 'user_id',
+          success: function (res) {
+            requestUtil.getViewmycoursesToken(res.data, function (result) {
+              // console.log(result)
+              var explicitData = { "token": result };
+              // console.log(explicitData)
+              var getSign = requestUtil.getSign(explicitData)
+
+              var requestedData = {
+                token: result,
+                sign: getSign
+              }
+
+              var sendData = {
+                "professor_id": that.data.tmpProfCom.professorID,
+                "course_code": that.data.tmpProfCom.courseId,
+                "course_name": that.data.tmpProfCom.course,
+                "is_attend": that.data.tmpProfCom.isAttend,
+                "difficult_level": that.data.tmpProfCom.courseDiff,
+                "homework_num": that.data.tmpProfCom.homework,
+                "course_related_quiz": that.data.tmpProfCom.relevance,
+                "quiz_num": that.data.tmpProfCom.monthlyTest,
+                "spend_course_time_at_week": that.data.tmpProfCom.extraTime,
+                "grade": that.data.tmpProfCom.grade,
+                "comment": that.data.comment,
+                "tag": that.data.tmpProfCom.tags
+              }
+              // console.log(sendData)
+              // console.log(that.data.tmpUnivComment)
+
+              wx.request({
+                url: 'https://api.viewmycourses.com//api/professor-rate/create',
+                method: 'POST',
+                header: requestedData,
+                data: sendData,
+                success: function (res) {
+                  console.log(res.data)
+                  wx.navigateTo({
+                    url: 'success',
+                  })
+                }
+              })
+
+              that.setData({
+                tmpProfCom: null
+              })
+              wx.removeStorage({
+                key: 'tmpProfCom',
+                success: function (res) {
+                  console.log('用户离开界面，tmpProfComs删除');
+                },
+              })
+            })
+          },
+        })
+      } else {
+        this.setData({
+          popErrorMsg: '系统错误，请再尝试提交一次'
+        })
+        console.log('用户点击过快, 需要重新尝试')
+      }
     }
   }
 })

@@ -1,6 +1,7 @@
 /* pages/comment/newComment/newUnivCom/detailCom.wxss */
 @import '../../../importwxss/weui.wxss';
 @import '../../../importwxss/form.wxss';
+@import '../../../importwxss/popErr.wxss';
 .weui-cell__bd-disabled{
   color: #70CEDC;
 }

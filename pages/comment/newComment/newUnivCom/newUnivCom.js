@@ -6,9 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    is_modal_Hidden: true,
-    is_modal_Msg: '我是一个自定义组件',
-    is_modal_Title: '提示',
+    popErrorMsg: '',
     "university": "Loading",
     "campuses": [],
     "campusIndices": [],
@@ -199,29 +197,115 @@ Page({
 
   nextStep: function () {
     // Check the input
-    /*
-    if (!this.data.campus || this.data.reputation){
-      console.log()
-      var errorMsg = "请填写完整"
+    
+    var errorMsg = "";
+    var popError = false;
+    if (this.data.reputation == 0){
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、社会名誉";
+      } else {
+        errorMsg += "社会名誉";
+      }
+    }
+    if (this.data.academic == 0) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、学术水平";
+      } else {
+        errorMsg += "学术水平";
+      }
+    }
+    if (this.data.webService == 0) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、网络服务";
+      } else {
+        errorMsg += "网络服务";
+      }
+    }
+    if (this.data.dom == 0) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、住宿条件";
+      } else {
+        errorMsg += "住宿条件";
+      }
+    }
+    if (this.data.food == 0) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、餐饮质量";
+      } else {
+        errorMsg += "餐饮质量";
+      }
+    }
+    if (this.data.geo == 0) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、地理位置";
+      } else {
+        errorMsg += "地理位置";
+      }
+    }
+    if (this.data.activity == 0) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、课外活动";
+      } else {
+        errorMsg += "课外活动";
+      }
+    }
+    if (this.data.infrastructure == 0) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、基础设施";
+      } else {
+        errorMsg += "基础设施";
+      }
+    }
+    if (this.data.happiness == 0) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、幸福指数";
+      } else {
+        errorMsg += "幸福指数";
+      }
+    }
+    if (this.data.relationship == 0) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、校方与学生关系";
+      } else {
+        errorMsg += "校方与学生关系";
+      }
+    }
 
+    if (popError) {
+      /* 填写检查不通过，要求用户重新填写 */
+      errorMsg = "您有以下部分没有填写：\n" + errorMsg;
+      if (errorMsg.length < 25) {
+        this.setData({
+          popErrorMsg: errorMsg
+        })
+      } else {
+        this.setData({
+          popErrorMsg: '您有多处必填项未完成填写，请检查'
+        })
+      }
+    } else {
       this.setData({
-        is_modal_Hidden: false,
-        is_modal_Msg: errorMsg
+        'tmpUnivComment': { "school_id": 4, "school_district_id": this.data.campusIndices[this.data.campusIndex], 'campus': this.data.campus, 'reputation': this.data.reputation, 'academic': this.data.academic, 'webService': this.data.webService, 'dom': this.data.dom, 'food': this.data.food, 'geo': this.data.geo, 'activity': this.data.activity, 'infrastructure': this.data.infrastructure, 'happiness': this.data.happiness, 'relationship': this.data.relationship, }
+      })
+
+      wx.setStorage({
+        key: 'tmpUnivComment',
+        data: this.data.tmpUnivComment,
+      })
+
+      wx.navigateTo({
+        url: 'detailCom',
       })
     }
-    */
-    
-    this.setData({
-      'tmpUnivComment': { "school_id": 4, "school_district_id": this.data.campusIndices[this.data.campusIndex], 'campus': this.data.campus, 'reputation': this.data.reputation, 'academic': this.data.academic, 'webService': this.data.webService, 'dom': this.data.dom, 'food': this.data.food, 'geo': this.data.geo, 'activity': this.data.activity, 'infrastructure': this.data.infrastructure, 'happiness': this.data.happiness, 'relationship': this.data.relationship, }
-    })
-
-    wx.setStorage({
-      key: 'tmpUnivComment',
-      data: this.data.tmpUnivComment,
-    })
-
-    wx.navigateTo({
-      url: 'detailCom',
-    })
   }
 })

@@ -7,9 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    is_modal_Hidden: true,
-    is_modal_Msg: '我是一个自定义组件',
-    is_modal_Title: '提示',
+    popErrorMsg: '',
     isCodeExist: false,
     courseIndex: 0,
     "profName": "TEST",
@@ -48,7 +46,8 @@ Page({
           }
           courseList[i] = '其他'
           that.setData({
-            courses: courseList
+            courses: courseList,
+            courseId: courseList[0]
           })
         })
         that.setData({
@@ -255,29 +254,106 @@ Page({
       }
     }
 
-    var summaryData = {
-      professorID: this.data.professorID,
-      isAttend: this.data.isAttend,
-      courseId: this.data.courseId,
-      course: this.data.course,
-      courseDiff: this.data.courseDiff,
-      homework: this.data.homework,
-      relevance: this.data.relevance,
-      monthlyTest: this.data.monthlyTest,
-      extraTime: this.data.extraTime,
-      grade: this.data.grade,
-      tags: tags
-    };
+    var errorMsg = "";
+    var popError = false;
+    if (!this.data.course) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、课程名";
+      } else {
+        errorMsg += "课程名";
+      }
+    }
+    if (!this.data.courseDiff) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、难度";
+      } else {
+        errorMsg += "难度";
+      }
+    }
+    if (!this.data.homework) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、作业量";
+      } else {
+        errorMsg += "作业量";
+      }
+    }
+    if (!this.data.relevance) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、相关度";
+      } else {
+        errorMsg += "相关度";
+      }
+    }
+    if (!this.data.monthlyTest) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、考试数量";
+      } else {
+        errorMsg += "考试数量";
+      }
+    }
+    if (!this.data.extraTime) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、课后所需时间";
+      } else {
+        errorMsg += "课后所需时间";
+      }
+    }
+    if (!this.data.grade) {
+      popError = true;
+      if (errorMsg) {
+        errorMsg += "、您的成绩";
+      } else {
+        errorMsg += "您的成绩";
+      }
+    }
+    // 判断是否完成填写
+    if (popError) {
+      /* 填写检查不通过，要求用户重新填写 */
+      errorMsg = "您有以下部分没有填写：\n" + errorMsg;
+      if(errorMsg.length < 25){
+        this.setData({
+          popErrorMsg: errorMsg
+        })
+      }else{
+        this.setData({
+          popErrorMsg: '您有多处必填项未完成填写，请检查'
+        })
+      }
+    } else {
+      this.setData({
+        popErrorMsg: ''
+      })
 
-    wx.setStorage({
-      key: 'tmpProfCom',
-      data: summaryData,
-    });
+      var summaryData = {
+        professorID: this.data.professorID,
+        isAttend: this.data.isAttend,
+        courseId: this.data.courseId,
+        course: this.data.course,
+        courseDiff: this.data.courseDiff,
+        homework: this.data.homework,
+        relevance: this.data.relevance,
+        monthlyTest: this.data.monthlyTest,
+        extraTime: this.data.extraTime,
+        grade: this.data.grade,
+        tags: tags
+      };
 
-    //console.log(summaryData)
+      wx.setStorage({
+        key: 'tmpProfCom',
+        data: summaryData,
+      });
 
-    wx.navigateTo({
-      url: 'detailCom',
-    });
+      //console.log(summaryData)
+
+      wx.navigateTo({
+        url: 'detailCom',
+      });
+    }
   }
 })

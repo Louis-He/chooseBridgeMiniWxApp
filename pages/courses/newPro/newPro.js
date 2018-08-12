@@ -7,9 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    is_modal_Hidden: true,
-    is_modal_Msg: '我是一个自定义组件',
-    is_modal_Title: '提示',
+    popErrorMsg: '',
     allList: [],
     countries: [],
     countryIndex: 0,
@@ -150,7 +148,7 @@ Page({
     if (!this.data.lastName){
       popError = true;
       if (errorMsg){
-        errorMsg += ",教授姓";
+        errorMsg += "、教授姓";
       }else{
         errorMsg += "教授姓";
       }
@@ -158,37 +156,22 @@ Page({
     if (!this.data.firstName) {
       popError = true;
       if (errorMsg) {
-        errorMsg += ",教授名";
+        errorMsg += " 、教授名";
       } else {
         errorMsg += "教授名";
       }
     }
-    if (!this.data.university) {
-      popError = true;
-      if (errorMsg) {
-        errorMsg += ",学校";
-      } else {
-        errorMsg += "学校";
-      }
-    }
-    if (!this.data.department) {
-      popError = true;
-      if (errorMsg) {
-        errorMsg += ",学院";
-      } else {
-        errorMsg += "学院";
-      }
-    }
     
-    //if (popError){
-    if (false) {
+    if (popError) {
       /* 填写检查不通过，要求用户重新填写 */
-      errorMsg = "您有以下部分没有填写：\n" + errorMsg;
+      errorMsg = "您有以下部分没有填写：" + errorMsg;
       this.setData({
-        is_modal_Hidden: false,
-        is_modal_Msg: errorMsg
+        popErrorMsg: errorMsg
       })
     }else{
+      this.setData({
+        popErrorMsg: ''
+      })
       var tmpProInfo = {
         lastName : this.data.lastName,
         firstName : this.data.firstName,
