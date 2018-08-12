@@ -164,18 +164,34 @@ Page({
       success: function(res) {
         requestUtil.getSchoolDetail(res.data.school_id,
           function (result) {
+            //用户未点赞也未踩，直接反馈已点赞
             if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_up 
             && !result.ratesInfo[that.data.cmtData.index].is_thumbs_down) {
               requestUtil.thumbsUpSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
-                function (result) {
+                function (feedbackResult) {
                 })
               that.onLoad();
               wx.showToast({
                 title: '已点赞',
               })
-            } else if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_down) {
+              //用户未点赞但已踩，先取消踩再点赞，并反馈已点赞
+            } else if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_up
+              && result.ratesInfo[that.data.cmtData.index].is_thumbs_down) {
+              requestUtil.thumbsDownSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
+                function (feedbackResult) {
+                  requestUtil.thumbsUpSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
+                    function (feedbackResult) {
+                    })
+                  that.onLoad();
+                  wx.showToast({
+                    title: '已点赞',
+                  })
+                })
+              //用户已点赞并未踩，直接反馈已取消
+            } else if (result.ratesInfo[that.data.cmtData.index].is_thumbs_up
+            && !result.ratesInfo[that.data.cmtData.index].is_thumbs_down) {
               requestUtil.thumbsUpSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
-                function (result) {
+                function (feedbackResult) {
                 })
               that.onLoad();
               wx.showToast({
@@ -196,19 +212,36 @@ Page({
       success: function (res) {
         requestUtil.getSchoolDetail(res.data.school_id,
           function (result) {
+            //用户未踩未点赞，直接反馈已反对
             if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_down
-              && result.ratesInfo[that.data.cmtData.index].is_thumbs_up) {
+              && !result.ratesInfo[that.data.cmtData.index].is_thumbs_up) {
               requestUtil.thumbsDownSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
-                function (result) {
-                  console.log(result);
+                function (feedbackResult) {
+                  //console.log(result);
                 })
               that.onLoad();
               wx.showToast({
-                title: '已赞同',
+                title: '已反对',
               })
-            } else if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_up) {
+            //用户未踩但已点赞，先取消点赞再踩，并反馈已反对  
+            } else if (!result.ratesInfo[that.data.cmtData.index].is_thumbs_down
+            && result.ratesInfo[that.data.cmtData.index].is_thumbs_up) {
+              requestUtil.thumbsUpSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
+                function (feedbackResult) {
+                  requestUtil.thumbsDownSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
+                    function (feedbackResult) {
+                    })
+                  that.onLoad();
+                  wx.showToast({
+                    title: '已反对',
+                  })
+                })
+              //用户已踩未点赞，直接反馈已取消
+            } else if (result.ratesInfo[that.data.cmtData.index].is_thumbs_down
+              && !result.ratesInfo[that.data.cmtData.index].is_thumbs_up) {
               requestUtil.thumbsDownSchoolRate(result.ratesInfo[that.data.cmtData.index].school_rate_id,
-                function (result) {
+                function (feedbackResult) {
+                  console.log(result);
                 })
               that.onLoad();
               wx.showToast({

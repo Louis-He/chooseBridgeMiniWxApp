@@ -161,12 +161,40 @@ Page({
       success: function (res) {
         requestUtil.getProfessorDetail(res.data,
           function (result) {
-            requestUtil.thumbsUpProfessorRate
-              (result.rateInfo[that.data.index].professor_rate_id,
-                function (result) {
-                  //console.log(result);
+            //用户未点赞也未踩，直接反馈已点赞
+            if (!result.rateInfo[that.data.index].is_thumbs_up
+              && !result.rateInfo[that.data.index].is_thumbs_down) {
+              requestUtil.thumbsUpProfessorRate(result.rateInfo[that.data.index].professor_rate_id,
+                function (feedbackResult) {
                 })
               that.onLoad();
+              wx.showToast({
+                title: '已点赞',
+              })
+              //用户未点赞但已踩，先取消踩再点赞，并反馈已点赞
+            } else if (!result.rateInfo[that.data.index].is_thumbs_up
+              && result.rateInfo[that.data.index].is_thumbs_down) {
+              requestUtil.thumbsDownProfessorRate(result.rateInfo[that.data.index].professor_rate_id,
+                function (feedbackResult) {
+                  requestUtil.thumbsUpProfessorRate(result.rateInfo[that.data.index].professor_rate_id,
+                    function (feedbackResult) {
+                    })
+                  that.onLoad();
+                  wx.showToast({
+                    title: '已点赞',
+                  })
+                })
+              //用户已点赞并未踩，直接反馈已取消
+            } else if (result.rateInfo[that.data.index].is_thumbs_up
+              && !result.rateInfo[that.data.index].is_thumbs_down) {
+              requestUtil.thumbsUpProfessorRate(result.rateInfo[that.data.index].professor_rate_id,
+                function (feedbackResult) {
+                })
+              that.onLoad();
+              wx.showToast({
+                title: '已取消',
+              })
+            }
           })
       },
     })
@@ -181,12 +209,40 @@ Page({
       success: function (res) {
         requestUtil.getProfessorDetail(res.data,
           function (result) {
-            requestUtil.thumbsDownProfessorRate
-                (result.rateInfo[that.data.index].professor_rate_id,
-                function (result) {
-                  //console.log(result);
+            //用户未踩未点赞，直接反馈已反对
+            if (!result.rateInfo[that.data.index].is_thumbs_up
+              && !result.rateInfo[that.data.index].is_thumbs_down) {
+              requestUtil.thumbsDownProfessorRate(result.rateInfo[that.data.index].professor_rate_id,
+                function (feedbackResult) {
                 })
               that.onLoad();
+              wx.showToast({
+                title: '已反对',
+              })
+              //用户未踩但已点赞，先取消点赞再踩，并反馈已反对
+            } else if (result.rateInfo[that.data.index].is_thumbs_up
+              && !result.rateInfo[that.data.index].is_thumbs_down) {
+              requestUtil.thumbsUpProfessorRate(result.rateInfo[that.data.index].professor_rate_id,
+                function (feedbackResult) {
+                  requestUtil.thumbsDownProfessorRate(result.rateInfo[that.data.index].professor_rate_id,
+                    function (feedbackResult) {
+                    })
+                  that.onLoad();
+                  wx.showToast({
+                    title: '已反对',
+                  })
+                })
+              //用户已踩未点赞，直接反馈已取消
+            } else if (!result.rateInfo[that.data.index].is_thumbs_up
+              && result.rateInfo[that.data.index].is_thumbs_down) {
+              requestUtil.thumbsDownProfessorRate(result.rateInfo[that.data.index].professor_rate_id,
+                function (feedbackResult) {
+                })
+              that.onLoad();
+              wx.showToast({
+                title: '已取消',
+              })
+            }
           })
       },
     })
