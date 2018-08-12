@@ -1,5 +1,5 @@
 <!--pages/comment/newComment/newProfCom/newProfCom.wxml-->
-<modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" modal-title="{{is_modal_Title}}"/>
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
 <view class="page">
   <scroll-view scroll-y="true" style="height: {{scrollHeight}}px">
     <view class="weui-cells__title">评价课程</view>
@@ -48,6 +48,8 @@
           <view class="weui-cell__bd">
             <view class="weui-label">*是否记录出勤</view>
           </view>
+          <block wx:if="{{isAttend}}"> 是 </block>
+          <block wx:if="{{!isAttend}}"> 否 </block>
           <view class="weui-cell__ft marginRight">
               <switch class="radio" bindchange='isAttendChange' color='#359ACA' checked />
           </view>

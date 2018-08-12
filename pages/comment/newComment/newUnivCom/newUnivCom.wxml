@@ -1,5 +1,5 @@
 <!--pages/comment/newComment/newUnivCom/newUnivCom.wxml-->
-<modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" modal-title="{{is_modal_Title}}"/>
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
 <view class="page">
   <scroll-view scroll-y="true" style="height: {{scrollHeight}}px">
     <view class="weui-cells__title">评价学校</view>

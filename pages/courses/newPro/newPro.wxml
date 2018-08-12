@@ -1,5 +1,5 @@
 <!--pages/courses/newPro/newPro.wxml-->
-<modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" modal-title="{{is_modal_Title}}"/>
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
 <view class="page">
   <view class="weui-cells__title">创建教授</view>
   <view class="weui-cells weui-cells_after-title">

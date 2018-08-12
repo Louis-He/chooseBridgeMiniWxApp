@@ -1,4 +1,5 @@
 <!--pages/comment/newComment/newUnivCom/detailCom.wxml-->
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
 <view class="weui-cells__title">文字点评</view>
 <view class="weui-cells__subtitle">我们提供了以下示例问题供你选择，也欢迎分享校园生活中的趣事，让大家对你的学校有更多了解！</view>
 <view class="weui-cells__content">·你的学校名声好吗？学术水平如何？</view>

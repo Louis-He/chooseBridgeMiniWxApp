@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    "popErrorMsg": '',
     "isLoad": false,
     "wordNumber": 0
   },
@@ -88,67 +89,76 @@ Page({
 
   nextStep: function (){
     var that = this
-    if(this.data.isLoad){
-      wx.getStorage({
-        key: 'user_id',
-        success: function (res) {
-          requestUtil.getViewmycoursesToken(res.data, function (result) {
-            // console.log(result)
-            var explicitData = { "token": result };
-            // console.log(explicitData)
-            var getSign = requestUtil.getSign(explicitData)
-
-            var requestedData = {
-              token: result,
-              sign: getSign
-            }
-
-            var sendData = {
-              "school_id": that.data.tmpUnivComment.school_id,
-              "school_district_id": that.data.tmpUnivComment.school_district_id,
-              "social_reputation": that.data.tmpUnivComment.reputation,
-              "academic_level": that.data.tmpUnivComment.academic,
-              "network_services": that.data.tmpUnivComment.webService,
-              "accommodation": that.data.tmpUnivComment.dom,
-              "food_quality": that.data.tmpUnivComment.food,
-              "campus_location": that.data.tmpUnivComment.geo,
-              "extracurricular_activities": that.data.tmpUnivComment.activity,
-              "campus_infrastructure": that.data.tmpUnivComment.infrastructure,
-              "life_happiness_index": that.data.tmpUnivComment.happiness,
-              "school_students_relations": that.data.tmpUnivComment.relationship,
-              "comment": that.data.commentDetail,
-            }
-            // console.log(sendData)
-            // console.log(that.data.tmpUnivComment)
-
-            wx.request({
-              url: 'https://api.viewmycourses.com//api/school-rate/create',
-              method: 'POST',
-              header: requestedData,
-              data: sendData,
-              success: function (res) {
-                console.log(res.data)
-                wx.navigateTo({
-                  url: 'success',
-                })
-              }
-            })
-            
-            that.setData({
-              tmpUnivComment: null
-            })
-
-            wx.removeStorage({
-              key: 'tmpUnivComment',
-              success: function (res) {
-                console.log("onHide: 用户离开确认页面, tmpUnivComment缓存变量清除")
-              },
-            })
-          })
-        },
+    if (this.data.wordNumber < 10) {
+      this.setData({
+        popErrorMsg: '请对这个课程稍作评价吧～'
       })
-    }else{
-      console.log('用户点击过快, 需要重新尝试')
+    } else {
+      if(this.data.isLoad){
+        wx.getStorage({
+          key: 'user_id',
+          success: function (res) {
+            requestUtil.getViewmycoursesToken(res.data, function (result) {
+              // console.log(result)
+              var explicitData = { "token": result };
+              // console.log(explicitData)
+              var getSign = requestUtil.getSign(explicitData)
+
+              var requestedData = {
+                token: result,
+                sign: getSign
+              }
+
+              var sendData = {
+                "school_id": that.data.tmpUnivComment.school_id,
+                "school_district_id": that.data.tmpUnivComment.school_district_id,
+                "social_reputation": that.data.tmpUnivComment.reputation,
+                "academic_level": that.data.tmpUnivComment.academic,
+                "network_services": that.data.tmpUnivComment.webService,
+                "accommodation": that.data.tmpUnivComment.dom,
+                "food_quality": that.data.tmpUnivComment.food,
+                "campus_location": that.data.tmpUnivComment.geo,
+                "extracurricular_activities": that.data.tmpUnivComment.activity,
+                "campus_infrastructure": that.data.tmpUnivComment.infrastructure,
+                "life_happiness_index": that.data.tmpUnivComment.happiness,
+                "school_students_relations": that.data.tmpUnivComment.relationship,
+                "comment": that.data.commentDetail,
+              }
+              // console.log(sendData)
+              // console.log(that.data.tmpUnivComment)
+
+              wx.request({
+                url: 'https://api.viewmycourses.com//api/school-rate/create',
+                method: 'POST',
+                header: requestedData,
+                data: sendData,
+                success: function (res) {
+                  console.log(res.data)
+                  wx.navigateTo({
+                    url: 'success',
+                  })
+                }
+              })
+              
+              that.setData({
+                tmpUnivComment: null
+              })
+
+              wx.removeStorage({
+                key: 'tmpUnivComment',
+                success: function (res) {
+                  console.log("onHide: 用户离开确认页面, tmpUnivComment缓存变量清除")
+                },
+              })
+            })
+          },
+        })
+      }else{
+        this.setData({
+          popErrorMsg: '系统错误，请再尝试提交一次'
+        })
+        console.log('用户点击过快, 需要重新尝试')
+      }
     }
   },
 

@@ -1,6 +1,7 @@
 /* pages/courses/newPro/newPro.wxss */
 @import '../../importwxss/weui.wxss';
 @import '../../importwxss/form.wxss';
+@import '../../importwxss/popErr.wxss';
 .weui-cell__bd{
   max-height: 2.58823529em;
 }

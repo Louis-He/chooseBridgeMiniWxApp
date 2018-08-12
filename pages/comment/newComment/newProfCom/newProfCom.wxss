@@ -2,6 +2,7 @@
 /* pages/comment/newComment/newComment.wxss */
 @import '../../../importwxss/weui.wxss';
 @import '../../../importwxss/form.wxss';
+@import '../../../importwxss/popErr.wxss';
 .weui-cell__bd-disabled{
   color: #70CEDC;
 }

@@ -6,9 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    is_modal_Hidden: true,
-    is_modal_Msg: '我是一个自定义组件',
-    is_modal_Title: '提示',
+    popErrorMsg: '',
     countries: [],
     countryIndex: 0,
     provinces: [],
@@ -110,7 +108,7 @@ Page({
     if(!this.data.university){
       popError = true;
       if (errorMsg){
-        errorMsg += ",学校名称";
+        errorMsg += "、学校名称";
       }else{
         errorMsg += "学校名称";
       }
@@ -118,7 +116,7 @@ Page({
     if (!this.data.homePage) {
       popError = true;
       if (errorMsg) {
-        errorMsg += ",学校首页";
+        errorMsg += "、学校首页";
       } else {
         errorMsg += "学校首页";
       }
@@ -128,12 +126,12 @@ Page({
       /* 填写检查不通过，要求用户重新填写 */
       errorMsg = "您有以下部分没有填写：\n" + errorMsg;
       this.setData({
-        is_modal_Hidden: false,
-        is_modal_Msg: errorMsg
+        popErrorMsg: errorMsg
       })
     }else{
-      // console.log(this.data.provinces[this.data.provinceIndices[this.data.provinceIndex]])
-      // console.log(this.data.cityIndices[this.data.cityIndex])
+      this.setData({
+        popErrorMsg: ''
+      })
       var tmpUniversityInfo = {
         Name : this.data.university,
         abbr : this.data.abbrUniversity,
