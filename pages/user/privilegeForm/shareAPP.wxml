@@ -7,11 +7,11 @@
 
 <view class='text-background'>
   <view class='text-view'>
-    <text style='font-weight:bold;'>我们团队相信只有互惠互助的社群才能持续地大家服务，因此，我们只向对社群有所贡献的用户开放课程学习攻略搜索服务。您可以通过邀请好友加入桥选校园来获取RP值！
+    <text style='font-weight: 200;'>我们团队相信只有互惠互助的社群才能持续地大家服务，因此，我们只向对社群有所贡献的用户开放课程学习攻略搜索服务。您可以通过邀请好友加入桥选校园来获取RP值！
     </text>
   </view>
 </view>
 
 <view style='align-items:center;'>
-  <button class='button-view'style='font-weight:bold;' open-type='share'>邀请好友</button>
+  <button class='button-view'style='font-weight: 200;' open-type='share'>邀请好友</button>
 </view>

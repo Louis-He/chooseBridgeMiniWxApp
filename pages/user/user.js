@@ -33,9 +33,7 @@ Page({
   onLoad: function () {
     wx.showShareMenu({
       withShareTicket: true,
-      success: function(res){
-        console.log(res)
-        
+      success: function(res){        
       }
     })
     
@@ -357,7 +355,6 @@ Page({
             // 获取用户unionID数据
             requestUtil.getUserUnionID(firstRequestedData, res, function (result) {
               //console.log(res);
-              console.log(result);
               that.setData({
                 username: res.userInfo.nickName
               })
@@ -436,9 +433,17 @@ Page({
                   that.setData({
                     rp: res.data.entities[0].points
                   })
+                  wx.setStorage({
+                    key: 'rp',
+                    data: res.data.entities[0].points,
+                  })
                 } else {
                   that.setData({
                     rp: "0"
+                  })
+                  wx.setStorage({
+                    key: 'rp',
+                    data: 0,
                   })
                 }
 

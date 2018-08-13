@@ -9,7 +9,7 @@
           <view class="weui-label">*学校名称</view>
         </view>
         <view class="weui-cell__bd-disabled">
-          <input class="weui-input" disabled='disabled' bindinput="universityInput" value="{{university}}" placeholder="请退出后立即联系管理员"/>
+          <input class="weui-input" disabled='disabled' bindinput="universityInput" value="{{universityShow}}" placeholder="请退出后立即联系管理员"/>
         </view>
       </view>
 
