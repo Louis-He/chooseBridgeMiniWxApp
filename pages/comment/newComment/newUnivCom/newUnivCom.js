@@ -34,6 +34,15 @@ Page({
     wx.getStorage({
       key: 'pushTmpUniv',
       success: function(res) {
+        if (res.data.school_name.length > 20){
+          that.setData({
+            universityShow: res.data.school_name.substring(0, 20) + '...'
+          })
+        }else{
+          that.setData({
+            universityShow: res.data.school_name
+          })
+        }
         that.setData({
           university: res.data.school_name
         })

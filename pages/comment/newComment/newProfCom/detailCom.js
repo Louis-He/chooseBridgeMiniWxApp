@@ -81,6 +81,9 @@ Page({
   },
 
   contentInput: function (e) {
+    console.log(e)
+    var value = (e.detail.value).replace(/\n|\r/gi, "");
+    console.log(value.length)
     this.setData({
       "wordNumber": e.detail.cursor,
       "comment": e.detail.value

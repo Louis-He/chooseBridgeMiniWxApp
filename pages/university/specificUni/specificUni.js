@@ -16,6 +16,11 @@ Page({
   * 生命周期函数--监听页面加载
   */
   onLoad: function (options) {
+    if (typeof (options) != undefined && options.universityID != undefined) {
+      wx.setStorageSync('university_id', options.universityID)
+      console.log(options.universityID)
+    }
+
     wx.showShareMenu({
       withShareTicket: true,
       success: function (res) {
@@ -82,6 +87,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var that = this;
     var unionId = '';
     wx.getStorage({
       key: 'unionId', 
@@ -91,7 +97,7 @@ Page({
     })
     return {
       title: '查看' + this.data.schoolData.schoolName,
-      path: 'pages/university/specificUni/specificUni?unionid=' + unionId,
+      path: 'pages/university/specificUni/specificUni?unionid=' + unionId + '&universityID=' + that.data.schoolData.schoolID,
       success: function (res) {
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {

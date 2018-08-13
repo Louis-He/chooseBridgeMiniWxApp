@@ -17,12 +17,12 @@ Page({
   */
   onLoad: function (options) {
     // TODO
-    console.log(typeof (options))
-    /*
-    if (typeof (options) != undefined){
+    
+    if (typeof (options) != undefined && options.professorID != undefined){
       wx.setStorageSync('professorID', options.professorID)
+      console.log(options.professorID)
     }
-    */
+    
     wx.showShareMenu({
       withShareTicket: true,
       success: function (res) {
