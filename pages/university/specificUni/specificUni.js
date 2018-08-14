@@ -46,20 +46,38 @@ Page({
                 cmtCreatedTime: tempCreatedTime
               });
             }
-            that.setData({
-              schoolData: {
-                schoolName: result.schoolInfo.school_name,
-                city: result.schoolInfo.city,
-                province: res.data.province,
-                country: result.schoolInfo.country,
-                rcmdProfessorName: result.randomProfessor.professor_full_name,
-                rcmdProfessorID: result.randomProfessor.professor_id,
-                overallScore: result.schoolInfo.school_score,
-                schoolDistrictInfo: result.schoolDistrictInfo,
-                ratesInfo: result.ratesInfo,
-                schoolID: res.data,
-              }
-            })
+            if (result.randomProfessor != null) {
+              that.setData({
+                schoolData: {
+                  schoolName: result.schoolInfo.school_name,
+                  city: result.schoolInfo.city,
+                  province: res.data.province,
+                  country: result.schoolInfo.country,
+                  rcmdProfessorName: result.randomProfessor.professor_full_name,
+                  rcmdProfessorID: result.randomProfessor.professor_id,
+                  overallScore: result.schoolInfo.school_score,
+                  schoolDistrictInfo: result.schoolDistrictInfo,
+                  ratesInfo: result.ratesInfo,
+                  schoolID: res.data,
+                }
+              })
+            } else {
+              that.setData({
+                schoolData: {
+                  schoolName: result.schoolInfo.school_name,
+                  city: result.schoolInfo.city,
+                  province: res.data.province,
+                  country: result.schoolInfo.country,
+                  rcmdProfessorName: "N/A",
+                  //rcmdProfessorID: result.randomProfessor.professor_id,
+                  overallScore: result.schoolInfo.school_score,
+                  schoolDistrictInfo: result.schoolDistrictInfo,
+                  ratesInfo: result.ratesInfo,
+                  schoolID: res.data,
+                }
+              })
+            }
+            
             that.setData({
               likesNum: result.schoolInfo.thumbs_up_num,
               thumbsSync: result,
@@ -216,15 +234,22 @@ Page({
   },
 
   toRandomProf:function() {
-    wx.setStorage({
-      key: 'professorID',
-      data: this.data.schoolData.rcmdProfessorID,
-      success: function() {
-        wx.navigateTo({
-          url: '../../courses/specificPro/specificPro',
-        })
-      }
-    })
+    if (this.data.schoolData.rcmdProfessorName == "N/A") {
+      wx.showToast({
+        title: '空白',
+        icon: 'none'
+      })
+    } else {
+      wx.setStorage({
+        key: 'professorID',
+        data: this.data.schoolData.rcmdProfessorID,
+        success: function () {
+          wx.navigateTo({
+            url: '../../courses/specificPro/specificPro',
+          })
+        }
+      })
+    }
   },
 
   addLike: function() {
