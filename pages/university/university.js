@@ -246,7 +246,7 @@ Page({
     //按名称搜索学校部分
     if (that.data.nameBase) {
       requestUtil.getSchoolByCondition(that.data.inputVal, function (result) {
-        //console.log(result);
+        console.log(result);
         that.setData({
           universities: result
         })

@@ -145,7 +145,7 @@ function getViewmycoursesToken(userid, _callback) {
     method: 'POST',
     data: requestData,
     success: function (res) {
-      console.log(res)
+      //console.log(res)
       _callback(res.data.token);
     }
   })
@@ -338,7 +338,7 @@ function getSchoolByCondition(schoolName, _callback) {
           header: requestedData,
           method: 'GET',
           success: function (res) {
-            //console.log(res);
+            console.log(res);
             var arrayLength = res.data.data.schools.length;
             var schoolList = new Array ();
             for (var i = 0; i < arrayLength; i++) {
