@@ -145,8 +145,8 @@
         </view>
         <view class='course-cmt-view'></view>
         <view class='real-tags-view lower-tag'>
-          <view class='tag-array-view lowest-tag' wx:for="{{tagsUp}}">
-            {{item.tag}}
+          <view class='tag-array-view lowest-tag' wx:for="{{info.cmtTagArray[index]}}">
+            {{item}}
           </view>
         </view>
       </view>

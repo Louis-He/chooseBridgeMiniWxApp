@@ -172,6 +172,10 @@ Page({
                 })
               that.onLoad();
               wx.showToast({
+                title: '加载中',
+                icon: 'loading',
+              })
+              wx.showToast({
                 title: '已点赞',
               })
               //用户未点赞但已踩，先取消踩再点赞，并反馈已点赞
@@ -184,6 +188,10 @@ Page({
                     })
                   that.onLoad();
                   wx.showToast({
+                    title: '加载中',
+                    icon: 'loading',
+                  })
+                  wx.showToast({
                     title: '已点赞',
                   })
                 })
@@ -194,6 +202,10 @@ Page({
                 function (feedbackResult) {
                 })
               that.onLoad();
+              wx.showToast({
+                title: '加载中',
+                icon: 'loading',
+              })
               wx.showToast({
                 title: '已取消',
               })
