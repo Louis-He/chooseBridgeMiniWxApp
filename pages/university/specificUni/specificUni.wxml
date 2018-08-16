@@ -178,8 +178,16 @@
       </view>
       <view class='up-cmt-overall-view'>
         <view class='image-center-view' style='margin-right:40rpx;'>
-          <view class='smile-face-view'>
+          <view class='smile-face-view' wx:if="{{districtScore[index] >= 3.5}}">
             <image class='face-view' src='../../../images/smileface.png' 
+            style='height:auto' mode='widthFix'></image>
+          </view>
+          <view class='smile-face-view' wx:if="{{districtScore[index] < 3.5 && districtScore[index] >= 2.5}}">
+            <image class='face-view' src='../../../images/normalface.png' 
+            style='height:auto' mode='widthFix'></image>
+          </view>
+          <view class='smile-face-view' wx:if="{{districtScore[index] <2.5}}">
+            <image class='face-view' src='../../../images/upsetface.png' 
             style='height:auto' mode='widthFix'></image>
           </view>
           <view class='big-num-view'>{{districtScore[index]}}</view>
