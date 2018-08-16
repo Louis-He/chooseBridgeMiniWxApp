@@ -63,5 +63,5 @@
   align-items: center;
 }
 .lowest-tag {
-  margin: 0rpx 20rpx 15rpx 0rpx;
+  margin: 0rpx 10rpx 15rpx 0rpx;
 }

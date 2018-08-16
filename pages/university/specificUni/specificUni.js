@@ -262,6 +262,10 @@ Page({
             })
             that.onLoad();
             wx.showToast({
+              title: '加载中',
+              icon: 'loading',
+            })
+            wx.showToast({
               title: '已点赞',
             })
         } else {
@@ -269,6 +273,10 @@ Page({
             function (result) {
             })
           that.onLoad();
+          wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+          })
           wx.showToast({
             title: '已取消',
           })

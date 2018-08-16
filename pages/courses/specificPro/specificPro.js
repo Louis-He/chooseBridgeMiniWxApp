@@ -71,6 +71,14 @@ Page({
           })
           console.log(that.data.tagsDown);
 
+          //获取每个点评tag信息
+          var tempCmtArray = new Array();
+          var tempCmtTags = new Array();
+          for (var i = 0; i < result.rateInfo.length; i++) {
+            tempCmtTags = result.rateInfo[i].tag.split(",");
+            tempCmtArray.push(tempCmtTags);
+          }
+
           //转换用户点评数字成文字含义
           var temprate = result.rateInfo;
           var tempDifficult;
@@ -112,6 +120,7 @@ Page({
               courses: result.coursesInfo,
               rates: result.rateInfo,
               professorID: res.data,
+              cmtTagArray: tempCmtArray,
             }
           })
           that.setData({
