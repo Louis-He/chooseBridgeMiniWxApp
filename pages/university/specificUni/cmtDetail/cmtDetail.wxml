@@ -20,8 +20,27 @@
       <view class='normal-text course-left-up-view'>
         <text>{{cmtData.commentTime}}\n</text>
       </view>
-      <view class='text-2 campus-name-display' style='white-space:nowrap;'>
+      <view class='text-2 campus-name-display' style='white-space:nowrap;' 
+      wx:if="{{cmtData.score >= 3.5}}">
         <image class='happyface-view' src='/images/smileface.png'
+        style='height:auto' mode='widthFix'></image>
+        <text>{{cmtData.score}}\n</text>
+        <view class='normal-text' style='line-height:1.4em;'>
+          <text>{{cmtData.district}}</text>
+        </view>
+      </view>
+      <view class='text-2 campus-name-display' style='white-space:nowrap;' 
+      wx:if="{{cmtData.score < 3.5 && 2.5 <= cmtData.score}}">
+        <image class='happyface-view' src='/images/normalface.png'
+        style='height:auto' mode='widthFix'></image>
+        <text>{{cmtData.score}}\n</text>
+        <view class='normal-text' style='line-height:1.4em;'>
+          <text>{{cmtData.district}}</text>
+        </view>
+      </view>
+      <view class='text-2 campus-name-display' style='white-space:nowrap;' 
+      wx:if="{{cmtData.score < 2.5}}">
+        <image class='happyface-view' src='/images/upsetface.png'
         style='height:auto' mode='widthFix'></image>
         <text>{{cmtData.score}}\n</text>
         <view class='normal-text' style='line-height:1.4em;'>
