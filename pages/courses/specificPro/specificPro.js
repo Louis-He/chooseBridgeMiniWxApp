@@ -17,6 +17,9 @@ Page({
   */
   onLoad: function (options) {
     // TODO
+    wx.showLoading({
+      title: "加载中..."
+    })
     
     if (typeof (options) != undefined && options.professorID != undefined){
       wx.setStorageSync('professorID', options.professorID)
@@ -126,6 +129,7 @@ Page({
           that.setData({
             thumbsSync: result.rateInfo,
           })
+          wx.hideLoading()
         });
       },
     })

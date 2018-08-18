@@ -16,6 +16,9 @@ Page({
   * 生命周期函数--监听页面加载
   */
   onLoad: function (options) {
+    wx.showLoading({
+      title: "加载中..."
+    })
     if (typeof (options) != undefined && options.universityID != undefined) {
       wx.setStorageSync('university_id', options.universityID)
       console.log(options.universityID)
@@ -82,6 +85,7 @@ Page({
               likesNum: result.schoolInfo.thumbs_up_num,
               thumbsSync: result,
             })
+            wx.hideLoading();
           })
       },
     })
