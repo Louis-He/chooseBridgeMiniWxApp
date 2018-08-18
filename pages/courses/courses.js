@@ -254,12 +254,16 @@ Page({
     this.setData({
       firstView: false
     });
+    wx.showLoading({
+      title: "加载中..."
+    })
     if (!that.data.schoolBase) {
       requestUtil.getProfessorByCondition(that.data.inputVal, function (result) {
         console.log(result);
         that.setData({
           professors: result
         })
+        wx.hideLoading();
       });
     } else {
       requestUtil.getProfessorBySchool(that.data.multiArray[1][that.data.multiIndex[1]],
@@ -268,6 +272,7 @@ Page({
         that.setData({
           professors: result.professors,
         })
+        wx.hideLoading();
       });
     }
     

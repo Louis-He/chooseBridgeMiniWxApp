@@ -149,12 +149,16 @@ Page({
       showResults: true
     });
     var that = this;
+    wx.showLoading({
+      title: "加载中..."
+    })
     if (!that.data.courseBase) {
       requestUtil.getSchoolByCondition(that.data.inputVal, function (result) {
         console.log(result);
         that.setData({
           universities: result
         })
+        wx.hideLoading();
       });
     } else {
       requestUtil.getProfessorByCondition(that.data.inputVal, function (result) {
@@ -162,6 +166,7 @@ Page({
         that.setData({
           professors: result
         })
+        wx.hideLoading();
       });
     }
   },

@@ -244,12 +244,16 @@ Page({
       firstView: false
     });
     //按名称搜索学校部分
+    wx.showLoading({
+      title: "加载中..."
+    })
     if (that.data.nameBase) {
       requestUtil.getSchoolByCondition(that.data.inputVal, function (result) {
         console.log(result);
         that.setData({
           universities: result
         })
+        wx.hideLoading();
       });
     //按地区搜索学校部分
     } else {
@@ -271,6 +275,7 @@ Page({
             universities: result.schools,
           })
         })
+        wx.hideLoading();
       })
     }
     
