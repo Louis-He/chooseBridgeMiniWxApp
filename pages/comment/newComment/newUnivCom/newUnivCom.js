@@ -44,7 +44,8 @@ Page({
           })
         }
         that.setData({
-          university: res.data.school_name
+          university: res.data.school_name,
+          universityId: res.data.school_id
         })
         requestUtil.getSchoolInfo(res.data.school_id, function (result) {
           console.log(result);
@@ -304,7 +305,7 @@ Page({
       }
     } else {
       this.setData({
-        'tmpUnivComment': { "school_id": 4, "school_district_id": this.data.campusIndices[this.data.campusIndex], 'campus': this.data.campus, 'reputation': this.data.reputation, 'academic': this.data.academic, 'webService': this.data.webService, 'dom': this.data.dom, 'food': this.data.food, 'geo': this.data.geo, 'activity': this.data.activity, 'infrastructure': this.data.infrastructure, 'happiness': this.data.happiness, 'relationship': this.data.relationship, }
+        'tmpUnivComment': { "school_id": this.data.universityId, "school_district_id": this.data.campusIndices[this.data.campusIndex], 'campus': this.data.campus, 'reputation': this.data.reputation, 'academic': this.data.academic, 'webService': this.data.webService, 'dom': this.data.dom, 'food': this.data.food, 'geo': this.data.geo, 'activity': this.data.activity, 'infrastructure': this.data.infrastructure, 'happiness': this.data.happiness, 'relationship': this.data.relationship, }
       })
 
       wx.setStorage({

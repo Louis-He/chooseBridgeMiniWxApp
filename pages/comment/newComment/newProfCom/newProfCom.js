@@ -17,6 +17,7 @@ Page({
     "isAttend": true,
     "tagsUp": [{ tags: "风趣幽默", selected: false }, { tags: "和蔼可亲", selected: false }, { tags: "严谨认真", selected: false }, { tags: "反馈及时", selected: false }, { tags: "学识渊博", selected: false }],
     "tagsDown": [{ tags: "超赞讲师", selected: false }, { tags: "课后沟通多", selected: false }, { tags: "公平公正", selected: false }],
+    tagNumber: 0
   },
 
   /**
@@ -208,9 +209,23 @@ Page({
     // console.log(e.currentTarget.dataset.index);
     var currentData = this.data.tagsUp
     if (!currentData[e.currentTarget.dataset.index].selected){
-      currentData[e.currentTarget.dataset.index].selected = true;
+      if (this.data.tagNumber >= 4) {
+        wx.showToast({
+          title: '最多选择四个标签哦～',
+          icon: 'none',
+          duration: 3000
+        });
+      }else{
+        currentData[e.currentTarget.dataset.index].selected = true;
+        this.setData({
+          tagNumber: this.data.tagNumber + 1
+        })
+      }
     }else{
       currentData[e.currentTarget.dataset.index].selected = false;
+      this.setData({
+        tagNumber: this.data.tagNumber - 1
+      })
     }
     // console.log(currentData)
     this.setData({
@@ -222,9 +237,23 @@ Page({
     // console.log(e.currentTarget.dataset.index);
     var currentData = this.data.tagsDown
     if (!currentData[e.currentTarget.dataset.index].selected) {
-      currentData[e.currentTarget.dataset.index].selected = true;
+      if(this.data.tagNumber >= 4){
+        wx.showToast({
+          title: '最多选择四个标签哦～',
+          icon: 'none',
+          duration: 3000
+        });
+      }else{
+        currentData[e.currentTarget.dataset.index].selected = true;
+        this.setData({
+          tagNumber: this.data.tagNumber + 1
+        })
+      }
     } else {
       currentData[e.currentTarget.dataset.index].selected = false;
+      this.setData({
+        tagNumber: this.data.tagNumber - 1
+      })
     }
     // console.log(currentData)
     this.setData({

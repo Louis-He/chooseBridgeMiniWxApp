@@ -91,7 +91,7 @@ Page({
     var that = this
     if (this.data.wordNumber < 10) {
       this.setData({
-        popErrorMsg: '请对这个课程稍作评价吧～'
+        popErrorMsg: '请对这所学校稍作评价吧～'
       })
     } else {
       if(this.data.isLoad){
