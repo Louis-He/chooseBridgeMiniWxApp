@@ -89,7 +89,7 @@
 
           <view class='create-new'>
             <text>没有您所在的高校？</text>
-            <button class ='button' bindtap='createNew'>创建新高校！</button>
+            <button class ='button' bindtap='createNewUniv'>创建新高校！</button>
           </view>
       </view>
     </view>
@@ -141,7 +141,7 @@
 
             <view class='create-new'>
               <text>没有您想查询的教授？</text>
-              <button class ='button' bindtap='createNew'>创建新教授！</button>
+              <button class ='button' bindtap='createNewPro'>创建新教授！</button>
             </view>
         </view>
     </view>

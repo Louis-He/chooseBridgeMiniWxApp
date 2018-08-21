@@ -233,7 +233,7 @@ Page({
   },
   createNewUniv: function () {
     wx.navigateTo({
-      url: '../courses/newPro/newPro'
+      url: '../university/newUniversity/newUniversity'
     })
   },
   createNewPro: function () {
