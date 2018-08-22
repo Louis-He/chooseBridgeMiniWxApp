@@ -231,12 +231,7 @@ Page({
       }
     })
   },
-  createNewUniv: function () {
-    wx.navigateTo({
-      url: '../courses/newPro/newPro'
-    })
-  },
-  createNewPro: function () {
+  createNew: function () {
     wx.navigateTo({
       url: '../courses/newPro/newPro'
     })
