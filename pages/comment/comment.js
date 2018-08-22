@@ -231,7 +231,13 @@ Page({
       }
     })
   },
-  createNew: function () {
+
+  createNewUniv: function () {
+    wx.navigateTo({
+      url: '../university/newUniversity/newUniversity'
+    })
+  },
+  createNewPro: function () {
     wx.navigateTo({
       url: '../courses/newPro/newPro'
     })
