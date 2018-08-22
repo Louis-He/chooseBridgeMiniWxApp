@@ -123,13 +123,27 @@ Page({
               "agreement": true
             },
             success: function (res) {
+              console.log(res.data)
               wx.setStorage({
                 key: 'tmpProfId',
                 data: res.data.data.id,
               })
-              wx.redirectTo({
-                url: 'success',
+              wx.setStorage({
+                key: 'professorID',
+                data: res.data.data.id,
+                success:function(res){
+                  wx.setStorage({
+                    key: 'professor_name_cmt',
+                    data: that.data.requestConfirmData.lastName + " " + that.data.requestConfirmData.firstName,
+                    success: function (res) {
+                      wx.redirectTo({
+                        url: 'success',
+                      })
+                    }
+                  })
+                }
               })
+              
             }
           })          
         })
