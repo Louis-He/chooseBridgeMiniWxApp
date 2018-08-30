@@ -60,7 +60,7 @@
       },
       {
         "pagePath": "pages/courses/courses",
-        "text": "查找教授",
+        "text": "查找课程",
         "iconPath": "pages/index/img/courses.png",
         "selectedIconPath": "pages/index/img/courses.png"
       },
