@@ -291,6 +291,19 @@ Page({
         })
       }
     })
+    var profCmtInfo = {
+      profID: that.data.info.professorID,
+      index: index,
+    }
+    wx.setStorage({
+      key: 'profCmtInfo',
+      data: profCmtInfo,
+      success: function() {
+        wx.navigateTo({
+          url: 'commentDetail/commentDetail',
+        })
+      }
+    })
   },
 
   addLike: function() {
