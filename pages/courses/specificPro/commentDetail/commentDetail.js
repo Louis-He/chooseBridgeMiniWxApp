@@ -7,6 +7,7 @@ Page({
    */
   data: {
     tags: [],
+    btmRates: [],
   },
   /**
    * 生命周期函数--监听页面加载
@@ -21,46 +22,88 @@ Page({
     this.setScrollHeight();
     var that = this;
     wx.getStorage({
-      key: 'profCmtDetail',
-      success: function(res) {
-        console.log(res);
-        //根据student_id获取点评学生信息
-        requestUtil.getStudentByID(res.data.studentID, function (result) {
+      key: 'profCmtInfo',
+      success: function (res) {
+        requestUtil.getProfessorDetail(res.data.profID, function (result) {
           console.log(result);
+          //截取点评时间年月
+          var length = result.rateInfo.length;
+          var tempCommentTime = new Array();
+          for (var i = 0; i < length; i++) {
+            tempCommentTime.push(result.rateInfo[i].created_at.date.substring(0, 7));
+          }
+
+          //转换用户点评数字成文字含义
+          var temprate = result.rateInfo;
+          var tempDifficult;
+          var tempHomework;
+          var tempAttendence;
+          for (var i = 0; i < temprate.length; i++) {
+            if (temprate[i].difficult_level == 1) tempDifficult = "简单";
+            if (temprate[i].difficult_level == 2) tempDifficult = "较易";
+            if (temprate[i].difficult_level == 3) tempDifficult = "中等";
+            if (temprate[i].difficult_level == 4) tempDifficult = "较难";
+            if (temprate[i].difficult_level == 5) tempDifficult = "很难";
+            if (temprate[i].homework_num == 1) tempHomework = "很少";
+            if (temprate[i].homework_num == 2) tempHomework = "较少";
+            if (temprate[i].homework_num == 3) tempHomework = "中等";
+            if (temprate[i].homework_num == 4) tempHomework = "较多";
+            if (temprate[i].homework_num == 5) tempHomework = "很多";
+            if (temprate[i].is_attend == 1) tempAttendence = "是";
+            if (temprate[i].is_attend == 2) tempAttendence = "否";
+            that.data.btmRates[i] = {
+              difficult: tempDifficult,
+              homework: tempHomework,
+              attendence: tempAttendence,
+            }
+          }
           that.setData({
-            university: result.student.school_name,
-            major: result.student.major,
-            province: result.student.exam_province,
-            graduate: result.student.graduate_year,
+            btmRates: that.data.btmRates,
           })
-        });
 
+          //转换tags数据结构
+          var index = res.data.index;
+          var tempTags = new Array();
+          tempTags = result.rateInfo[index].tag.split(",");
+          console.log(tempTags);
 
-        //转换tags数据结构
-        var tempTags = new Array();
-        tempTags = res.data.tags.split(",");
-        console.log(tempTags);
-        //存储后台数据
-        that.setData({
-          tags: tempTags,
-          date: res.data.date,
-          effort: res.data.effort,
-          courseName: res.data.courseName,
-          courseCode: res.data.courseCode,
-          attendence: res.data.btmRates.attendence,
-          difficult: res.data.btmRates.difficult,
-          homework: res.data.btmRates.homework,
-          comment: res.data.comment,
-          index: res.data.index,
-        })
-      },
+          //存储后台数据
+          that.setData({
+            commentTime: tempCommentTime,
+            date: tempCommentTime[index],
+            tags: tempTags,
+            index: index,
+            comment: result.rateInfo[index].comment,
+            effort: result.rateInfo[index].effort,
+            courseName: result.rateInfo[index].course_name,
+            courseCode: result.rateInfo[index].course_code, 
+            attendence: that.data.btmRates[index].attendence,
+            difficult: that.data.btmRates[index].difficult,
+            homework: that.data.btmRates[index].homework,
+            studentID: result.rateInfo[index].create_student_id,
+          })
+
+          //根据student_id获取点评学生信息
+          requestUtil.getStudentByID(result.rateInfo[index].create_student_id, function (stuRes) {
+            console.log(stuRes);
+            that.setData({
+              university: stuRes.student.school_name,
+              major: stuRes.student.major,
+              province: stuRes.student.exam_province,
+              graduate: stuRes.student.graduate_year,
+            })
+          });
+        }
+      )}
     })
+
     wx.getStorage({
-      key: 'professorID',
+      key: 'profCmtInfo',
       success: function (res) {
         console.log(res);
-        requestUtil.getProfessorDetail(res.data,
+        requestUtil.getProfessorDetail(res.data.profID,
           function (result) {
+            console.log(that.data.index);
             that.setData({
               likes: result.rateInfo[that.data.index].thumbs_up_percent,
               dislikes: result.rateInfo[that.data.index].thumbs_down_percent,
