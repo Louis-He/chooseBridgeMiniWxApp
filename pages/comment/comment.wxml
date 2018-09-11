@@ -1,5 +1,5 @@
 <!--pages/comment/comment.wxml-->
-<!-- github setting test -->
+<!-- github setting test test2 -->
 
 
 <block wx:if="{{!showResults}}">
