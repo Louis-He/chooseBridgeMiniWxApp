@@ -24,6 +24,7 @@ Page({
     wx.showLoading({
       title: "加载中..."
     })
+
     wx.getStorage({
       key: 'profCmtInfo',
       success: function (res) {

@@ -71,6 +71,7 @@ Page({
               dislikes: result.ratesInfo[res.data.index].thumbs_down_percent,
             })
             wx.hideLoading();
+
           })
       },
     })
