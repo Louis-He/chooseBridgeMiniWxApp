@@ -21,6 +21,10 @@ Page({
     })
     this.setScrollHeight();
     var that = this;
+    wx.showLoading({
+      title: "加载中..."
+    })
+
     wx.getStorage({
       key: 'profCmtInfo',
       success: function (res) {
@@ -108,6 +112,7 @@ Page({
               likes: result.rateInfo[that.data.index].thumbs_up_percent,
               dislikes: result.rateInfo[that.data.index].thumbs_down_percent,
             })
+            wx.hideLoading();
           })
       },
     })

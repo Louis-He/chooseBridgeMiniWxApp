@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 14,
 			"list": [
 				{
 					"id": -1,
@@ -115,6 +115,11 @@
 					"name": "tokenConfirm",
 					"pathName": "pages/user/emailForm/tokenConfirm",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "高校长评价",
+					"pathName": "pages/comment/newComment/newUnivCom/detailCom"
 				}
 			]
 		}

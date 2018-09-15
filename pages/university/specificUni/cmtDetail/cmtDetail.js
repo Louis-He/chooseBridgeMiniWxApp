@@ -18,6 +18,9 @@ Page({
       }
     })
     this.setScrollHeight();
+    wx.showLoading({
+      title: "加载中..."
+    })
     var that = this;
     wx.getStorage({
       key: 'cmtInfo',
@@ -67,6 +70,8 @@ Page({
               likes: result.ratesInfo[res.data.index].thumbs_up_percent,
               dislikes: result.ratesInfo[res.data.index].thumbs_down_percent,
             })
+            wx.hideLoading();
+
           })
       },
     })
