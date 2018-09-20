@@ -175,16 +175,19 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var that = this;
     var unionId = '';
+    var professorName = '';
     wx.getStorage({
       key: 'unionId',
       success: function (res) {
         unionId = res.data
       },
     })
+    professorName = wx.getStorageSync('professor_name_cmt');
     return {
-      title: '邀请您加入桥选学生社群！',
-      path: '/pages/user/user?unionid=' + unionId,
+      title: '查看' + professorName + '详细评价',
+      path: '/pages/courses/specificPro/specificPro?unionid=' + unionId + '&professorID=' + that.data.info.professorID,
       success: function (res) {
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
@@ -203,6 +206,8 @@ Page({
       }
     }
   },
+
+  /* 点赞功能 */ 
   addLike: function () {
     var that = this;
     wx.getStorage({
