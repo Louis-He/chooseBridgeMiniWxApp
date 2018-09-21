@@ -109,8 +109,8 @@ Page({
           function (result) {
             console.log(that.data.index);
             that.setData({
-              likes: result.rateInfo[that.data.index].thumbs_up_percent,
-              dislikes: result.rateInfo[that.data.index].thumbs_down_percent,
+              likes: result.rateInfo[res.data.index].thumbs_up_percent,
+              dislikes: result.rateInfo[res.data.index].thumbs_down_percent,
             })
             wx.hideLoading();
           })
